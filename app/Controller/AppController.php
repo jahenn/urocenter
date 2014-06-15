@@ -33,9 +33,9 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 	public $components = array(
 		'Auth'=>array(
-			'authorize'=>array('controller'),
+			'authorize'=>array('Controller'),
 			'loginRedirect' => array(
-				'Controller'=>'users',
+				'controller'=>'users',
 				'action'=>'index'
 				)
 			),
