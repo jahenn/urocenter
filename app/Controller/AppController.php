@@ -35,7 +35,7 @@ class AppController extends Controller {
 		'Auth'=>array(
 			'authorize'=>array('controller'),
 			'loginRedirect' => array(
-				'controller'=>'users',
+				'Controller'=>'users',
 				'action'=>'index'
 				)
 			),
