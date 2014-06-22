@@ -14,8 +14,9 @@ class MenusControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.menu',
-		'app.menu_sub_menu',
-		'app.sub_menu'
+		'app.role',
+		'app.user',
+		'app.roles_user'
 	);
 
 /**

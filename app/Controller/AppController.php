@@ -31,18 +31,51 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $components = array(
-		'Auth'=>array(
-			'authorize'=>array('Controller'),
-			'loginRedirect' => array(
-				'controller'=>'users',
-				'action'=>'index'
+	// public $components = array(
+	// 	'Auth'=>array(
+	// 		'authorize'=>array('Controller'),
+	// 		'loginRedirect' => array(
+	// 			'controller'=>'users',
+	// 			'action'=>'index'
+	// 			)
+	// 		),
+	// 	'Session'
+	// 	);
+
+	// public function isAuthorized($user){
+	// 	return true;
+	// }
+
+
+	public function beforeFilter()
+	{
+		$this->loadModel('Menu');
+		$this->Menu->unbindModel(array(
+			'belongsTo' => array(
+				'Role'
 				)
-			),
-		'Session'
+			)
+		);
+		$this->Menu->recursive = 2;
+		$menus = $this->Menu->find('all', array(
+			'conditions'=>array(
+				'Menu.child_menu' => 0
+				)
+			)
 		);
 
-	public function isAuthorized($user){
-		return true;
+		$this->set(compact('menus'));
+
+		
+
+
+
+
 	}
+
+
 }
+
+
+
+

@@ -13,7 +13,11 @@ class MenuTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.menu'
+		'app.menu',
+		'app.role',
+		'app.user',
+		'app.roles_user',
+		'app.menus_role'
 	);
 
 /**

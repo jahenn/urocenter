@@ -14,7 +14,7 @@ class SubMenuTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'app.sub_menu',
-		'app.menu'
+		'app.menus'
 	);
 
 /**

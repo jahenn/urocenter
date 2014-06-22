@@ -3,15 +3,13 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('role_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('role_description'); ?></th>
+			<th><?php echo $this->Paginator->sort('nombre'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($roles as $role): ?>
 	<tr>
 		<td><?php echo h($role['Role']['id']); ?>&nbsp;</td>
-		<td><?php echo h($role['Role']['role_name']); ?>&nbsp;</td>
-		<td><?php echo h($role['Role']['role_description']); ?>&nbsp;</td>
+		<td><?php echo h($role['Role']['nombre']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $role['Role']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $role['Role']['id'])); ?>
@@ -38,7 +36,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Role'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Role Menus'), array('controller' => 'role_menus', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Role Menu'), array('controller' => 'role_menus', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

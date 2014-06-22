@@ -4,18 +4,20 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('nombre'); ?></th>
-			<th><?php echo $this->Paginator->sort('descripcion'); ?></th>
+			<th><?php echo $this->Paginator->sort('child_menu'); ?></th>
 			<th><?php echo $this->Paginator->sort('controller'); ?></th>
 			<th><?php echo $this->Paginator->sort('action'); ?></th>
+			<th><?php echo $this->Paginator->sort('class'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($menus as $menu): ?>
 	<tr>
 		<td><?php echo h($menu['Menu']['id']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['nombre']); ?>&nbsp;</td>
-		<td><?php echo h($menu['Menu']['descripcion']); ?>&nbsp;</td>
+		<td><?php echo h($menu['Menu']['child_menu']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['controller']); ?>&nbsp;</td>
 		<td><?php echo h($menu['Menu']['action']); ?>&nbsp;</td>
+		<td><?php echo h($menu['Menu']['class']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $menu['Menu']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $menu['Menu']['id'])); ?>
@@ -42,5 +44,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Menu'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

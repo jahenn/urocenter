@@ -3,37 +3,11 @@ App::uses('AppModel', 'Model');
 /**
  * User Model
  *
- * @property UserRole $UserRole
+ * @property UserAnswer $UserAnswer
+ * @property Role $Role
  */
 class User extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'username' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'password' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -43,8 +17,8 @@ class User extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'UserRole' => array(
-			'className' => 'UserRole',
+		'UserAnswer' => array(
+			'className' => 'UserAnswer',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -55,6 +29,28 @@ class User extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		)
+	);
+
+
+/**
+ * hasAndBelongsToMany associations
+ *
+ * @var array
+ */
+	public $hasAndBelongsToMany = array(
+		'Role' => array(
+			'className' => 'Role',
+			'joinTable' => 'roles_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'role_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
 		)
 	);
 

@@ -22,11 +22,7 @@ class UsersController extends AppController {
  */
 	public function index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->User->find('all', array(
-			'conditions'=>array('enabled'=>true),
-			'order'=>array('username')
-			)
-		));
+		$this->set('users', $this->Paginator->paginate());
 	}
 
 /**
@@ -59,6 +55,8 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
 		}
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
 	}
 
 /**
@@ -83,6 +81,8 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
 	}
 
 /**
@@ -97,26 +97,12 @@ class UsersController extends AppController {
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-
-		if ($this->User->save(array('enabled'=>false))) {
-			$this->Session->setFlash(__('The user has been deleted.'), 'default', array('class'=>'alert alert-success'));
+		$this->request->allowMethod('post', 'delete');
+		if ($this->User->delete()) {
+			$this->Session->setFlash(__('The user has been deleted.'));
 		} else {
-			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'), 'default', array('class'=>'alert alert-danger'));
+			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
-
 		return $this->redirect(array('action' => 'index'));
-	}
-
-	public function login()
-	{
-
-		$this->Auth->login(array('username'=>'Jorge Juarez'));
-		$this->redirect(array('controller'=>'users', 'action'=>'index'));
-
-	}
-
-	public function beforeFilter()
-	{
-		$this->layout = 'admin';
 	}
 }

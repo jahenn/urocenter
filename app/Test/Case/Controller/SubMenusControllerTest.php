@@ -14,8 +14,7 @@ class SubMenusControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.sub_menu',
-		'app.menu_sub_menu',
-		'app.menu'
+		'app.menus'
 	);
 
 /**

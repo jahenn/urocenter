@@ -55,6 +55,8 @@ class MenusController extends AppController {
 				$this->Session->setFlash(__('The menu could not be saved. Please, try again.'));
 			}
 		}
+		$roles = $this->Menu->Role->find('list');
+		$this->set(compact('roles'));
 	}
 
 /**
@@ -79,6 +81,8 @@ class MenusController extends AppController {
 			$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
 			$this->request->data = $this->Menu->find('first', $options);
 		}
+		$roles = $this->Menu->Role->find('list');
+		$this->set(compact('roles'));
 	}
 
 /**
@@ -100,5 +104,24 @@ class MenusController extends AppController {
 			$this->Session->setFlash(__('The menu could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+
+	public function lists(){
+		// $this->Menu->unbindModel(array(
+		// 	'belongsTo' => array(
+		// 		'Role'
+		// 		)
+		// 	)
+		// );
+		// $this->Menu->recursive = 2;
+		// $menus = $this->Menu->find('all', array(
+		// 	'conditions'=>array(
+		// 		'Menu.child_menu' => 0
+		// 		)
+		// 	)
+		// );
+
+		// $this->set(compact('menus'));
 	}
 }

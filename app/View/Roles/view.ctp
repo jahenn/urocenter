@@ -6,14 +6,9 @@
 			<?php echo h($role['Role']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Role Name'); ?></dt>
+		<dt><?php echo __('Nombre'); ?></dt>
 		<dd>
-			<?php echo h($role['Role']['role_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Role Description'); ?></dt>
-		<dd>
-			<?php echo h($role['Role']['role_description']); ?>
+			<?php echo h($role['Role']['nombre']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -25,29 +20,29 @@
 		<li><?php echo $this->Form->postLink(__('Delete Role'), array('action' => 'delete', $role['Role']['id']), array(), __('Are you sure you want to delete # %s?', $role['Role']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Roles'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Role'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Role Menus'), array('controller' => 'role_menus', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Role Menu'), array('controller' => 'role_menus', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Role Menus'); ?></h3>
-	<?php if (!empty($role['RoleMenu'])): ?>
+	<h3><?php echo __('Related Users'); ?></h3>
+	<?php if (!empty($role['User'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Role Id'); ?></th>
-		<th><?php echo __('Menu Id'); ?></th>
+		<th><?php echo __('Username'); ?></th>
+		<th><?php echo __('Password'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($role['RoleMenu'] as $roleMenu): ?>
+	<?php foreach ($role['User'] as $user): ?>
 		<tr>
-			<td><?php echo $roleMenu['id']; ?></td>
-			<td><?php echo $roleMenu['role_id']; ?></td>
-			<td><?php echo $roleMenu['menu_id']; ?></td>
+			<td><?php echo $user['id']; ?></td>
+			<td><?php echo $user['username']; ?></td>
+			<td><?php echo $user['password']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'role_menus', 'action' => 'view', $roleMenu['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'role_menus', 'action' => 'edit', $roleMenu['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'role_menus', 'action' => 'delete', $roleMenu['id']), array(), __('Are you sure you want to delete # %s?', $roleMenu['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['id']), array(), __('Are you sure you want to delete # %s?', $user['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -56,7 +51,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Role Menu'), array('controller' => 'role_menus', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>
