@@ -106,7 +106,7 @@ CREATE TABLE `exams` (
   PRIMARY KEY (`id`),
   KEY `fk_exams_exam_categories1_idx` (`exam_category_id`),
   CONSTRAINT `fk_exams_exam_categories1` FOREIGN KEY (`exam_category_id`) REFERENCES `exam_categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,7 @@ CREATE TABLE `exams` (
 
 LOCK TABLES `exams` WRITE;
 /*!40000 ALTER TABLE `exams` DISABLE KEYS */;
-INSERT INTO `exams` VALUES (1,1,'Matematicas II 1er Parcial');
+INSERT INTO `exams` VALUES (1,1,'Matematicas II 1er Parcial'),(2,2,'Matematicas I 1er Parcial');
 /*!40000 ALTER TABLE `exams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +143,7 @@ CREATE TABLE `exams_questions` (
 
 LOCK TABLES `exams_questions` WRITE;
 /*!40000 ALTER TABLE `exams_questions` DISABLE KEYS */;
-INSERT INTO `exams_questions` VALUES (1,1),(1,2);
+INSERT INTO `exams_questions` VALUES (1,1),(2,1),(1,2),(2,2);
 /*!40000 ALTER TABLE `exams_questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +162,7 @@ CREATE TABLE `menus` (
   `action` varchar(45) DEFAULT NULL,
   `class` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `menus` (
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
-INSERT INTO `menus` VALUES (1,'Home',0,'pages','display','fa fa-home'),(6,'Usuarios',0,'users','index','fa fa-user'),(7,'Lista de Usuarios',6,'users','index',NULL),(8,'Estadisticas de Usuarios',6,'users','charts',NULL),(9,'Examenes',0,'','','fa fa-edit'),(10,'Examenes (Templates)',9,'exams','index',''),(11,'Examenes (Usuario)',9,'user_exams','index','');
+INSERT INTO `menus` VALUES (1,'Home',0,'pages','display','fa fa-home'),(6,'Usuarios',0,'users','index','fa fa-user'),(7,'Lista de Usuarios',6,'users','index',NULL),(8,'Estadisticas de Usuarios',6,'users','charts',NULL),(9,'Examenes',0,'','','fa fa-edit'),(10,'Examenes (Templates)',9,'exams','index',''),(11,'Examenes (Usuario)',9,'user_exams','index',''),(12,'Preguntas',9,'questions','index','');
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +199,7 @@ CREATE TABLE `menus_roles` (
 
 LOCK TABLES `menus_roles` WRITE;
 /*!40000 ALTER TABLE `menus_roles` DISABLE KEYS */;
-INSERT INTO `menus_roles` VALUES (9,5),(10,5),(11,5),(9,6),(10,6),(11,6);
+INSERT INTO `menus_roles` VALUES (9,5),(10,5),(11,5),(12,5),(9,6),(10,6),(11,6),(12,6);
 /*!40000 ALTER TABLE `menus_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,7 +315,7 @@ CREATE TABLE `user_answers` (
 
 LOCK TABLES `user_answers` WRITE;
 /*!40000 ALTER TABLE `user_answers` DISABLE KEYS */;
-INSERT INTO `user_answers` VALUES (1,1,1,1,1,'Raiz Cuadrada de 25','25',1,10.00);
+INSERT INTO `user_answers` VALUES (1,1,1,1,1,'Raiz Cuadrada de 25','5',1,10.00);
 /*!40000 ALTER TABLE `user_answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,7 +370,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jahenn Darlaine','senet33');
+INSERT INTO `users` VALUES (1,'Jahenn Darlaine','12345');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -383,4 +383,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-22 19:13:21
+-- Dump completed on 2014-06-22 23:52:14
