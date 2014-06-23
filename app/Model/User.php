@@ -9,6 +9,9 @@ App::uses('AppModel', 'Model');
 class User extends AppModel {
 
 
+	public $displayField = 'username';
+
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

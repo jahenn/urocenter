@@ -1,3 +1,72 @@
+<h4 class="heading-1 clearfix">
+    <div class="heading-content">
+    	<?php echo __('User Answer'); ?>       	       <!-- <small>
+            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
+        </small> -->
+    </div>
+    <div class="clear"></div>
+    <div class="divider"></div>
+</h4>
+
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-stripped">
+			<tr>
+				<tr>		<th class="col-md-2 float-none text-left "><?php echo __('Id'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($userAnswer['UserAnswer']['id']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('User Exam'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo $this->Html->link($userAnswer['UserExam']['id'], array('controller' => 'user_exams', 'action' => 'view', $userAnswer['UserExam']['id'])); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('User'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo $this->Html->link($userAnswer['User']['username'], array('controller' => 'users', 'action' => 'view', $userAnswer['User']['id'])); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Question'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo $this->Html->link($userAnswer['Question']['question'], array('controller' => 'questions', 'action' => 'view', $userAnswer['Question']['id'])); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Answer'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo $this->Html->link($userAnswer['Answer']['answer'], array('controller' => 'answers', 'action' => 'view', $userAnswer['Answer']['id'])); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Pregunta'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($userAnswer['UserAnswer']['pregunta']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Respuesta'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($userAnswer['UserAnswer']['respuesta']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Correcta'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($userAnswer['UserAnswer']['correcta']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Valor'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($userAnswer['UserAnswer']['valor']); ?>
+			&nbsp;
+		</td>
+</tr>			</tr>
+		</table>
+	</div>
+</div>
+
+
+
+<!-- ############# -->
+
+<!--
 <div class="userAnswers view">
 <h2><?php echo __('User Answer'); ?></h2>
 	<dl>
@@ -65,3 +134,8 @@
 		<li><?php echo $this->Html->link(__('New Answer'), array('controller' => 'answers', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+
+
+
+-->

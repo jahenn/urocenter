@@ -21,6 +21,9 @@ class MenusController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Paginator->settings = array(
+			'limit'=>5
+			);
 		$this->Menu->recursive = 0;
 		$this->set('menus', $this->Paginator->paginate());
 	}

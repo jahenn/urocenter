@@ -16,6 +16,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
+<h1>Hola</h1>
 <div class="<?php echo $pluralVar;?> index row">
 <div class="actions span2">
 	<ul class="nav nav-list">

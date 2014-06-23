@@ -79,8 +79,10 @@
 
             <div id="page-sidebar">
                 <div id="header-logo">
-                    AgileUI <i class="opacity-80">v2.0</i>
-
+                    <!-- AgileUI <i class="opacity-80">v2.0</i> -->
+                    <?= $this->Html->Image('logo.png', array(
+                        'width'=>185
+                    )) ?>
                     <a href="javascript:;" class="tooltip-button" data-placement="bottom" title="Close sidebar" id="close-sidebar">
                         <i class="glyph-icon icon-align-justify"></i>
                     </a>
@@ -98,7 +100,7 @@
                 <div id="sidebar-menu" class="scrollable-content">
 
                     <ul>
-                        <?php foreach($menus as $menu): ?>
+                        <?php foreach($menus_bar as $menu): ?>
                         <li>
                             <?php if(count($menu['ChildMenu']) > 0): ?>
                             <a href="javascript:" > 
@@ -150,7 +152,7 @@
                     <div id="page-header" class="clearfix" style="min-height:50px;">
                         <div id="page-header-wrapper" class="clearfix">
 
-
+                            
                         </div>
                     </div><!-- #page-header -->
 

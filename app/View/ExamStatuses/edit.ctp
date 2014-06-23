@@ -3,7 +3,7 @@
 
 <h4 class="heading-1 clearfix">
     <div class="heading-content">
-    	<?php echo __('Edit Exam Category'); ?>       	       
+    	<?php echo __('Edit Exam Status'); ?>       	       
     	<!-- <small>
             File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
         </small> -->
@@ -12,7 +12,7 @@
     <div class="divider"></div>
 </h4>
 
-<?php echo $this->Form->create('ExamCategory', array(
+<?php echo $this->Form->create('ExamStatus', array(
 	'inputDefaults'=>array(
 		'div'=>false
 		)
@@ -43,10 +43,10 @@
 
 <!-- ################ -->
 <!--
-<div class="examCategories form">
-<?php echo $this->Form->create('ExamCategory'); ?>
+<div class="examStatuses form">
+<?php echo $this->Form->create('ExamStatus'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Exam Category'); ?></legend>
+		<legend><?php echo __('Edit Exam Status'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('nombre');
@@ -58,10 +58,10 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('ExamCategory.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('ExamCategory.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Exam Categories'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Exams'), array('controller' => 'exams', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Exam'), array('controller' => 'exams', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('ExamStatus.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('ExamStatus.id'))); ?></li>
+		<li><?php echo $this->Html->link(__('List Exam Statuses'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List User Exams'), array('controller' => 'user_exams', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User Exam'), array('controller' => 'user_exams', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 -->

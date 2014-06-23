@@ -57,20 +57,20 @@ class AppController extends Controller {
 			)
 		);
 		$this->Menu->recursive = 2;
-		$menus = $this->Menu->find('all', array(
+		$menus_bar = $this->Menu->find('all', array(
 			'conditions'=>array(
 				'Menu.child_menu' => 0
 				)
 			)
 		);
 
-		$this->set(compact('menus'));
+		$this->set(compact('menus_bar'));
 
 		
 		$this->layout = 'agile';
 
 
-
+		//pr($menus);
 
 	}
 

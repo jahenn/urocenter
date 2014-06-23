@@ -1,5 +1,5 @@
 <div class="menus form">
-<?php echo $this->Form->create('Menu', array('inputDefaults' => array('div'=>false))); ?>
+<?php echo $this->Form->create('Menu'); ?>
 	<fieldset>
 		<legend><?php echo __('Add Menu'); ?></legend>
 	<?php
@@ -18,6 +18,8 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Menus'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Menus'), array('controller' => 'menus', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Child Menu'), array('controller' => 'menus', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add')); ?> </li>
 	</ul>

@@ -1,5 +1,67 @@
+
+
+
+<h4 class="heading-1 clearfix">
+    <div class="heading-content">
+    	<?php echo __('Add User'); ?>       	       
+    	<!-- <small>
+            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
+        </small> -->
+    </div>
+    <div class="clear"></div>
+    <div class="divider"></div>
+</h4>
+
+<?php echo $this->Form->create('User', array(
+	'inputDefaults'=>array(
+		'div'=>false
+		)
+)); ?>
+
+
+<div class="form-row">
+							<div class="form-label col-md-2">
+								<label for="username" class=" text-transform-cap ">
+									username
+								</label>
+							</div><div class="form-input col-md-10">		 <?= $this->Form->input('username', array(
+							'label'=>false
+							)) ?> 
+	</div>
+						</div><div class="form-row">
+							<div class="form-label col-md-2">
+								<label for="password" class=" text-transform-cap ">
+									password
+								</label>
+							</div><div class="form-input col-md-10">		 <?= $this->Form->input('password', array(
+							'label'=>false
+							)) ?> 
+	</div>
+						</div>		
+
+				<div class="form-label">
+					<label for="Role" class=" text-transform-cap " >Role</label>
+				</div>
+				<div class="form-input">
+					<?= $this->Form->input('Role', array(
+						'label'=>false
+						)) ?> 
+				</div>
+			 	
+			 
+
+<br>
+
+<button class="btn medium primary-bg submit" type="submit">Guardar</button>
+
+<?php echo $this->Form->end(); ?>
+<br>
+<br>
+
+<!-- ################ -->
+<!--
 <div class="users form">
-<?php echo $this->Form->create('User', array('inputDefaults' => array('div'=>false))); ?>
+<?php echo $this->Form->create('User'); ?>
 	<fieldset>
 		<legend><?php echo __('Add User'); ?></legend>
 	<?php
@@ -15,7 +77,10 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List User Answers'), array('controller' => 'user_answers', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User Answer'), array('controller' => 'user_answers', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+-->

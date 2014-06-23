@@ -16,6 +16,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
+
 <div class="<?php echo $pluralVar; ?> index">
 	<h2><?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?></h2>
 	<table cellpadding="0" cellspacing="0">
