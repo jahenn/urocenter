@@ -104,7 +104,7 @@
                         <li>
                             <?php if(count($menu['ChildMenu']) > 0): ?>
                             <a href="javascript:" > 
-                                <i class="fa fa-square"></i>
+                                <i class="<?= $menu['Menu']['class']  ?>"></i>
                                 <?= $menu['Menu']['nombre'] ?> 
                             </a>
                             <ul>
