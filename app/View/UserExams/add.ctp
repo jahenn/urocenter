@@ -1,5 +1,5 @@
 <div class="userExams form">
-<?php echo $this->Form->create('UserExam'); ?>
+<?php echo $this->Form->create('UserExam', array('inputDefaults' => array('div'=>false))); ?>
 	<fieldset>
 		<legend><?php echo __('Add User Exam'); ?></legend>
 	<?php

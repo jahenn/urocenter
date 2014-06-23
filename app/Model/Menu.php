@@ -35,7 +35,7 @@ class Menu extends AppModel {
 		'ChildMenu' => array(
 			'className' => 'Menu',
 			'joinTable' => 'menus',
-			'foreignKey' => 'child_menu'
+			'foreignKey' => 'child_menu'	
 			)
 		);
 

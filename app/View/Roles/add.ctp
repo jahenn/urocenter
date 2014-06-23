@@ -1,5 +1,5 @@
 <div class="roles form">
-<?php echo $this->Form->create('Role'); ?>
+<?php echo $this->Form->create('Role', array('inputDefaults' => array('div'=>false))); ?>
 	<fieldset>
 		<legend><?php echo __('Add Role'); ?></legend>
 	<?php

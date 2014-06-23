@@ -54,8 +54,16 @@
 
         <!-- <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script> -->
 
+        <style type="text/css">
+
+        </style>
 
 
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //$(".input").addClass("form-input");
+            });
+        </script>
     </head>
     <body class="fixed-sidebar fixed-header">
         

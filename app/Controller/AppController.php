@@ -67,6 +67,7 @@ class AppController extends Controller {
 		$this->set(compact('menus'));
 
 		
+		$this->layout = 'agile';
 
 
 

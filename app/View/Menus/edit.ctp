@@ -1,5 +1,5 @@
 <div class="menus form">
-<?php echo $this->Form->create('Menu'); ?>
+<?php echo $this->Form->create('Menu', array('inputDefaults' => array('div'=>false))); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Menu'); ?></legend>
 	<?php

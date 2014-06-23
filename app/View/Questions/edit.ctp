@@ -1,5 +1,5 @@
 <div class="questions form">
-<?php echo $this->Form->create('Question'); ?>
+<?php echo $this->Form->create('Question', array('inputDefaults' => array('div'=>false))); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Question'); ?></legend>
 	<?php

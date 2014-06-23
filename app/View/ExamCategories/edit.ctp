@@ -1,5 +1,5 @@
 <div class="examCategories form">
-<?php echo $this->Form->create('ExamCategory'); ?>
+<?php echo $this->Form->create('ExamCategory', array('inputDefaults' => array('div'=>false))); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Exam Category'); ?></legend>
 	<?php
