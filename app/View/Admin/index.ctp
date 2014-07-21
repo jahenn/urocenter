@@ -108,7 +108,7 @@
         var y = date.getFullYear();
 
 
-        var eventos = 'http://localhost/rx/calendar_events/json';
+        var eventos = 'http://jorgejuarez.net/urocenter/calendar_events/json';
 
         $.ajax({
             type: 'json',
