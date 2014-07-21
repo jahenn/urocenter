@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 /**
  * User Model
  *
@@ -10,6 +11,44 @@ class User extends AppModel {
 
 
 	public $displayField = 'username';
+
+
+	public function beforeSave($options = array()) {
+	    if (isset($this->data[$this->alias]['password'])) {
+	        $passwordHasher = new SimplePasswordHasher();
+	        $this->data[$this->alias]['password'] = $passwordHasher->hash(
+	            $this->data[$this->alias]['password']
+	        );
+	    }
+	    return true;
+	}
+
+
+	public function userHasInRole($user, $role_id)
+	{
+		// $this->User->id = $this->Auth->user()['id'];
+		// $this->User->recursive = 2;
+
+		// foreach($this->User->read()['Role'] as $role){
+		// 	if($role['id'] == 5)
+		// 	{
+		// 		$is_admin = true;
+		// 	}
+		// }
+		// $this->loadModel('User');
+		$this->id = $user;
+
+
+		foreach($this->read()['Role'] as $role){
+			if($role['id'] == $role_id)
+			{
+				return true;
+			}
+		}
+
+		return false;
+
+	}
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

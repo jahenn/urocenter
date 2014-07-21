@@ -45,18 +45,27 @@ class AnswersController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($question_id) {
 		if ($this->request->is('post')) {
 			$this->Answer->create();
 			if ($this->Answer->save($this->request->data)) {
-				$this->Session->setFlash(__('The answer has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The answer has been saved.'), 'default', array(
+					'class'=>'infobox success-bg'
+					));
+				return $this->redirect(array(
+					'controller'=>'Questions',
+					'action' => 'edit',
+					$question_id
+				));
 			} else {
-				$this->Session->setFlash(__('The answer could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The answer could not be saved. Please, try again.'), 'default', array(
+					'class'=>'infobox error-bg'
+					));
 			}
 		}
+
 		$questions = $this->Answer->Question->find('list');
-		$this->set(compact('questions'));
+		$this->set(compact('questions', 'question_id'));
 	}
 
 /**
@@ -92,17 +101,25 @@ class AnswersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null, $question_id=null) {
 		$this->Answer->id = $id;
 		if (!$this->Answer->exists()) {
 			throw new NotFoundException(__('Invalid answer'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		//$this->request->allowMethod('post', 'delete');
 		if ($this->Answer->delete()) {
-			$this->Session->setFlash(__('The answer has been deleted.'));
+			$this->Session->setFlash(__('The answer has been deleted.'), 'default', array(
+				'class'=> 'infobox success-bg'
+				));
 		} else {
-			$this->Session->setFlash(__('The answer could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The answer could not be deleted. Please, try again.'), 'default', array(
+				'class'=>'infobox success-bg'
+				));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array(
+			'controller' => 'Questions',
+			'action'=>'edit', $question_id
+
+			));
 	}
 }

@@ -105,4 +105,43 @@ class UsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function logout(){
+		$this->redirect($this->Auth->logout());
+	}
+
+	public function login() {
+
+		// $this->User->create();
+		// $this->User->save(array(
+		// 	'username'=>'jahenn',
+		// 	'password'=>'12345'
+		// 	));
+
+
+		if ($this->request->is('post')) {
+        if ($this->Auth->login()) {
+            return $this->redirect($this->Auth->redirect());
+        }
+        	$this->Session->setFlash(__('Invalid username or password, try again'));
+    	}
+	}
+
+
+
+	public function login_redirect(){
+		$this->autoRender = false;
+
+
+		$is_admin = $this->User->userHasInRole($this->Auth->user()['id'], 5);
+
+
+		if($is_admin){
+			$this->redirect(array(
+				'controller' => 'admin',
+				'action'=>'index'
+				));
+		}
+		//pr($this->User->read());
+	}
 }

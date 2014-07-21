@@ -3,17 +3,12 @@ App::uses('AppModel', 'Model');
 /**
  * Question Model
  *
+ * @property QuestionCategory $QuestionCategory
  * @property Answer $Answer
+ * @property UserAnswer $UserAnswer
  * @property Exam $Exam
  */
 class Question extends AppModel {
-
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'question';
 
 /**
  * Validation rules
@@ -21,7 +16,7 @@ class Question extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'id' => array(
+		'question_category_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -31,9 +26,34 @@ class Question extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'imagen' => array(
+			// 'notEmpty' => array(
+			// 	'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			//),
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'QuestionCategory' => array(
+			'className' => 'QuestionCategory',
+			'foreignKey' => 'question_category_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 /**
  * hasMany associations
@@ -43,6 +63,19 @@ class Question extends AppModel {
 	public $hasMany = array(
 		'Answer' => array(
 			'className' => 'Answer',
+			'foreignKey' => 'question_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserAnswer' => array(
+			'className' => 'UserAnswer',
 			'foreignKey' => 'question_id',
 			'dependent' => false,
 			'conditions' => '',

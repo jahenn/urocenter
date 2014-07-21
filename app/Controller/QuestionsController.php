@@ -21,8 +21,17 @@ class QuestionsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Question->recursive = 0;
-		$this->set('questions', $this->Paginator->paginate());
+
+		$pendientes = $this->Question->find('count', array(
+			'conditions'=>array(
+				'question_status_id'=>1
+				)
+			));
+
+		
+		$this->set(compact('pendientes'));
+		$this->lists(2);
+		
 	}
 
 /**
@@ -46,17 +55,39 @@ class QuestionsController extends AppController {
  * @return void
  */
 	public function add() {
+
+
+
+
 		if ($this->request->is('post')) {
+			//pr($this->request->data);exit();
+			$imagen = $this->request->data['Question']['imagen'];
+			$this->request->data['Question']['imagen'] = '';
+			if($imagen['error'] == 0)
+			{
+				$filename = $imagen['name'];	
+				$origen = $imagen['tmp_name'];	
+				$destino = WWW_ROOT . 'img/question-images/' . $filename ;
+
+				if(move_uploaded_file($origen, $destino)){
+					$this->request->data['Question']['imagen'] = $filename;
+				}
+			}
+
+
+			
+
 			$this->Question->create();
 			if ($this->Question->save($this->request->data)) {
 				$this->Session->setFlash(__('The question has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'edit', $this->Question->getLastInsertId()));
 			} else {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}
 		}
+		$questionCategories = $this->Question->QuestionCategory->find('list');
 		$exams = $this->Question->Exam->find('list');
-		$this->set(compact('exams'));
+		$this->set(compact('questionCategories', 'exams'));
 	}
 
 /**
@@ -70,7 +101,23 @@ class QuestionsController extends AppController {
 		if (!$this->Question->exists($id)) {
 			throw new NotFoundException(__('Invalid question'));
 		}
+		$this->Question->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
+
+			$imagen = $this->request->data['Question']['imagen'];
+
+			$this->request->data['Question']['imagen'] = $this->Question->read()['Question']['imagen'];
+			if($imagen['error'] == 0)
+			{
+				$filename = $imagen['name'];	
+				$origen = $imagen['tmp_name'];	
+				$destino = WWW_ROOT . 'img/question-images/' . $filename ;
+
+				if(move_uploaded_file($origen, $destino)){
+					$this->request->data['Question']['imagen'] = $filename;
+				}
+			}
+
 			if ($this->Question->save($this->request->data)) {
 				$this->Session->setFlash(__('The question has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -79,10 +126,12 @@ class QuestionsController extends AppController {
 			}
 		} else {
 			$options = array('conditions' => array('Question.' . $this->Question->primaryKey => $id));
+			//$this->Question->recursive = 2;
 			$this->request->data = $this->Question->find('first', $options);
 		}
+		$questionCategories = $this->Question->QuestionCategory->find('list');
 		$exams = $this->Question->Exam->find('list');
-		$this->set(compact('exams'));
+		$this->set(compact('questionCategories', 'exams'));
 	}
 
 /**
@@ -97,12 +146,52 @@ class QuestionsController extends AppController {
 		if (!$this->Question->exists()) {
 			throw new NotFoundException(__('Invalid question'));
 		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Question->delete()) {
-			$this->Session->setFlash(__('The question has been deleted.'));
+		//$this->request->allowMethod('post', 'delete');
+
+		if ($this->Question->save(array(
+			'question_status_id'=>1
+			))) {
+			$this->Session->setFlash(__('The question has been deleted.'), 'default', array(
+				'class'=>'infobox success-bg'
+				));
 		} else {
-			$this->Session->setFlash(__('The question could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The question could not be deleted. Please, try again.'), 'default', array(
+				'class'=>'infobox error-bg'
+				));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function lists($id)
+	{
+		if($id != 2){
+			$pendientes = 0;
+			$this->set(compact('pendientes'));
+		}
+
+		$this->Question->recursive = 0;
+		$this->set('questions', $this->Paginator->paginate(array(
+			'Question.question_status_id'=>$id
+			)));
+		
+		$this->render('index');
+	}
+	public function aprobe($id){
+		$this->autoRender = false;
+		$this->Question->id = $id;
+		$this->Question->read();
+		if($this->Question->exists()){
+			if ($this->Question->save(array(
+				'question_status_id'=>2
+				))){
+				$this->Session->setFlash('La Pregunta ha sido Aprobada', 'default', array(
+					'class'=>'infobox success-bg'
+					));
+
+				$this->redirect(array(
+					'action'=>'lists', 1
+					));
+			}
+		}
 	}
 }

@@ -8,6 +8,8 @@ App::uses('AppModel', 'Model');
  */
 class Role extends AppModel {
 
+	var $displayField = 'nombre';
+
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

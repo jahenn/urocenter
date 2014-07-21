@@ -26,15 +26,27 @@
 
         <!-- <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"> -->
 
+        <?= $this->Html->css('calendar.min') ?>
+        <?= $this->Html->css("font-awesome.min") ?>
+
         <?= $this->Html->css('minified/aui-production.min') ?>
         <?= $this->Html->css('themes/minified/agileui/color-schemes/layouts/default.min') ?>
         <?= $this->Html->css('themes/minified/agileui/color-schemes/elements/default.min') ?>
+        
         <?= $this->Html->css('themes/minified/agileui/responsive.min') ?>
         <?= $this->Html->css('themes/minified/agileui/animations.min') ?>
-        <?= $this->Html->css("font-awesome.min") ?>
+        <?= $this->Html->css('chosen') ?>
+        
+        
+        
+        
 
 
         <?= $this->Html->script('minified/aui-production.min') ?>
+
+        <?= $this->Html->script('chosen.jquery') ?>
+        <?= $this->Html->script('chosen.proto') ?>
+        <!-- <?= $this->Html->script('dropzone') ?> -->
         
         <!-- Theme UI -->
 
@@ -185,7 +197,7 @@
     <div class="divider"></div>
 </h4> -->
 
-
+<?php echo $this->Session->flash(); ?>
 <?php echo $this->fetch('content'); ?>
 
 

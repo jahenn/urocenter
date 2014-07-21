@@ -1,9 +1,16 @@
 
-
+<style type="text/css">
+	.label{
+		font-weight: bold;
+		font-size: 1.5em;
+		margin-left: 0px;
+		padding-left: 0px !important;
+	}
+</style>
 
 <h4 class="heading-1 clearfix">
-    <div class="heading-content">
-    	<?php echo __('Add Answer'); ?>       	       
+	<div class="heading-content">
+		<?php echo __('Agregar Respuesta'); ?>       	       
     	<!-- <small>
             File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
         </small> -->
@@ -16,55 +23,56 @@
 	'inputDefaults'=>array(
 		'div'=>false
 		)
-)); ?>
+		)); ?>
 
 
-<div class="form-row">
-							<div class="form-label col-md-2">
-								<label for="question_id" class=" text-transform-cap ">
-									question_id
-								</label>
-							</div><div class="form-input col-md-10">		 <?= $this->Form->input('question_id', array(
-							'label'=>false
-							)) ?> 
-	</div>
-						</div><div class="form-row">
-							<div class="form-label col-md-2">
-								<label for="answer" class=" text-transform-cap ">
-									answer
-								</label>
-							</div><div class="form-input col-md-10">		 <?= $this->Form->input('answer', array(
-							'label'=>false
-							)) ?> 
-	</div>
-						</div><div class="form-row">
-							<div class="form-label col-md-2">
-								<label for="answer_is_ok" class=" text-transform-cap ">
-									answer_is_ok
-								</label>
-							</div><div class="form-input col-md-10">		 <?= $this->Form->input('answer_is_ok', array(
-							'label'=>false
-							)) ?> 
-	</div>
-						</div><div class="form-row">
-							<div class="form-label col-md-2">
-								<label for="value" class=" text-transform-cap ">
-									value
-								</label>
-							</div><div class="form-input col-md-10">		 <?= $this->Form->input('value', array(
-							'label'=>false
-							)) ?> 
-	</div>
-						</div>
-<br>
+		<div class="form-row">
+			<div class="form-input col-md-10">		 
+			<?= $this->Form->input('question_id', array(
+				'label'=>false,
+				'type'=>'hidden',
+				'value'=>$question_id
+				)) ?> 
+			</div>
+		</div><div class="form-row">
+			<div class="form-input col-md-12">		 
+			<?= $this->Form->input('answer', array(
+				'label'=>array(
+					'text'=>'Captura La Respuesta',
+					'class'=>'text-transform-cap label'
+					),
+				'type'=>'textarea'
+				)) ?> 
+			</div>
+		</div><div class="form-row">
+		<div class="col-md-3">
+			<label for="" class="text-trasform-cap label">
+				La respuesta es correcta?
+			</label>
+		</div>
+		<div class="form-input col-md-1">		 
+			<?= $this->Form->input('answer_is_ok', array(
+				'label'=>false,
+				'class'=>'float-left'
+				)) ?> 
+			</div>
+		</div><div class="form-row">
+		<div class="form-input col-md-10">		 <?= $this->Form->input('value', array(
+				'label'=>false,
+				'type'=>'hidden',
+				'value'=>1
+				)) ?> 
+			</div>
+		</div>
+		<br>
 
-<button class="btn medium primary-bg submit" type="submit">Guardar</button>
+		<button class="btn large primary-bg submit" type="submit">Guardar <i class="fa fa-save"></i></button>
 
-<?php echo $this->Form->end(); ?>
-<br>
-<br>
+		<?php echo $this->Form->end(); ?>
+		<br>
+		<br>
 
-<!-- ################ -->
+		<!-- ################ -->
 <!--
 <div class="answers form">
 <?php echo $this->Form->create('Answer'); ?>
