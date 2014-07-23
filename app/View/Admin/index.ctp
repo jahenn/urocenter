@@ -107,7 +107,6 @@
         var m = date.getMonth();
         var y = date.getFullYear();
 
-
         //var eventos = 'http://localhost/rx/calendar_events/json';
 
         var eventos = "<?= $this->Html->url(array('controller'=>'calendar_events', 'action'=>'json'), true) ?>";
