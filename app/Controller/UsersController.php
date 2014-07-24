@@ -150,16 +150,85 @@ class UsersController extends AppController {
 
 	}
 
-	public function news(){
+	public function group($type){
+		$users = null;
 
-		$this->set('users',$this->paginate(array(
-			'OR'=>array(
-				'activo'=>false, 
-				'datediff( current_timestamp ,fecha_registro) <=' => 3
-				)
-			)));
+		switch ($type) {
+			case 'news':
+				$users = $this->paginate(array(
+							'OR'=>array(
+								'activo'=>false, 
+								'datediff( current_timestamp ,fecha_registro) <=' => 3
+								)
+							));
+				break;
+			
+			default:
 
-		$this->render('index');
+
+				$this->User->id = $this->Auth->user()['id'];
+				$user = $this->User->read();
+				$this->User->Role->recursive = -1;
+				$role_id = $this->User->Role->find('first', array(
+					'conditions'=>array(
+						'lower(Role.nombre)' => strtolower($type)
+						)
+					));
+
+				// $v = new View();
+				// pr($v->element('sql_dump'));
+				// exit();
+
+
+				if($role_id == null || count($role_id) <= 0 || 1==1){
+					
+
+					$this->Session->setFlash('No existe el usuario o grupo de usuarios', 'default', array(
+						'class'=>'alert alert-danger'
+						));
+
+					$this->redirect(array(
+						'controller'=>'users',
+						'action'=>'index'
+						));
+				}else{
+					$role_id = $role_id['Role']['id'];
+					$this->User->Role->recursive = 2;
+					$this->User->Role->unbindModel(array(
+						'hasAndBelongsToMany' => array('Menu')
+						));
+					$roles = $this->User->Role->find('first', array(
+						'conditions'=>array(
+							'Role.id' => $role_id
+							)
+						));
+
+					//pr($roles);
+
+					foreach ($roles['User'] as $key => $value) {
+						$users[]['User'] = $value;
+					}
+
+
+					//$users['User'] = $roles['User'];
+
+					// pr("<br><br><br><br><br><br><br><br><br>");
+					// pr($users);
+
+					//Obtener a los usuarios que tienen ese rol
+
+				}
+
+
+				
+				break;
+		}
+
+
+
+
+		$this->set('users', $users);
+		$this->render('group');
 	}
 
 	public function aprobe($id){

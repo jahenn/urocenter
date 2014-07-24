@@ -1,4 +1,3 @@
-
 <h4 class="heading-1 clearfix">
     <div class="heading-content">
         <?php echo __('Users'); ?>        <!-- <small>
@@ -9,71 +8,121 @@
     <div class="divider"></div>
 </h4>
 
+<h4>Grupos de Usuarios</h4>
+<br>
+
+
+
 <div class="row">
-	<div class="col-md-12">
-		<table class="table table-condensed">
-			<thead>
-				<tr>
-					<th colspan="5" class="text-left pad5A">
-						<?php echo $this->Html->link(__('Nuevo Usuario'), array('action' => 'add'), array(
-							'class'=>'btn medium primary-bg'
-						)); ?>	
-<!-- 						<div class="button-group">
-							
-
-
-																<?php echo $this->Html->link(__('List User Answers'), array('controller' => 'user_answers', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
-									<?php echo $this->Html->link(__('New User Answer'), array('controller' => 'user_answers', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
-									<?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
-									<?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
-
-						</div> -->
-					</th>
-				</tr>
-			</thead>
-		<tr>
-					<th><?php echo $this->Paginator->sort('id'); ?></th>
-					<th><?php echo $this->Paginator->sort('username'); ?></th>
-					<th><?php echo $this->Paginator->sort('email'); ?></th>
-					<th class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($users as $user): ?>
-	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('<i class="fa fa-eye"></i>  View'), array('action' => 'view', $user['User']['id']), array('class'=>'btn medium primary-bg', 'escape'=>false)); ?>
-			<?php echo $this->Html->link(__('<i class="fa fa-edit"></i> Edit'), array('action' => 'edit', $user['User']['id']),array('class'=>'btn medium primary-bg', 'escape'=>false)); ?>
-			<?php echo $this->Form->postLink(__('<i class="fa fa-times"></i> Delete'), array('action' => 'delete', $user['User']['id']), array('class'=>'btn medium primary-bg', 'escape'=>false), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-		<tr>
-			<td colspan="5">
-				<div class="row">
-					<div class="col-md-4">
-						<?php
-							echo $this->Paginator->counter(array(
-								'format' => __('Pagina {:page} de {:pages}, {:current} de {:count} registros, de {:start}, a {:end}')
-								)); 
- ?>					</div>
-					<div class="col-md-8">
-						<div class="paging">
-						<div class="button-group float-right">
-							<?php
-		echo $this->Paginator->prev(__('<i class="fa fa-backward"></i>'), array('class'=>'btn medium primary-bg', 'escape'=>false), null, array('class' => 'prev disabled btn medium primary-bg', 'escape'=>false));
-		echo $this->Paginator->numbers(array('separator' => '', 'class'=>'btn medium primary-bg', 'modulus'=>4));
-		echo $this->Paginator->next(__('<i class="fa fa-forward"></i>'), array(
-											'class'=>'btn medium primary-bg', 'escape'=>false
-											), null, array('class' => 'next disabled btn medium primary-bg', 'escape'=>false));
-	?>
-						</div>
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-		</table>
+	<div class="col-md-3">
+		<?php $user_url = $this->html->url(array(
+			'controller'=>'users',
+			'action'=>'group', 'news'
+		)); ?>
+	    <a href="<?= $user_url ?>" class="tile-button tile-button-alt btn bg-blue-alt pad0A" title="">
+	        <div class="tile-header">
+	            nuevos
+	        </div>
+	        <div class="tile-content-wrapper">
+	            <i class="glyph-icon icon-user"></i>
+	            <div class="tile-content">
+	                9
+	            </div>
+	            <!-- <div class="float-right">Registrados / Inactivos</div> -->
+	        </div>
+	    </a>
+	</div>
+	<div class="col-md-3">
+		<?php $user_url = $this->html->url(array(
+			'controller'=>'users',
+			'action'=>'group', 'administradores'
+		)); ?>
+	    <a href="<?= $user_url ?>" class="tile-button tile-button-alt btn info-bg pad0A" title="">
+	        <div class="tile-header">
+	            Administradores
+	        </div>
+	        <div class="tile-content-wrapper">
+	            <i class="glyph-icon icon-user"></i>
+	            <div class="tile-content">
+	                9
+	            </div>
+	            <!-- <div class="float-right">Registrados / Inactivos</div> -->
+	        </div>
+	    </a>
+	</div>
+	<div class="col-md-3">
+		<?php $user_url = $this->html->url(array(
+			'controller'=>'users',
+			'action'=>'group', 'grupo-b'
+		)); ?>
+	    <a href="<?= $user_url ?>" class="tile-button tile-button-alt btn bg-orange pad0A" title="">
+	        <div class="tile-header">
+	            Grupo B
+	        </div>
+	        <div class="tile-content-wrapper">
+	            <i class="glyph-icon icon-user"></i>
+	            <div class="tile-content">
+	                9
+	            </div>
+	            <!-- <div class="float-right">Registrados / Inactivos</div> -->
+	        </div>
+	    </a>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<?php $user_url = $this->html->url(array(
+			'controller'=>'users',
+			'action'=>'group', 'usuarios'
+		)); ?>
+	    <a href="<?= $user_url ?>" class="tile-button tile-button-alt btn bg-red pad0A" title="">
+	        <div class="tile-header">
+	            Usuarios
+	        </div>
+	        <div class="tile-content-wrapper">
+	            <i class="glyph-icon icon-user"></i>
+	            <div class="tile-content">
+	                9
+	            </div>
+	            <!-- <div class="float-right">Registrados / Inactivos</div> -->
+	        </div>
+	    </a>
+	</div>
+	<div class="col-md-3">
+		<?php $user_url = $this->html->url(array(
+			'controller'=>'users',
+			'action'=>'group', 'alumnos-uvm'
+		)); ?>
+	    <a href="<?= $user_url ?>" class="tile-button tile-button-alt btn bg-green pad0A" title="">
+	        <div class="tile-header">
+	            Alumnos UVM
+	        </div>
+	        <div class="tile-content-wrapper">
+	            <i class="glyph-icon icon-user"></i>
+	            <div class="tile-content">
+	                9
+	            </div>
+	            <!-- <div class="float-right">Registrados / Inactivos</div> -->
+	        </div>
+	    </a>
+	</div>
+	<div class="col-md-3">
+		<?php $user_url = $this->html->url(array(
+			'controller'=>'users',
+			'action'=>'group', 'grupo-a'
+		)); ?>
+	    <a href="<?= $user_url ?>" class="tile-button tile-button-alt btn primary-bg pad0A" title="">
+	        <div class="tile-header">
+	            Grupo A
+	        </div>
+	        <div class="tile-content-wrapper">
+	            <i class="glyph-icon icon-user"></i>
+	            <div class="tile-content">
+	                9
+	            </div>
+	            <!-- <div class="float-right">Registrados / Inactivos</div> -->
+	        </div>
+	    </a>
 	</div>
 </div>
