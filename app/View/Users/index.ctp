@@ -15,7 +15,7 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<?php $user_url = $this->html->url(array(
+		<?php $user_url = $this->Html->url(array(
 			'controller'=>'users',
 			'action'=>'group', 'news'
 		)); ?>
@@ -33,7 +33,7 @@
 	    </a>
 	</div>
 	<div class="col-md-3">
-		<?php $user_url = $this->html->url(array(
+		<?php $user_url = $this->Html->url(array(
 			'controller'=>'users',
 			'action'=>'group', 'administradores'
 		)); ?>
@@ -51,7 +51,7 @@
 	    </a>
 	</div>
 	<div class="col-md-3">
-		<?php $user_url = $this->html->url(array(
+		<?php $user_url = $this->Html->url(array(
 			'controller'=>'users',
 			'action'=>'group', 'grupo-b'
 		)); ?>
@@ -72,7 +72,7 @@
 <br>
 <div class="row">
 	<div class="col-md-3">
-		<?php $user_url = $this->html->url(array(
+		<?php $user_url = $this->Html->url(array(
 			'controller'=>'users',
 			'action'=>'group', 'usuarios'
 		)); ?>
@@ -90,7 +90,7 @@
 	    </a>
 	</div>
 	<div class="col-md-3">
-		<?php $user_url = $this->html->url(array(
+		<?php $user_url = $this->Html->url(array(
 			'controller'=>'users',
 			'action'=>'group', 'alumnos-uvm'
 		)); ?>
@@ -108,7 +108,7 @@
 	    </a>
 	</div>
 	<div class="col-md-3">
-		<?php $user_url = $this->html->url(array(
+		<?php $user_url = $this->Html->url(array(
 			'controller'=>'users',
 			'action'=>'group', 'grupo-a'
 		)); ?>
