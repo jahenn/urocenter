@@ -8,7 +8,26 @@
     <div class="divider"></div>
 </h4>
 
-<div class="row">
+
+<h2><?= $user['User']['username'] ?></h2>
+<h4>Correo Electronico: <small><?= $user['User']['email'] ?></small></h4>
+<br><br><br>
+
+<?php if($user['User']['activo'] == false): ?>
+	<div class="row">
+		<div class="col-md-6">
+			<?php $aprobar_url = $this->Html->url(array(
+				'action'=>'aprobe', $user['User']['id']
+			)); ?>
+			<a href="#" class="btn error-bg large"><i class="fa fa-times"></i></a>
+			<a href="<?= $aprobar_url ?>" class="btn success-bg large">Aprobar Usuario <i class="fa fa-check"></i></a>
+		</div>
+	</div>
+<?php endif ?>
+
+
+
+<!-- <div class="row">
 	<div class="col-md-12">
 		<table class="table table-stripped">
 			<tr>
@@ -27,11 +46,19 @@
 			<?php echo h($user['User']['password']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Email'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($user['User']['email']); ?>
+			&nbsp;
+		</td>
 </tr>			</tr>
 		</table>
 	</div>
-</div>
-<div class="related">
+</div> -->
+
+
+
+<!-- <div class="related">
 	<?php if (!empty($user['UserAnswer'])): ?>
 	<table  class="table table-condensed">
 		<thead>
@@ -117,7 +144,7 @@
 			)); ?> </li>
 		</ul>
 	</div>
-</div>
+</div> -->
 <br>
 
 
@@ -141,6 +168,11 @@
 		<dt><?php echo __('Password'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['password']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Email'); ?></dt>
+		<dd>
+			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
 	</dl>

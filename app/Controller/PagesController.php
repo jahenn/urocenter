@@ -63,6 +63,14 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
+
+
+		$this->redirect(array(
+			'controller'=>'users',
+			'action'=>'login_redirect'
+			));
+
+
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
 		try {

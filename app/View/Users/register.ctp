@@ -48,34 +48,18 @@
 	</div>
 </div>		
 
-		<div class="form-label">
-		<label for="Role" class=" text-transform-cap " >Role</label>
-		</div>
-		<div class="form-input">
-		<?= $this->Form->input('Role', array(
-			'label'=>false
-			)) ?> 
-</div>
 
 
 
 <br>
 
-<button class="btn medium primary-bg submit" type="submit">Guardar</button>
+<button class="btn medium primary-bg submit" type="submit">Registrarse <i class="fa fa-check"></i></button>
 
 <?php echo $this->Form->end(); ?>
 <br>
 <br>
 
 
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-		//alert("ok");
-		$("#RoleRole").multiSelect();
-	});
-
-</script>
 
 <!-- ################ -->
 <!--

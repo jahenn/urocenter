@@ -112,11 +112,11 @@ class UsersController extends AppController {
 
 	public function login() {
 
-		// $this->User->create();
-		// $this->User->save(array(
-		// 	'username'=>'jahenn',
-		// 	'password'=>'12345'
-		// 	));
+		$this->User->create();
+		$this->User->save(array(
+			'username'=>'jahenn33',
+			'password'=>'12345'
+			));
 
 
 		if ($this->request->is('post')) {
@@ -144,4 +144,38 @@ class UsersController extends AppController {
 		}
 		//pr($this->User->read());
 	}
+
+
+	public function register(){
+
+	}
+
+	public function news(){
+
+		$this->set('users',$this->paginate(array(
+			'OR'=>array(
+				'activo'=>false, 
+				'datediff( current_timestamp ,fecha_registro) <=' => 3
+				)
+			)));
+
+		$this->render('index');
+	}
+
+	public function aprobe($id){
+
+		$this->User->id = $id;
+		$this->User->read();
+
+
+		$this->User->save(array(
+			'activo' => true
+			));
+
+		$this->redirect(array(
+			'action'=>'news'
+			));
+
+	}
+
 }

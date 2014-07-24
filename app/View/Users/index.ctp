@@ -14,31 +14,34 @@
 		<table class="table table-condensed">
 			<thead>
 				<tr>
-					<th colspan="4" class="text-left pad5A">
-						<div class="button-group">
-							<?php echo $this->Html->link(__('New User'), array('action' => 'add'), array(
-								'class'=>'btn medium primary-bg'
-							)); ?>							
-									<?php echo $this->Html->link(__('List User Answers'), array('controller' => 'user_answers', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
-		<?php echo $this->Html->link(__('New User Answer'), array('controller' => 'user_answers', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
-		<?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
-		<?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
+					<th colspan="5" class="text-left pad5A">
+						<?php echo $this->Html->link(__('Nuevo Usuario'), array('action' => 'add'), array(
+							'class'=>'btn medium primary-bg'
+						)); ?>	
+<!-- 						<div class="button-group">
+							
 
-						</div>
+
+																<?php echo $this->Html->link(__('List User Answers'), array('controller' => 'user_answers', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
+									<?php echo $this->Html->link(__('New User Answer'), array('controller' => 'user_answers', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
+									<?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
+									<?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
+
+						</div> -->
 					</th>
 				</tr>
 			</thead>
 		<tr>
 					<th><?php echo $this->Paginator->sort('id'); ?></th>
 					<th><?php echo $this->Paginator->sort('username'); ?></th>
-					<th><?php echo $this->Paginator->sort('password'); ?></th>
+					<th><?php echo $this->Paginator->sort('email'); ?></th>
 					<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($users as $user): ?>
 	<tr>
 		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('<i class="fa fa-eye"></i>  View'), array('action' => 'view', $user['User']['id']), array('class'=>'btn medium primary-bg', 'escape'=>false)); ?>
 			<?php echo $this->Html->link(__('<i class="fa fa-edit"></i> Edit'), array('action' => 'edit', $user['User']['id']),array('class'=>'btn medium primary-bg', 'escape'=>false)); ?>
@@ -47,7 +50,7 @@
 	</tr>
 <?php endforeach; ?>
 		<tr>
-			<td colspan="4">
+			<td colspan="5">
 				<div class="row">
 					<div class="col-md-4">
 						<?php

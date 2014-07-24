@@ -28,7 +28,6 @@ class QuestionsController extends AppController {
 				)
 			));
 
-		
 		$this->set(compact('pendientes'));
 		$this->lists(2);
 		
@@ -74,7 +73,7 @@ class QuestionsController extends AppController {
 				}
 			}
 
-
+			$this->request->data['Question']['question_status_id'] = 1;
 			
 
 			$this->Question->create();

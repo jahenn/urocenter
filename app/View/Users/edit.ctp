@@ -2,8 +2,8 @@
 
 
 <h4 class="heading-1 clearfix">
-    <div class="heading-content">
-    	<?php echo __('Edit User'); ?>       	       
+	<div class="heading-content">
+		<?php echo __('Edit User'); ?>       	       
     	<!-- <small>
             File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
         </small> -->
@@ -20,39 +20,48 @@
 
 
 <div class="form-row"><div class="form-input col-md-10">		 <?= $this->Form->input('id', array(
-							'label'=>false
-							)) ?> 
+			'label'=>false
+			)) ?> 
 	</div>
-						</div><div class="form-row">
-							<div class="form-label col-md-2">
-								<label for="username" class=" text-transform-cap ">
-									username
-								</label>
-							</div><div class="form-input col-md-10">		 <?= $this->Form->input('username', array(
-							'label'=>false
-							)) ?> 
+</div><div class="form-row">
+			<div class="form-label col-md-2">
+			<label for="username" class=" text-transform-cap ">
+			username
+			</label>
+			</div><div class="form-input col-md-10">		 <?= $this->Form->input('username', array(
+			'label'=>false
+			)) ?> 
 	</div>
-						</div><div class="form-row">
-							<div class="form-label col-md-2">
-								<label for="password" class=" text-transform-cap ">
-									password
-								</label>
-							</div><div class="form-input col-md-10">		 <?= $this->Form->input('password', array(
-							'label'=>false
-							)) ?> 
+</div><div class="form-row">
+			<div class="form-label col-md-2">
+			<label for="password" class=" text-transform-cap ">
+			password
+			</label>
+			</div><div class="form-input col-md-10">		 <?= $this->Form->input('password', array(
+			'label'=>false
+			)) ?> 
 	</div>
-						</div>		
+</div><div class="form-row">
+			<div class="form-label col-md-2">
+			<label for="email" class=" text-transform-cap ">
+			email
+			</label>
+			</div><div class="form-input col-md-10">		 <?= $this->Form->input('email', array(
+			'label'=>false
+			)) ?> 
+	</div>
+</div>		
 
-				<div class="form-label">
-					<label for="Role" class=" text-transform-cap " >Role</label>
-				</div>
-				<div class="form-input">
-					<?= $this->Form->input('Role', array(
-						'label'=>false
-						)) ?> 
-				</div>
-			 	
-			 
+		<div class="form-label">
+		<label for="Role" class=" text-transform-cap " >Role</label>
+		</div>
+		<div class="form-input">
+		<?= $this->Form->input('Role', array(
+			'label'=>false
+			)) ?> 
+</div>
+
+
 
 <br>
 
@@ -61,6 +70,16 @@
 <?php echo $this->Form->end(); ?>
 <br>
 <br>
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		//alert("ok");
+		$("#RoleRole").multiSelect();
+	});
+
+</script>
 
 <!-- ################ -->
 <!--
@@ -72,6 +91,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
+		echo $this->Form->input('email');
 		echo $this->Form->input('Role');
 	?>
 	</fieldset>

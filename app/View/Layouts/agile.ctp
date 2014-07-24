@@ -25,7 +25,7 @@
         <!-- AgileUI CSS Core -->
 
         <!-- <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"> -->
-
+      
         <?= $this->Html->css('calendar.min') ?>
         <?= $this->Html->css("font-awesome.min") ?>
 
@@ -36,6 +36,10 @@
         <?= $this->Html->css('themes/minified/agileui/responsive.min') ?>
         <?= $this->Html->css('themes/minified/agileui/animations.min') ?>
         <?= $this->Html->css('chosen') ?>
+        <?= $this->Html->css('multi-select') ?>
+        <?= $this->Html->css('custom') ?>
+<!--         <?= $this->Html->css('morris/morris') ?> -->
+        
         
         
         
@@ -46,7 +50,9 @@
 
         <?= $this->Html->script('chosen.jquery') ?>
         <?= $this->Html->script('chosen.proto') ?>
-        <!-- <?= $this->Html->script('dropzone') ?> -->
+        <?= $this->Html->script('jquery.multi-select') ?>
+
+        <?= $this->Html->script('morris/morris') ?> 
         
         <!-- Theme UI -->
 
@@ -66,16 +72,13 @@
 
         <!-- <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script> -->
 
-        <style type="text/css">
+        <!-- // <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+         
 
-        </style>
-
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-                //$(".input").addClass("form-input");
-            });
-        </script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
+        <?= $this->Html->css('morris/morris') ?> 
     </head>
     <body class="fixed-sidebar fixed-header">
         
