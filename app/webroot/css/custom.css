@@ -100,3 +100,19 @@
 	font-size: 12px !important;
 }
 
+.fc-event-title{
+    /*word-break: break-all;*/
+	overflow: hidden;
+	white-space:  normal;
+	text-overflow: ellipsis;
+	display: block;
+
+    z-index: 100;
+}
+
+.content-box .content-box-wrapper {
+	padding: 0px;
+}
+
+
+

@@ -108,25 +108,34 @@
             </div>
         </div> <!-- End Row -->
 
-
+        <br>
 
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Usuarios Registrados</h3>
-                    </div>
-                    <div class="box-body chart-responsive">
+                <div class="content-box border-top border-blue-alt mrg25B">
+                    <h3 class="content-header clearfix">
+                        Usuarios Registrados
+                    </h3>
+                    <div class="content-box-wrapper">
                         <div id="revenue-chart" style="height:200px;"></div>
-                    </div><!-- /.box-body -->
+                    </div>
                 </div>
             </div>
         </div> <!-- End row -->
+
         <div class="row">
+            <div class="col-md-12 ">
+                <div class="content-box border-top border-blue-alt pad0A">
+                    <h3 class="content-header clearfix">
+                    </h3>
+                    <div class="content-box-wrapper">
+                        <div id="calendar" class="col-md-12 center-margin"></div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End row -->
 
-            <div id="calendar" class="col-md-12 center-margin"></div>
 
-        </div>
     </div>
 </div>
 
@@ -171,6 +180,13 @@
                     events: eventos,
                     // eventColor: 'blue'
                 });
+
+                $(".fc-event").each(function(){
+                    var txt = $(this).find(".fc-event-title").html();
+                    $(this).attr("title", txt);
+
+                    $(this).tooltip();
+                });
                 
             }
         })
@@ -211,3 +227,14 @@
 
     });
 </script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //alert("ok");
+        
+    });
+</script>
+
+

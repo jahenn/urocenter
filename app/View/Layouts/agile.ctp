@@ -46,6 +46,7 @@
         
 
 
+        <?= $this->Html->script('jquery') ?>
         <?= $this->Html->script('minified/aui-production.min') ?>
 
         <?= $this->Html->script('chosen.jquery') ?>
@@ -53,6 +54,7 @@
         <?= $this->Html->script('jquery.multi-select') ?>
 
         <?= $this->Html->script('morris/morris') ?> 
+        <?= $this->Html->script('qtip') ?> 
         
         <!-- Theme UI -->
 
