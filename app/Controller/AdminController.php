@@ -18,7 +18,28 @@
 					'activo'=>false
 				)));
 
-			$this->set(compact('users', 'users_pendientes'));
+			$this->loadModel('Question');
+			$questions = $this->Question->find('count', array(
+				'conditions'=>array(
+					'OR' => array(
+						'question_status_id'=>1,
+						'datediff( current_timestamp ,fecha_creacion) <=' => 3
+						)
+					)
+				));
+
+			$questions_pendientes = $this->Question->find('count', array(
+				'conditions'=>array(
+					'question_status_id'=>1
+					)
+				));
+
+			$this->loadModel('Notification');
+			$notifications = $this->Notification->find('all', array(
+				'order'=>'Notification.id desc'
+				));
+
+			$this->set(compact('users', 'users_pendientes','notifications', 'questions', 'questions_pendientes'));
 		}
 	}
 

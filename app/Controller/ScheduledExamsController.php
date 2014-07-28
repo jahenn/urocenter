@@ -78,6 +78,20 @@ class ScheduledExamsController extends AppController {
 					));
 
 
+				//add notification
+
+
+				$this->loadModel('Notification');
+				$this->Notification->create();
+				$this->Notification->save(array(
+					'role_id'=>0,
+					'user_id'=>$this->Auth->user()['id'],
+					'fecha'=>date('Y-m-d'),
+					'titulo'=>'Nuevo Examen Programado',
+					'descripcion'=>'Se ha programado un nuevo examen <a href="'.$event_url.'">Ver</a>'
+					));
+
+
 
 
 

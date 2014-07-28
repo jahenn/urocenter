@@ -36,14 +36,29 @@
 <br>
 <div class="row">
     <div class="col-md-6">
-        <?php $bg = array(
-            'alert-success',
-            'alert-info',
-            'alert-danger',
-            'alert-warning',
-            'info-bg'
-        ); ?>
-        <?php for($i=0; $i<10; $i++): ?>
+        
+        <?php foreach($notifications as $notification): ?>
+
+            <div class="infobox infobox-close-wrapper alert alert-info">
+                <div class="large btn font-black info-icon">
+                    <!-- <i class="glyph-icon icon-comment"></i> -->
+                    <?= $this->Html->image("avatar77.jpg", array(
+                        'class'=>'avatar alert-info'
+                    )) ?>
+                </div>
+                <h4 class="infobox-title">
+                    <a href="#"><small><?= $notification['User']['username'] ?></small></a>
+                    <?= $notification['Notification']['titulo'] ?>
+                </h4>
+                <p>
+                    <?= $notification['Notification']['descripcion'] ?>
+                </p>
+
+                <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a>
+            </div>
+        <?php endforeach ?>
+            
+        <?php for($i=0; $i<0; $i++): ?>
             <div class="infobox infobox-close-wrapper alert <?= $bg[$i % 5] ?>">
                 <div class="large btn font-black info-icon">
                     <!-- <i class="glyph-icon icon-comment"></i> -->
@@ -109,7 +124,7 @@
                     <div class="tile-content-wrapper">
                         <i class="glyph-icon icon-edit"></i>
                         <div class="tile-content">
-                            <?= $users ?> / <span style="color:red;"><?= $users_pendientes ?></span>
+                            <?= $questions ?> / <span style="color:red;"><?= $questions_pendientes ?></span>
                         </div>
                         <div class="float-right">Nuevas / Inactivas</div>
                     </div>
@@ -152,7 +167,7 @@
 
 
 
-
+<?php pr($notifications) ?>
 
 
 
