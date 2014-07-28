@@ -90,26 +90,4 @@ class Question extends AppModel {
 		)
 	);
 
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'Exam' => array(
-			'className' => 'Exam',
-			'joinTable' => 'exams_questions',
-			'foreignKey' => 'question_id',
-			'associationForeignKey' => 'exam_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		)
-	);
-
 }

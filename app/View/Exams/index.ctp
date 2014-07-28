@@ -14,15 +14,13 @@
 		<table class="table table-condensed">
 			<thead>
 				<tr>
-					<th colspan="4" class="text-left pad5A">
+					<th colspan="9" class="text-left pad5A">
 						<div class="button-group">
 							<?php echo $this->Html->link(__('New Exam'), array('action' => 'add'), array(
 								'class'=>'btn medium primary-bg'
 							)); ?>							
-									<?php echo $this->Html->link(__('List Exam Categories'), array('controller' => 'exam_categories', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
-		<?php echo $this->Html->link(__('New Exam Category'), array('controller' => 'exam_categories', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
-		<?php echo $this->Html->link(__('List Questions'), array('controller' => 'questions', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
-		<?php echo $this->Html->link(__('New Question'), array('controller' => 'questions', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
+									<?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index'), array('class'=>'btn medium primary-bg')); ?>
+		<?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add'), array('class'=>'btn medium primary-bg')); ?>
 
 						</div>
 					</th>
@@ -30,17 +28,27 @@
 			</thead>
 		<tr>
 					<th><?php echo $this->Paginator->sort('id'); ?></th>
-					<th><?php echo $this->Paginator->sort('exam_category_id'); ?></th>
-					<th><?php echo $this->Paginator->sort('exam_description'); ?></th>
+					<th><?php echo $this->Paginator->sort('titulo'); ?></th>
+					<th><?php echo $this->Paginator->sort('descripcion'); ?></th>
+					<th><?php echo $this->Paginator->sort('fecha_inicio'); ?></th>
+					<th><?php echo $this->Paginator->sort('fecha_programada'); ?></th>
+					<th><?php echo $this->Paginator->sort('user_id'); ?></th>
+					<th><?php echo $this->Paginator->sort('resultado'); ?></th>
+					<th><?php echo $this->Paginator->sort('estatus'); ?></th>
 					<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($exams as $exam): ?>
 	<tr>
 		<td><?php echo h($exam['Exam']['id']); ?>&nbsp;</td>
+		<td><?php echo h($exam['Exam']['titulo']); ?>&nbsp;</td>
+		<td><?php echo h($exam['Exam']['descripcion']); ?>&nbsp;</td>
+		<td><?php echo h($exam['Exam']['fecha_inicio']); ?>&nbsp;</td>
+		<td><?php echo h($exam['Exam']['fecha_programada']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($exam['ExamCategory']['nombre'], array('controller' => 'exam_categories', 'action' => 'view', $exam['ExamCategory']['id'])); ?>
+			<?php echo $this->Html->link($exam['User']['username'], array('controller' => 'users', 'action' => 'view', $exam['User']['id'])); ?>
 		</td>
-		<td><?php echo h($exam['Exam']['exam_description']); ?>&nbsp;</td>
+		<td><?php echo h($exam['Exam']['resultado']); ?>&nbsp;</td>
+		<td><?php echo h($exam['Exam']['estatus']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('<i class="fa fa-eye"></i>  View'), array('action' => 'view', $exam['Exam']['id']), array('class'=>'btn medium primary-bg', 'escape'=>false)); ?>
 			<?php echo $this->Html->link(__('<i class="fa fa-edit"></i> Edit'), array('action' => 'edit', $exam['Exam']['id']),array('class'=>'btn medium primary-bg', 'escape'=>false)); ?>
@@ -49,7 +57,7 @@
 	</tr>
 <?php endforeach; ?>
 		<tr>
-			<td colspan="4">
+			<td colspan="9">
 				<div class="row">
 					<div class="col-md-4">
 						<?php

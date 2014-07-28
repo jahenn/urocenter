@@ -3,17 +3,9 @@ App::uses('AppModel', 'Model');
 /**
  * Exam Model
  *
- * @property ExamCategory $ExamCategory
- * @property Question $Question
+ * @property User $User
  */
 class Exam extends AppModel {
-
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'exam_description';
 
 /**
  * Validation rules
@@ -21,7 +13,37 @@ class Exam extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'id' => array(
+		'titulo' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'descripcion' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'user_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'estatus' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -41,34 +63,12 @@ class Exam extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'ExamCategory' => array(
-			'className' => 'ExamCategory',
-			'foreignKey' => 'exam_category_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)
 	);
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'Question' => array(
-			'className' => 'Question',
-			'joinTable' => 'exams_questions',
-			'foreignKey' => 'exam_id',
-			'associationForeignKey' => 'question_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		)
-	);
-
 }

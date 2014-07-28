@@ -12,11 +12,15 @@ class ExamFixture extends CakeTestFixture {
  */
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'exam_category_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'index'),
-		'exam_description' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 45, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'titulo' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 150, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'descripcion' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'fecha_inicio' => array('type' => 'timestamp', 'null' => false, 'default' => 'CURRENT_TIMESTAMP'),
+		'fecha_programada' => array('type' => 'timestamp', 'null' => false, 'default' => '0000-00-00 00:00:00'),
+		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'resultado' => array('type' => 'decimal', 'null' => false, 'default' => null, 'length' => '18,2', 'unsigned' => false),
+		'estatus' => array('type' => 'integer', 'null' => false, 'default' => '1', 'unsigned' => false),
 		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'fk_exams_exam_categories1_idx' => array('column' => 'exam_category_id', 'unique' => 0)
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
@@ -29,8 +33,13 @@ class ExamFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'exam_category_id' => 1,
-			'exam_description' => 'Lorem ipsum dolor sit amet'
+			'titulo' => 'Lorem ipsum dolor sit amet',
+			'descripcion' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+			'fecha_inicio' => 1406517831,
+			'fecha_programada' => 1406517831,
+			'user_id' => 1,
+			'resultado' => '',
+			'estatus' => 1
 		),
 	);
 

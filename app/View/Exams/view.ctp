@@ -17,57 +17,45 @@
 			<?php echo h($exam['Exam']['id']); ?>
 			&nbsp;
 		</td>
-</tr>		<th class="col-md-2 float-none text-left "><?php echo __('Exam Category'); ?></th>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Titulo'); ?></th>
 		<td class=" col-md-10 float-none text-left ">
-			<?php echo $this->Html->link($exam['ExamCategory']['nombre'], array('controller' => 'exam_categories', 'action' => 'view', $exam['ExamCategory']['id'])); ?>
+			<?php echo h($exam['Exam']['titulo']); ?>
 			&nbsp;
 		</td>
-<tr>		<th class="col-md-2 float-none text-left "><?php echo __('Exam Description'); ?></th>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Descripcion'); ?></th>
 		<td class=" col-md-10 float-none text-left ">
-			<?php echo h($exam['Exam']['exam_description']); ?>
+			<?php echo h($exam['Exam']['descripcion']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Fecha Inicio'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($exam['Exam']['fecha_inicio']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Fecha Programada'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($exam['Exam']['fecha_programada']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('User'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo $this->Html->link($exam['User']['username'], array('controller' => 'users', 'action' => 'view', $exam['User']['id'])); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Resultado'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($exam['Exam']['resultado']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<th class="col-md-2 float-none text-left "><?php echo __('Estatus'); ?></th>
+		<td class=" col-md-10 float-none text-left ">
+			<?php echo h($exam['Exam']['estatus']); ?>
 			&nbsp;
 		</td>
 </tr>			</tr>
 		</table>
 	</div>
 </div>
-<div class="related">
-	<?php if (!empty($exam['Question'])): ?>
-	<table  class="table table-condensed">
-		<thead>
-			<tr>
-				<th colspan="3">
-					<?php echo __('Related Questions'); ?>				</th>
-			</tr>
-		</thead>
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Question'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($exam['Question'] as $question): ?>
-		<tr>
-			<td><?php echo $question['id']; ?></td>
-			<td><?php echo $question['question']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'questions', 'action' => 'view', $question['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'questions', 'action' => 'edit', $question['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'questions', 'action' => 'delete', $question['id']), array(), __('Are you sure you want to delete # %s?', $question['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Question'), array('controller' => 'questions', 'action' => 'add'), array(
-				'class'=>'btn medium primary-bg'
-			)); ?> </li>
-		</ul>
-	</div>
-</div>
-<br>
 
 
 
@@ -82,14 +70,39 @@
 			<?php echo h($exam['Exam']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Exam Category'); ?></dt>
+		<dt><?php echo __('Titulo'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($exam['ExamCategory']['nombre'], array('controller' => 'exam_categories', 'action' => 'view', $exam['ExamCategory']['id'])); ?>
+			<?php echo h($exam['Exam']['titulo']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Exam Description'); ?></dt>
+		<dt><?php echo __('Descripcion'); ?></dt>
 		<dd>
-			<?php echo h($exam['Exam']['exam_description']); ?>
+			<?php echo h($exam['Exam']['descripcion']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fecha Inicio'); ?></dt>
+		<dd>
+			<?php echo h($exam['Exam']['fecha_inicio']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fecha Programada'); ?></dt>
+		<dd>
+			<?php echo h($exam['Exam']['fecha_programada']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('User'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($exam['User']['username'], array('controller' => 'users', 'action' => 'view', $exam['User']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Resultado'); ?></dt>
+		<dd>
+			<?php echo h($exam['Exam']['resultado']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Estatus'); ?></dt>
+		<dd>
+			<?php echo h($exam['Exam']['estatus']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -101,43 +114,12 @@
 		<li><?php echo $this->Form->postLink(__('Delete Exam'), array('action' => 'delete', $exam['Exam']['id']), array(), __('Are you sure you want to delete # %s?', $exam['Exam']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Exams'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Exam'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Exam Categories'), array('controller' => 'exam_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Exam Category'), array('controller' => 'exam_categories', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Questions'), array('controller' => 'questions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Question'), array('controller' => 'questions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 
 
 
-<div class="related">
-	<h3><?php echo __('Related Questions'); ?></h3>
-	<?php if (!empty($exam['Question'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Question'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($exam['Question'] as $question): ?>
-		<tr>
-			<td><?php echo $question['id']; ?></td>
-			<td><?php echo $question['question']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'questions', 'action' => 'view', $question['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'questions', 'action' => 'edit', $question['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'questions', 'action' => 'delete', $question['id']), array(), __('Are you sure you want to delete # %s?', $question['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Question'), array('controller' => 'questions', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
 
 -->

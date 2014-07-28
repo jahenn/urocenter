@@ -55,9 +55,8 @@ class ExamsController extends AppController {
 				$this->Session->setFlash(__('The exam could not be saved. Please, try again.'));
 			}
 		}
-		$examCategories = $this->Exam->ExamCategory->find('list');
-		$questions = $this->Exam->Question->find('list');
-		$this->set(compact('examCategories', 'questions'));
+		$users = $this->Exam->User->find('list');
+		$this->set(compact('users'));
 	}
 
 /**
@@ -82,9 +81,8 @@ class ExamsController extends AppController {
 			$options = array('conditions' => array('Exam.' . $this->Exam->primaryKey => $id));
 			$this->request->data = $this->Exam->find('first', $options);
 		}
-		$examCategories = $this->Exam->ExamCategory->find('list');
-		$questions = $this->Exam->Question->find('list');
-		$this->set(compact('examCategories', 'questions'));
+		$users = $this->Exam->User->find('list');
+		$this->set(compact('users'));
 	}
 
 /**

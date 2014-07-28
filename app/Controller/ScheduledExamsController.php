@@ -57,11 +57,24 @@ class ScheduledExamsController extends AppController {
 
 				$this->loadModel('CalendarEvent');
 				$this->CalendarEvent->create();
+
+
+				$v =new View();
+
+				$event_url = $v->Html->url(array(
+					'controller'=>'ScheduledExams',
+					'action'=>'resolve',
+					$this->ScheduledExam->getlastInsertId()
+					), true);
+
+				$fecha = $this->request->data['ScheduledExam']['fecha_programada'];
+				$titulo = $this->request->data['ScheduledExam']['titulo'];
 				$this->CalendarEvent->save(array(
-					'titulo'=>'Examen Programado',
-					'descripcion'=>'Examen de psicologia',
-					'fecha'=>date('y-m-d'),
-					'color_id'=>1
+					'titulo'=>$titulo,
+					'descripcion'=>'Nuevo Examen Programado',
+					'fecha'=> $fecha,
+					'color_id'=>1,
+					'url'=>$event_url
 					));
 
 
@@ -165,5 +178,27 @@ class ScheduledExamsController extends AppController {
 			//pr($question_categories);
 			$this->set(compact('question_categories'));
 		}
+	}
+
+
+	public function resolve($id){
+		$this->ScheduledExam->id = $id;
+
+		if($this->ScheduledExam->exists()){
+			$this->ScheduledExam->recursive = 3;
+			$this->ScheduledExam->Question->QuestionCategory->unbindModel(array(
+				'hasMany'=>array('Question')
+				));
+			$this->request->data = $this->ScheduledExam->find('first', array(
+				'conditions'=>array(
+					'ScheduledExam.id'=>$id
+					)
+				));
+		}
+	}
+
+	public function start($id)
+	{
+		
 	}
 }

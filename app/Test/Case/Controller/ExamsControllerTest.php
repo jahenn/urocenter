@@ -14,10 +14,17 @@ class ExamsControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.exam',
-		'app.exam_category',
+		'app.user',
+		'app.user_answer',
+		'app.user_exam',
+		'app.exam_status',
 		'app.question',
+		'app.question_category',
 		'app.answer',
-		'app.exams_question'
+		'app.role',
+		'app.menu',
+		'app.menus_role',
+		'app.roles_user'
 	);
 
 /**

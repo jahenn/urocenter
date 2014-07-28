@@ -20,7 +20,7 @@
 					'start' => $value['CalendarEvent']['fecha'],
 					'backgroundColor' => $value['Color']['valor'],
 					'borderColor' => 'white',
-					'url' => 'http://jorgejuarez.net'
+					'url' => $value['CalendarEvent']['url']
 					);
 			}
 
