@@ -61,7 +61,9 @@
 			)) ?> 
 </div>
 
-
+<?= $this->Form->input('role_id', array(
+	'type'=>'hidden'
+)) ?>
 
 <br>
 

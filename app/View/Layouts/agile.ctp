@@ -27,18 +27,27 @@
         <!-- <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"> -->
       
         <?= $this->Html->css('calendar.min') ?>
-        <?= $this->Html->css("font-awesome.min") ?>
+       
 
-        <?= $this->Html->css('minified/aui-production.min') ?>
-        <?= $this->Html->css('themes/minified/agileui/color-schemes/layouts/default.min') ?>
-        <?= $this->Html->css('themes/minified/agileui/color-schemes/elements/default.min') ?>
-        
+
+        <?= $this->Html->css('app-production') ?>
+        <?= $this->Html->css('themes/agileui/color-schemes/layouts/default') ?>
+        <?= $this->Html->css('themes/agileui/color-schemes/elements/default') ?>
+
         <?= $this->Html->css('themes/minified/agileui/responsive.min') ?>
         <?= $this->Html->css('themes/minified/agileui/animations.min') ?>
+
+
+
+        
+
+
         <?= $this->Html->css('chosen') ?>
         <?= $this->Html->css('multi-select') ?>
-        <?= $this->Html->css('custom') ?>
-<!--         <?= $this->Html->css('morris/morris') ?> -->
+        <?= $this->Html->css('custom') ?> 
+
+        <?= $this->Html->css("font-awesome.min") ?>
+        
         
         
         
@@ -47,7 +56,7 @@
 
 
         <?= $this->Html->script('jquery') ?>
-        <?= $this->Html->script('minified/aui-production.min') ?>
+        <?= $this->Html->script('aui-production') ?>
 
         <?= $this->Html->script('chosen.jquery') ?>
         <?= $this->Html->script('chosen.proto') ?>
@@ -81,6 +90,10 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
         <?= $this->Html->css('morris/morris') ?> 
+
+
+
+
     </head>
     <body class="fixed-sidebar fixed-header">
         

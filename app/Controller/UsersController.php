@@ -49,6 +49,33 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
+
+				//add own role
+
+				$user_id = $this->User->getLastInsertId();
+
+
+				$this->User->Role->create();
+				$this->User->Role->save(array(
+					'nombre'=>$this->request->data['User']['username'],
+					'user_role'=>true
+					));
+
+				$role_id = $this->User->Role->getLastInsertId();
+
+				$this->User->id = $user_id;
+				$this->User->read();
+				$this->User->save(array(
+					'role_id'=> $role_id
+					));
+
+				$this->User->RolesUser->create();
+				$this->User->RolesUser->save(array(
+					'user_id'=>$user_id,
+					'role_id'=>$role_id
+					));
+
+
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -71,6 +98,23 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+
+			$this->User->Role->recursive = -1;
+			$role = $this->User->Role->find('first', array(
+				'conditions'=>array(
+					'id'=>$this->request->data['User']['role_id']
+					)
+				));
+
+
+
+			$this->request->data['Role']['Role'][] = $role['Role']['id'];
+
+
+
+
+
+
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -81,7 +125,11 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
-		$roles = $this->User->Role->find('list');
+		$roles = $this->User->Role->find('list', array(
+			'conditions'=>array(
+				'user_role'=>false
+				)
+			));
 		$this->set(compact('roles'));
 	}
 
@@ -97,7 +145,7 @@ class UsersController extends AppController {
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		//$this->request->allowMethod('post', 'delete');
 		if ($this->User->delete()) {
 			$this->Session->setFlash(__('The user has been deleted.'));
 		} else {
@@ -112,11 +160,11 @@ class UsersController extends AppController {
 
 	public function login() {
 
-		$this->User->create();
-		$this->User->save(array(
-			'username'=>'jahenn33',
-			'password'=>'12345'
-			));
+		// $this->User->create();
+		// $this->User->save(array(
+		// 	'username'=>'jahenn33',
+		// 	'password'=>'12345'
+		// 	));
 
 
 		if ($this->request->is('post')) {

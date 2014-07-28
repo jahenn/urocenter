@@ -10,6 +10,7 @@ App::uses('AppModel', 'Model');
  */
 class Question extends AppModel {
 
+	var $displayField = 'question';
 /**
  * Validation rules
  *

@@ -17,8 +17,14 @@
                    'controller'=>'questions',
                    'action'=>'add'
                    ), true);
+
+               $url_program_examen = $this->Html->url(array(
+                    'controller'=>'ScheduledExams',
+                    'action'=>'add'
+                ), true);
+
             ?>
-           <a href="#" class="btn primary-bg large"> <i style="font-size:18px;" class="fa fa-clock-o"></i> Programar Examen </a>
+           <a href="<?= $url_program_examen ?>" class="btn primary-bg large"> <i style="font-size:18px;" class="fa fa-clock-o"></i> Programar Examen </a>
            <a href="<?= $url_new_question ?>" class="btn primary-bg large"> <i style="font-size:18px;" class="fa fa-check-square-o"></i> Nueva Pregunta</a>
            <br>
        </div>

@@ -193,4 +193,31 @@ class QuestionsController extends AppController {
 			}
 		}
 	}
+
+	public function json($category_id)
+	{
+		$this->autoRender = false;
+		$question_list = $this->Question->find('list', array(
+			'conditions'=> array(
+				'question_category_id'=>$category_id
+				)
+			));
+
+		
+
+		$questions = array();
+
+		
+		foreach ($question_list as $key => $value) {
+			$questions[] = array(
+				'nombre'=>$value,
+				'valor'=>$key
+				);
+		}
+
+
+		echo json_encode($questions);
+	}
+
+
 }
