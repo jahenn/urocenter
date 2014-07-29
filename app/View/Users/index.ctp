@@ -10,9 +10,11 @@
 
 <h4>Grupos de Usuarios</h4>
 <br>
-
-
-
+<?php echo $this->Html->link(__('Nuevo Usuario'), array('action' => 'add'), array(
+							'class'=>'btn medium primary-bg'
+						)); ?>	
+<br>
+<br>
 <div class="row">
 	<div class="col-md-3">
 		<?php $user_url = $this->Html->url(array(
