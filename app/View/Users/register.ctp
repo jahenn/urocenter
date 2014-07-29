@@ -1,4 +1,4 @@
-
+<?php $this->layout = 'agile_blank'; ?>
 
 
 <h4 class="heading-1 clearfix">
@@ -15,7 +15,8 @@
 <?php echo $this->Form->create('User', array(
 	'inputDefaults'=>array(
 		'div'=>false
-		)
+		),
+	'action'=>'add'
 )); ?>
 
 

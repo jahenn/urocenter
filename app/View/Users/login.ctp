@@ -16,7 +16,7 @@
         <?= $this->Html->css('themes/minified/agileui/responsive.min') ?>
         <?= $this->Html->css('themes/minified/agileui/animations.min') ?>
         <?= $this->Html->css("font-awesome.min") ?>
-
+        <?= $this->Html->css('custom') ?> 
 
         <?= $this->Html->script('minified/aui-production.min') ?>
 
@@ -59,7 +59,7 @@
             <div id="page-header" class="clearfix">
                 <div id="page-header-wrapper" class="clearfix">
                     <div id="header-logo">
-                        AgileUI <i class="opacity-80">v1.01</i>
+                        <!-- AgileUI <i class="opacity-80">v1.01</i>
 
                         <a href="#" class="tooltip-button" data-placement="bottom" title="Close sidebar" id="close-sidebar">
                             <i class="glyph-icon icon-align-justify"></i>
@@ -69,9 +69,17 @@
                         </a>
                         <a href="#" class="tooltip-button hidden" title="Navigation Menu" id="responsive-open-menu">
                             <i class="glyph-icon icon-align-justify"></i>
+                        </a> -->
+                    </div>
+                    <?php $url_register = $this->Html->url(array(
+                        'action'=>'register'
+                    )); ?>
+                    <div class="button-group">
+                        <a href="<?= $url_register ?>" class="btn">
+                            <span class="button-content text-center float-none font-size-11 text-transform-upr"><i class="fa fa-user"></i> &nbsp; Registrate</span>
                         </a>
                     </div>
-                    <div class="button-group dropdown">
+                    <!-- <div class="button-group dropdown">
                         <a class="btn" href="index.html" title="Dashboard">
                             <span class="button-content text-center float-none font-size-11 text-transform-upr">
                                 <i class="glyph-icon icon-dashboard float-left"></i>
@@ -151,7 +159,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
                 </div>
             </div><!-- #page-header -->
@@ -186,7 +194,7 @@
                                 </div>
                                 <div class="form-input col-md-10">
                                     <div class="form-input-icon">
-                                        <i class="glyph-icon icon-envelope-o ui-state-default"></i>
+                                        <i class="glyph-icon icon-user ui-state-default"></i>
                                         <!-- <input placeholder="Email address" type="text" name="username" id=""> -->
                                         <?= $this->Form->input('username', array(
                                         	'div'=>false,

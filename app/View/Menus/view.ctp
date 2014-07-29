@@ -1,4 +1,3 @@
-
 <h4 class="heading-1 clearfix">
     <div class="heading-content">
     	<?php echo __('Menu'); ?>       	       <!-- <small>
@@ -47,13 +46,15 @@
 		</table>
 	</div>
 </div>
-
-
-
 <div class="related">
-	<h3><?php echo __('Related Menus'); ?></h3>
 	<?php if (!empty($menu['ChildMenu'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
+	<table  class="table table-condensed">
+		<thead>
+			<tr>
+				<th colspan="7">
+					<?php echo __('Related Menus'); ?>				</th>
+			</tr>
+		</thead>
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Nombre'); ?></th>
@@ -83,23 +84,33 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Child Menu'), array('controller' => 'menus', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Child Menu'), array('controller' => 'menus', 'action' => 'add'), array(
+				'class'=>'btn medium primary-bg'
+			)); ?> </li>
 		</ul>
 	</div>
 </div>
+<br>
 <div class="related">
-	<h3><?php echo __('Related Roles'); ?></h3>
 	<?php if (!empty($menu['Role'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
+	<table  class="table table-condensed">
+		<thead>
+			<tr>
+				<th colspan="4">
+					<?php echo __('Related Roles'); ?>				</th>
+			</tr>
+		</thead>
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Nombre'); ?></th>
+		<th><?php echo __('User Role'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($menu['Role'] as $role): ?>
 		<tr>
 			<td><?php echo $role['id']; ?></td>
 			<td><?php echo $role['nombre']; ?></td>
+			<td><?php echo $role['user_role']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'roles', 'action' => 'view', $role['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'roles', 'action' => 'edit', $role['id'])); ?>
@@ -112,14 +123,19 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add'), array(
+				'class'=>'btn medium primary-bg'
+			)); ?> </li>
 		</ul>
 	</div>
 </div>
+<br>
 
 
 
 <!-- ############# -->
+
+<!--
 <div class="menus view">
 <h2><?php echo __('Menu'); ?></h2>
 	<dl>
@@ -215,12 +231,14 @@
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Nombre'); ?></th>
+		<th><?php echo __('User Role'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($menu['Role'] as $role): ?>
 		<tr>
 			<td><?php echo $role['id']; ?></td>
 			<td><?php echo $role['nombre']; ?></td>
+			<td><?php echo $role['user_role']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'roles', 'action' => 'view', $role['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'roles', 'action' => 'edit', $role['id'])); ?>
@@ -237,3 +255,5 @@
 		</ul>
 	</div>
 </div>
+
+-->

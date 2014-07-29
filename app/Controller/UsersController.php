@@ -47,11 +47,11 @@ class UsersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->User->create();
+			//$this->User->create();
 			if ($this->User->save($this->request->data)) {
 
 				//add own role
-
+				
 				$user_id = $this->User->getLastInsertId();
 
 
@@ -63,11 +63,16 @@ class UsersController extends AppController {
 
 				$role_id = $this->User->Role->getLastInsertId();
 
+
+				
 				$this->User->id = $user_id;
 				$this->User->read();
 				$this->User->save(array(
-					'role_id'=> $role_id
+					'role_id'=> $role_id,
+					'password'=>$this->request->data['User']['password']
 					));
+
+
 
 				$this->User->RolesUser->create();
 				$this->User->RolesUser->save(array(
@@ -76,8 +81,19 @@ class UsersController extends AppController {
 					));
 
 
+
+
 				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+
+
+				if($this->Auth->user() != null){
+					if($this->User->isAdmin($this->Auth->user()['id'])){
+						return $this->redirect(array('action' => 'index'));
+					}
+				}
+
+
+				return $this->redirect(array('action' => 'register_complete'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -111,7 +127,7 @@ class UsersController extends AppController {
 			$this->request->data['Role']['Role'][] = $role['Role']['id'];
 
 
-
+			//pr($this->request->data);exit();
 
 
 
@@ -169,6 +185,14 @@ class UsersController extends AppController {
 
 		if ($this->request->is('post')) {
         if ($this->Auth->login()) {
+
+        	if($this->Auth->user()['activo']==false){
+        		$this->Auth->logout();
+        		$this->Auth->redirect(array(
+        			'action'=>'register_complete'
+        			));
+        	}
+
             return $this->redirect($this->Auth->redirect());
         }
         	$this->Session->setFlash(__('Invalid username or password, try again'));
@@ -188,6 +212,11 @@ class UsersController extends AppController {
 			$this->redirect(array(
 				'controller' => 'admin',
 				'action'=>'index'
+				));
+		}else{
+			$this->redirect(array(
+				'controller'=>'Users',
+				'action'=>'home'
 				));
 		}
 		//pr($this->User->read());
@@ -285,14 +314,34 @@ class UsersController extends AppController {
 		$this->User->read();
 
 
-		$this->User->save(array(
-			'activo' => true
-			));
+		$this->User->saveField('activo', true);
 
 		$this->redirect(array(
-			'action'=>'news'
+			'action'=>'group', 'news'
 			));
 
+	}
+
+	public function home(){
+		$this->loadModel('Notification');
+		$notifications = $this->Notification->find('all', array(
+			'order'=>'Notification.id desc'
+			));
+
+		$this->set(compact('notifications'));
+		
+	}
+
+	public function register_complete(){
+		$this->layout = 'agile_blank';
+	}
+
+	public function beforeFilter(){
+		parent::beforeFilter();
+
+		$this->Auth->allow('register');
+		$this->Auth->allow('register_complete');
+		$this->Auth->allow('add');
 	}
 
 }

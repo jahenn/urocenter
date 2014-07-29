@@ -50,6 +50,19 @@ class User extends AppModel {
 
 	}
 
+	public function isAdmin($user){
+
+		$this->id = $user;
+		foreach($this->read()['Role'] as $role){
+			if($role['id'] == 5)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

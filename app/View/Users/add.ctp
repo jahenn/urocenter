@@ -3,7 +3,7 @@
 
 <h4 class="heading-1 clearfix">
 	<div class="heading-content">
-		<?php echo __('Add User'); ?>       	       
+		<?php echo __('Agregar Usuario'); ?>       	       
     	<!-- <small>
             File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
         </small> -->

@@ -57,23 +57,6 @@
                 <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a>
             </div>
         <?php endforeach ?>
-            
-        <?php for($i=0; $i<0; $i++): ?>
-            <div class="infobox infobox-close-wrapper alert <?= $bg[$i % 5] ?>">
-                <div class="large btn font-black info-icon">
-                    <!-- <i class="glyph-icon icon-comment"></i> -->
-                    <?= $this->Html->image("avatar77.jpg", array(
-                        'class'=>'avatar alert '.$bg[$i % 5]
-                    )) ?>
-                </div>
-                <h4 class="infobox-title">Titulo de Notificacion</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti cum magnam sint doloribus ipsa.</a>
-                </p>
-
-                <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a>
-            </div>
-
-        <?php endfor ?>
 
     </div>
     <div class="col-md-6">
@@ -87,7 +70,7 @@
             <div class="col-md-6">
                 <?php $new_user_url = $this->Html->url(array(
                     'controller'=>'users',
-                    'action'=>'news'
+                    'action'=>'group', 'news'
                 )); ?>
                 <a href="<?= $new_user_url ?>" class="tile-button tile-button-alt btn bg-blue-alt pad0A" title="">
                     <div class="tile-header">
@@ -167,7 +150,7 @@
 
 
 
-<?php pr($notifications) ?>
+
 
 
 

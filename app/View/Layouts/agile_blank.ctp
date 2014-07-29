@@ -106,7 +106,6 @@
         <![endif]-->
 
         <div id="page-wrapper" class="demo-example">
-
             <div id="page-sidebar">
                 <div id="header-logo">
                     <!-- AgileUI <i class="opacity-80">v2.0</i> -->
@@ -123,77 +122,9 @@
                         <i class="glyph-icon icon-align-justify"></i>
                     </a>
                 </div>
-                <div id="sidebar-search">
-                    <input type="text" placeholder="Autocomplete search..." class="autocomplete-input tooltip-button" data-placement="right" title="Type &apos;j&apos; to see the available tags..." id="" name="">
-                    <i class="glyph-icon icon-search"></i>
-                </div>
-                <div id="sidebar-menu" class="scrollable-content">
-
-                    <ul>
-                        <?php 
-                            App::import('Model', 'User');
-                            $this->User = new User();
-
-                            $user = $this->Session->read('Auth.User');
-
-
-                         ?>
-                        <?php foreach($menus_bar as $menu):?>
-
-                       
-
-                    <li>
-                        <?php foreach($menu['Role'] as $role): ?> 
-                            <?php if($this->User->userHasInRole($user['id'], $role['id'])): ?>
-                                        <?php if(count($menu['ChildMenu']) > 0): ?>
-                                        <a href="javascript:" > 
-                                            <i class="<?= $menu['Menu']['class']  ?>"></i>
-                                            <?= $menu['Menu']['nombre'] ?> 
-                                        </a>
-                                        <ul>
-                                            <?php foreach($menu['ChildMenu'] as $sub_menu): ?>
-                                                <?php foreach($sub_menu['Role'] as $sRole): ?>
-                                                    <?php if($this->User->userHasInRole($user['id'], $sRole['id'])): ?>
-                                                        <li>
-                                                            <?php $url = $this->Html->url(array(
-                                                                'controller' => $sub_menu['controller'],
-                                                                'action' => $sub_menu['action']
-                                                                )); ?>
-                                                                <a href="<?= $url ?>">
-                                                                    <i class="glyph-icon icon-chevron-right"></i>
-                                                                    <?= $sub_menu['nombre'] ?>
-                                                                </a>
-
-                                                            </li>
-                                                    <?php endif ?>
-                                                <?php endforeach ?>
-                                            <?php endforeach ?>
-                                        </ul>
-                                    <?php else: ?>
-                                    <?php $url = $this->Html->url(array(
-                                        'controller' => $menu['Menu']['controller'],
-                                        'action' => $menu['Menu']['action']
-                                        )); ?>
-                                        <a href="<?= $url ?>" > 
-                                            <i class="<?= $menu['Menu']['class'] ?>"></i>
-                                            <?= $menu['Menu']['nombre'] ?> 
-                                        </a>
-                                    <?php endif ?>
-                                    <?php break; ?>
-                            <?php endif ?> 
-                        <?php endforeach ?>     
-                    </li>
-
-                <?php endforeach ?>
-                    </ul>
-                    
-
-                    
-
-
-                </div>
 
             </div><!-- #page-sidebar -->
+            
             
             <div id="page-main">
 

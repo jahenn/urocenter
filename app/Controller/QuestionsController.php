@@ -85,8 +85,8 @@ class QuestionsController extends AppController {
 			}
 		}
 		$questionCategories = $this->Question->QuestionCategory->find('list');
-		$exams = $this->Question->Exam->find('list');
-		$this->set(compact('questionCategories', 'exams'));
+		//$exams = $this->Question->Exam->find('list');
+		$this->set(compact('questionCategories'));
 	}
 
 /**
@@ -129,8 +129,8 @@ class QuestionsController extends AppController {
 			$this->request->data = $this->Question->find('first', $options);
 		}
 		$questionCategories = $this->Question->QuestionCategory->find('list');
-		$exams = $this->Question->Exam->find('list');
-		$this->set(compact('questionCategories', 'exams'));
+		//$exams = $this->Question->Exam->find('list');
+		$this->set(compact('questionCategories'));
 	}
 
 /**

@@ -8,22 +8,32 @@
     <div class="divider"></div>
 </h4>
 
-
-<h2><?= $user['User']['username'] ?></h2>
-<h4>Correo Electronico: <small><?= $user['User']['email'] ?></small></h4>
-<br><br><br>
-
 <?php if($user['User']['activo'] == false): ?>
 	<div class="row">
 		<div class="col-md-6">
 			<?php $aprobar_url = $this->Html->url(array(
 				'action'=>'aprobe', $user['User']['id']
 			)); ?>
-			<a href="#" class="btn error-bg large"><i class="fa fa-times"></i></a>
-			<a href="<?= $aprobar_url ?>" class="btn success-bg large">Aprobar Usuario <i class="fa fa-check"></i></a>
+			<a href="#" class="btn btn-danger btn-lg"><i class="fa fa-times"></i></a>
+			<a href="<?= $aprobar_url ?>" class="btn btn-success btn-lg ">Aprobar Usuario <i class="fa fa-check"></i></a>
 		</div>
 	</div>
 <?php endif ?>
+
+<br>
+
+
+<ul>
+	<li class="float-left">
+		<?= $this->Html->image("avatar77.jpg", array(
+			'width'=>100
+		)) ?>
+	</li>
+	<li class="float-left" style="margin-left:20px;">
+		<h2><?= strtoupper($user['User']['username'] ) ?></h2>
+		<h4>Correo Electronico: <small><?= $user['User']['email'] ?></small></h4>
+	</li>
+</ul>
 
 
 
