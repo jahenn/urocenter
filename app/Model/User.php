@@ -12,16 +12,27 @@ class User extends AppModel {
 
 	public $displayField = 'username';
 
-
 	public function beforeSave($options = array()) {
-	    if (isset($this->data[$this->alias]['password'])) {
-	        $passwordHasher = new SimplePasswordHasher();
-	        $this->data[$this->alias]['password'] = $passwordHasher->hash(
-	            $this->data[$this->alias]['password']
-	        );
+	    if(!empty($this->data['User']['password'])) {
+	        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+	    } else {
+	        unset($this->data['User']['password']);
 	    }
 	    return true;
 	}
+
+	// public function beforeSave($options = array()) {
+
+	// 	pr($options); exit();
+
+	//     if (isset($this->data[$this->alias]['password'])) {
+	//         $passwordHasher = new SimplePasswordHasher();
+	//         $this->data[$this->alias]['password'] = $passwordHasher->hash(
+	//             $this->data[$this->alias]['password']
+	//         );
+	//     }
+	//     return true;
+	// }
 
 
 	public function userHasInRole($user, $role_id)

@@ -32,7 +32,7 @@
 			'label'=>false
 			)) ?> 
 	</div>
-</div><div class="form-row">
+</div><!-- <div class="form-row">
 			<div class="form-label col-md-2">
 			<label for="password" class=" text-transform-cap ">
 			password
@@ -41,7 +41,7 @@
 			'label'=>false
 			)) ?> 
 	</div>
-</div><div class="form-row">
+</div> --><div class="form-row">
 			<div class="form-label col-md-2">
 			<label for="email" class=" text-transform-cap ">
 			email

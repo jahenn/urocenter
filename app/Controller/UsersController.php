@@ -80,6 +80,17 @@ class UsersController extends AppController {
 					'role_id'=>$role_id
 					));
 
+				$user_role = $this->User->Role->find('first', array(
+					'conditions'=>array(
+						'nombre'=>'usuarios'
+						)
+					));
+
+				$this->User->RolesUser->create();
+				$this->User->RolesUser->save(array(
+					'user_id'=>$user_id,
+					'role_id'=>$user_role
+					));
 
 
 
@@ -124,7 +135,7 @@ class UsersController extends AppController {
 
 
 
-			$this->request->data['Role']['Role'][] = $role['Role']['id'];
+			//$this->request->data['Role']['Role'][] = $role['Role']['id'];
 
 
 			//pr($this->request->data);exit();
@@ -132,6 +143,9 @@ class UsersController extends AppController {
 
 
 			if ($this->User->save($this->request->data)) {
+				$this->User->id = $id;
+				$this->User->read();
+				$this->User->saveField('role_id', $role['Role']['id']);
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
