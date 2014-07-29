@@ -109,7 +109,11 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
 		}
-		$roles = $this->User->Role->find('list');
+		$roles = $this->User->Role->find('list', array(
+			'conditions'=>array(
+				'user_role'=>false
+				)
+			));
 		$this->set(compact('roles'));
 	}
 
