@@ -15,10 +15,11 @@
         }
         .contenido{
             /*width: 100%;*/
-            /*padding-left: 50px !important;
-            padding-right: 50px !important;*/
+            padding-left: 50px !important;
+            padding-right: 50px !important;
             text-align: center !important;
             /*margin: 0 auto;*/
+
         }
         .no-padding{
             padding-left: none !important;

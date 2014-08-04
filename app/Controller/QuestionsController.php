@@ -164,12 +164,12 @@ class QuestionsController extends AppController {
 		if ($this->Question->save(array(
 			'question_status_id'=>1
 			))) {
-			$this->Session->setFlash(__('The question has been deleted.'), 'default', array(
-				'class'=>'infobox success-bg'
+			$this->Session->setFlash(__('La pregunta fue eliminada'), 'default', array(
+				'class'=>'alert alert-success'
 				));
 		} else {
-			$this->Session->setFlash(__('The question could not be deleted. Please, try again.'), 'default', array(
-				'class'=>'infobox error-bg'
+			$this->Session->setFlash(__('La pregunta no pudo ser eliminada'), 'default', array(
+				'class'=>'alert alert-danger'
 				));
 		}
 		return $this->redirect(array('action' => 'index'));
