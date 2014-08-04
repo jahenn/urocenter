@@ -219,8 +219,14 @@
             console.log(i,row);
         });
 
+        var graphic_url = "<?= $this->Html->url(array(
+                'controller'=>'Exams',
+                'action'=>'promedio_mensual'
+            ), true) ?>";
+
+
         $.ajax({
-            url: 'http://localhost/rx/Exams/promedio_mensual',
+            url: graphic_url,
             dataType: 'json',
             success: function(data){
                 //alert(data);
