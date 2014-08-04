@@ -24,7 +24,7 @@ class QuestionsController extends AppController {
 
 		$pendientes = $this->Question->find('count', array(
 			'conditions'=>array(
-				'question_status_id'=>1
+				'question_status_id'=>array(1,2)
 				)
 			));
 

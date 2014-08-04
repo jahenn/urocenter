@@ -1,19 +1,12 @@
 
 <div class="row">
-    <div class="col-md-6">
-        <h4 class="heading-1 clearfix">
-            <div class="heading-content">
-                <i class="fa fa-dashboard"></i> Dashboard
-            </div>
-            <div class="clear"></div>
-
-            
-        </h4>
+    <div class="col-md-12">
+        <span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> </span class="font-size-20">
     </div>
 </div>
 <div class="divider"></div>
 
-<h4><i class="fa fa-warning"></i> Actividad</h4>
+<h4><i class="fa fa-info"></i> Actividad</h4>
 <br>
 <div class="row">
     <div class="col-md-6">
