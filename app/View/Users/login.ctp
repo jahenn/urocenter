@@ -14,7 +14,7 @@
             height: 100%;
         }
         .contenido{
-            width: 500px;
+            width: 50%;
             padding-left: 50px !important;
             padding-right: 50px !important;
             text-align: center;
