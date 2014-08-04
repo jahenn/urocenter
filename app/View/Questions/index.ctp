@@ -38,10 +38,8 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<ol class="breadcrumb">
-		  <li><a href="#"><i class="fa fa-question-circle"></i> Preguntas</a></li>
-		  <li><a href="#">Todas</a></li>
-		</ol>
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Nuevas Preguntas</span class="font-size-20">
+			<hr>
 	</div>
 </div>
 
