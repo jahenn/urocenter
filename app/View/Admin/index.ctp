@@ -96,8 +96,8 @@
             </div>
             <div class="col-md-6">
                 <?php $new_user_url = $this->Html->url(array(
-                    'controller'=>'users',
-                    'action'=>'news'
+                    'controller'=>'questions',
+                    'action'=>'index'
                 )); ?>
                 <a href="<?= $new_user_url ?>" class="tile-button tile-button-alt btn bg-green pad0A" title="">
                     <div class="tile-header">
