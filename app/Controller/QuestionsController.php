@@ -14,14 +14,12 @@ class QuestionsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-
 		$pendientes = $this->Question->find('count', array(
 			'conditions'=>array(
 				'question_status_id'=>array(1,2)
@@ -30,6 +28,7 @@ class QuestionsController extends AppController {
 
 		$this->set(compact('pendientes'));
 		$this->lists(2);
+
 		
 	}
 
@@ -162,7 +161,7 @@ class QuestionsController extends AppController {
 		//$this->request->allowMethod('post', 'delete');
 
 		if ($this->Question->save(array(
-			'question_status_id'=>1
+			'question_status_id'=>3
 			))) {
 			$this->Session->setFlash(__('La pregunta fue eliminada'), 'default', array(
 				'class'=>'alert alert-success'
@@ -175,16 +174,21 @@ class QuestionsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	public function lists($id)
+	public function lists()
 	{
-		if($id != 2){
-			$pendientes = 0;
-			$this->set(compact('pendientes'));
-		}
+		// if($id != 2){
+		// 	$pendientes = 0;
+		// 	$this->set(compact('pendientes'));
+		// }
 
 		$this->Question->recursive = 0;
+
+		$this->Paginator->settings = array(
+			'order'=>'Question.question_status_id,  Question.id desc'
+			);
+
 		$this->set('questions', $this->Paginator->paginate(array(
-			'Question.question_status_id'=>$id
+			'Question.question_status_id'=> array(1,2)
 			)));
 		
 		$this->render('index');
@@ -198,7 +202,7 @@ class QuestionsController extends AppController {
 				'question_status_id'=>2
 				))){
 				$this->Session->setFlash('La Pregunta ha sido Aprobada', 'default', array(
-					'class'=>'infobox success-bg'
+					'class'=>'alert alert-success'
 					));
 
 				$this->redirect(array(
@@ -213,7 +217,8 @@ class QuestionsController extends AppController {
 		$this->autoRender = false;
 		$question_list = $this->Question->find('list', array(
 			'conditions'=> array(
-				'question_category_id'=>$category_id
+				'question_category_id'=>$category_id,
+				'Question.question_status_id' => 2
 				)
 			));
 

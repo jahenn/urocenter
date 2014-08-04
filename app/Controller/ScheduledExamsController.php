@@ -88,7 +88,8 @@ class ScheduledExamsController extends AppController {
 					'user_id'=>$this->Auth->user()['id'],
 					'fecha'=>date('Y-m-d'),
 					'titulo'=>'Nuevo Examen Programado',
-					'descripcion'=>'Se ha programado un nuevo examen <a href="'.$event_url.'">Ver</a>'
+					'descripcion'=>'Se ha programado un nuevo examen <a href="'.$event_url.'">Ver</a>',
+					'color_id'=>1
 					));
 
 
@@ -117,6 +118,9 @@ class ScheduledExamsController extends AppController {
 			throw new NotFoundException(__('Invalid scheduled exam'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			$this->ScheduledExam->id = $id;
+			$this->ScheduledExam->read();
+
 			if ($this->ScheduledExam->save($this->request->data)) {
 				$this->Session->setFlash(__('The scheduled exam has been saved.'));
 
@@ -158,7 +162,7 @@ class ScheduledExamsController extends AppController {
 		if (!$this->ScheduledExam->exists()) {
 			throw new NotFoundException(__('Invalid scheduled exam'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		//$this->request->allowMethod('post', 'delete');
 		if ($this->ScheduledExam->delete()) {
 			$this->Session->setFlash(__('The scheduled exam has been deleted.'));
 		} else {
@@ -226,10 +230,76 @@ class ScheduledExamsController extends AppController {
 				$this->loadModel('ExamAnswer');
 
 				// relacion de columnas
-				foreach ($this->request->data['Columnas'] as $pK => $pV) {
-					foreach ($pV as $ppK => $ppV) {
-						$question_id = $ppV['pregunta']['id_pregunta'];
-						$answer_id = $ppV['pregunta']['id_respuesta'];
+				if(isset($this->request->data['columnas'])){
+					foreach ($this->request->data['Columnas'] as $pK => $pV) {
+						foreach ($pV as $ppK => $ppV) {
+							$question_id = $ppV['pregunta']['id_pregunta'];
+							$answer_id = $ppV['pregunta']['id_respuesta'];
+
+							$this->loadModel('Question');
+							$this->loadModel('Answer');
+
+							 $question = $this->Question->find('first', array(
+							 	'conditions'=>array(
+							 		'Question.id'=>$question_id
+							 		)
+							 	));
+
+							 $answer = $this->Answer->find('first', array(
+							 	'conditions'=>array(
+							 		'Answer.id'=>$answer_id
+							 		)
+							 	));
+
+
+							 $question_text = $question['Question']['question'];
+							 $answer_text = $answer['Answer']['answer'];
+
+
+
+							 $answer_correct = $this->Answer->find('first', array(
+							 	'conditions'=>array(
+							 		'Answer.id'=> $answer_id,
+							 		'Answer.question_id'=>$question_id,
+							 		'Answer.answer_is_ok'=>true
+							 		)
+							 	));
+
+							 $correcto = false;
+							 if(count($answer_correct) > 0){
+							 	$correcto = true;
+							 }
+
+
+							 $tmp_answer = array(
+							 	'exam_id'=>$exam_id,
+							 	'pregunta'=>$question_text,
+							 	'respuesta'=>$answer_text,
+							 	'correcta'=>$correcto,
+							 	'calificada'=>true
+							 	);
+
+
+
+							 $this->ExamAnswer->create();
+							 $this->ExamAnswer->save($tmp_answer);
+
+
+							 //pr(compact('question_text', 'answer_text'));
+
+						}
+					}
+				}
+
+				//Opcion Multiple
+
+
+				if(isset($this->request->data['Multiple'])){
+					foreach ($this->request->data['Multiple'] as $cK => $cV) {
+
+						$question_id = $cV['question'];
+						$answer_id = $cV['answer'];
+
 
 						$this->loadModel('Question');
 						$this->loadModel('Answer');
@@ -278,69 +348,7 @@ class ScheduledExamsController extends AppController {
 
 						 $this->ExamAnswer->create();
 						 $this->ExamAnswer->save($tmp_answer);
-
-
-						 //pr(compact('question_text', 'answer_text'));
-
 					}
-				}
-
-				//Opcion Multiple
-
-
-				foreach ($this->request->data['Multiple'] as $cK => $cV) {
-
-					$question_id = $cV['question'];
-					$answer_id = $cV['answer'];
-
-
-					$this->loadModel('Question');
-					$this->loadModel('Answer');
-
-					 $question = $this->Question->find('first', array(
-					 	'conditions'=>array(
-					 		'Question.id'=>$question_id
-					 		)
-					 	));
-
-					 $answer = $this->Answer->find('first', array(
-					 	'conditions'=>array(
-					 		'Answer.id'=>$answer_id
-					 		)
-					 	));
-
-
-					 $question_text = $question['Question']['question'];
-					 $answer_text = $answer['Answer']['answer'];
-
-
-
-					 $answer_correct = $this->Answer->find('first', array(
-					 	'conditions'=>array(
-					 		'Answer.id'=> $answer_id,
-					 		'Answer.question_id'=>$question_id,
-					 		'Answer.answer_is_ok'=>true
-					 		)
-					 	));
-
-					 $correcto = false;
-					 if(count($answer_correct) > 0){
-					 	$correcto = true;
-					 }
-
-
-					 $tmp_answer = array(
-					 	'exam_id'=>$exam_id,
-					 	'pregunta'=>$question_text,
-					 	'respuesta'=>$answer_text,
-					 	'correcta'=>$correcto,
-					 	'calificada'=>true
-					 	);
-
-
-
-					 $this->ExamAnswer->create();
-					 $this->ExamAnswer->save($tmp_answer);
 				}
 
 

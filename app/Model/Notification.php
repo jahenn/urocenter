@@ -77,6 +77,7 @@ class Notification extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+		'Color'
 	);
 }

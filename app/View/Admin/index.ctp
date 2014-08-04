@@ -13,13 +13,13 @@
         
         <?php foreach($notifications as $notification): ?>
 
-            <div class="infobox infobox-close-wrapper alert alert-info">
+            <div class="infobox infobox-close-wrapper alert <?= $notification['Color']['valor'] ?>">
                 <div class="large btn font-black info-icon">
                     <!-- <i class="glyph-icon icon-comment"></i> -->
                     <?= $this->element('avatar_user', array(
                         'custom_user'=>$notification['User'],
                         'opciones'=>array(
-                            'class'=>'avatar alert-info',
+                            'class'=>'avatar ' . $notification['Color']['valor'],
 
                             )
                     )) ?>
@@ -151,14 +151,16 @@
             type: 'json',
             url: eventos,
             success: function(data){
+
+                //alert(data);
                 eventos = $.parseJSON(data);
 
                 $('#calendar').fullCalendar({
                     height: 400, 
                     header: {
-                        left: 'prev,next today',
+                        left: '',
                         center: 'title',
-                        right: 'month,basicWeek,basicDay'
+                        right: ''
                     },
                     editable: false,
                     dropable:false,

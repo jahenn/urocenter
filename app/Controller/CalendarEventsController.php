@@ -8,23 +8,23 @@
 
 		public function json()
 		{
-			// $this->autoRender = false;
-			// $this->CalendarEvent->recursive = 3;
-			// $events = $this->CalendarEvent->find('all');
+			$this->autoRender = false;
+			$this->CalendarEvent->recursive = 3;
+			$events = $this->CalendarEvent->find('all');
 
-			// $_evensts = array();
+			$_evensts = array();
 
-			// foreach ($events as $key => $value) {
-			// 	$_evensts[] = array(
-			// 		'title' => $value['CalendarEvent']['titulo'],
-			// 		'start' => $value['CalendarEvent']['fecha'],
-			// 		'backgroundColor' => $value['Color']['valor'],
-			// 		'borderColor' => 'white',
-			// 		'url' => $value['CalendarEvent']['url']
-			// 		);
-			// }
+			foreach ($events as $key => $value) {
+				$_evensts[] = array(
+					'title' => $value['CalendarEvent']['titulo'],
+					'start' => $value['CalendarEvent']['fecha'],
+					'backgroundColor' => $value['Color']['color'],
+					'borderColor' => 'white',
+					'url' => $value['CalendarEvent']['url']
+					);
+			}
 
-			// echo json_encode($_evensts);
+			echo json_encode($_evensts);
 			//pr($_evensts);
 
 		}
