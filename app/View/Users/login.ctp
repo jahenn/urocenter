@@ -11,6 +11,7 @@
         body{
             background-color: #E4E8EE;
             margin-top: 10%;
+            height: 100%;
         }
         .contenido{
             width: 500px;
@@ -22,6 +23,23 @@
         .no-padding{
             padding-left: none !important;
             padding-right: none !important;
+        }
+        /*.footer{
+            position: absolute;
+            top:90%;
+            width: 10%;
+            width: 100%;
+            text-align: center;
+        }*/
+        .footer { 
+            position: relative; 
+            /*margin-top: -50px; */
+            margin-top: 200px;
+            height: 50px; 
+            clear: both; 
+            /*background: #286af0; */
+            text-align: center; 
+            color: #37485d; 
         }
      </style>
 </head>
@@ -60,6 +78,10 @@
         </div>
         <?= $this->Form->end() ?>
 
+    </div>
+
+    <div class="footer">
+        Version 0.14 alpha. Urocenter 2014-2015
     </div>
 </body>
 </html>
