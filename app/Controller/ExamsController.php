@@ -105,4 +105,37 @@ class ExamsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function promedio_mensual(){
+		$this->autoRender = false;
+		$this->Exam->virtualFields['resultado'] = 0;
+		$this->Exam->virtualFields['fecha'] = 0;
+		$examenes = $this->Exam->query('select cast(fecha as date) as Exam__fecha, avg(resultado) as Exam__resultado from exams as Exam group by month(fecha)');
+		
+		$exams = array();
+
+		$meses = array(
+			'No definido', 
+			'Enero', 
+			'Febrero',
+			'Marzo',
+			'Abril',
+			'Mayo',
+			'Junio',
+			'Julio',
+			'Agosto',
+			'Septiembre',
+			'Octubre',
+			'Noviembre',
+			'Diciembre');
+
+		//pr($examenes);
+
+		foreach ($examenes as $key => $v) {
+			$exams[] = array('fecha'=>  $v['Exam']['fecha'] ,  'value'=>$v['Exam']['resultado']);
+		}
+
+		echo json_encode($exams);
+
+	}
 }

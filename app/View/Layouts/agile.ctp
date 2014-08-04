@@ -255,6 +255,23 @@
                                     <i class="fa fa-arrow-right"></i>
                                 </a>
                             </div>
+                            <?php else: ?>
+                                <div class="btn-group float-right">
+                                    <?php 
+                                        $url_new_question = $this->Html->url(array(
+                                            'controller'=>'questions',
+                                            'action'=>'add'
+                                            ), true);
+
+                                        $url_program_examen = $this->Html->url(array(
+                                             'controller'=>'ScheduledExams',
+                                             'action'=>'add'
+                                         ), true);
+
+                                     ?>
+                                    <a href="<?= $url_program_examen ?>" class="btn btn-success"> <i class="fa fa-clock-o"></i> Programar Examen </a>
+                                    <a href="<?= $url_new_question ?>" class="btn btn-info"> <i class="fa fa-check-square-o"></i> Nueva Pregunta</a>
+                                </div>
                             <?php endif ?>
 
 

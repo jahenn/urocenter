@@ -10,25 +10,6 @@
             
         </h4>
     </div>
-    <div class="col-md-6 float-right">
-       <div class="button-group float-right">
-           <?php 
-               $url_new_question = $this->Html->url(array(
-                   'controller'=>'questions',
-                   'action'=>'add'
-                   ), true);
-
-               $url_program_examen = $this->Html->url(array(
-                    'controller'=>'ScheduledExams',
-                    'action'=>'add'
-                ), true);
-
-            ?>
-           <a href="<?= $url_program_examen ?>" class="btn primary-bg large"> <i style="font-size:18px;" class="fa fa-clock-o"></i> Programar Examen </a>
-           <a href="<?= $url_new_question ?>" class="btn primary-bg large"> <i style="font-size:18px;" class="fa fa-check-square-o"></i> Nueva Pregunta</a>
-           <br>
-       </div>
-    </div>
 </div>
 <div class="divider"></div>
 
@@ -125,7 +106,7 @@
             <div class="col-md-12">
                 <div class="content-box border-top border-blue-alt mrg25B">
                     <h3 class="content-header clearfix">
-                        Usuarios Registrados
+                        Promedio de Calificaciones
                     </h3>
                     <div class="content-box-wrapper">
                         <div id="revenue-chart" style="height:200px;"></div>
@@ -212,28 +193,39 @@
 <script type="text/javascript">
     $(document).ready(function(){
         "use strict";
+
+        // [
+        //                 {y: '2011 Q1', item1: 2666},
+        //                 {y: '2011 Q2', item1: 2778},
+        //                 {y: '2011 Q3', item1: 4912},
+        //                 {y: '2011 Q4', item1: 3767},
+        //                 {y: '2012 Q1', item1: 6810},
+        //                 {y: '2012 Q2', item1: 5670},
+        //                 {y: '2012 Q3', item1: 4820},
+        //                 {y: '2012 Q4', item1: 15073},
+        //                 {y: '2013 Q1', item1: 10687},
+        //                 {y: '2013 Q2', item1: 8432}
+        //             ]
+
         var area = new Morris.Area({
             element: 'revenue-chart',
             resize: true,  
-            data: [
-                {y: '2011 Q1', item1: 2666},
-                {y: '2011 Q2', item1: 2778},
-                {y: '2011 Q3', item1: 4912},
-                {y: '2011 Q4', item1: 3767},
-                {y: '2012 Q1', item1: 6810},
-                {y: '2012 Q2', item1: 5670},
-                {y: '2012 Q3', item1: 4820},
-                {y: '2012 Q4', item1: 15073},
-                {y: '2013 Q1', item1: 10687},
-                {y: '2013 Q2', item1: 8432}
-            ],
-            xkey: 'y',
-            ykeys: ['item1'],
-            labels: ['Item 1'],
+            xkey: 'fecha',
+            ykeys: ['value'],
+            labels: ['Calificación Promedio'],
             lineColors: ['#a0d0e0', '#3c8dbc'],
             hideHover: 'auto'
         }).on('click', function(i, row){
             console.log(i,row);
+        });
+
+        $.ajax({
+            url: 'http://localhost/rx/Exams/promedio_mensual',
+            dataType: 'json',
+            success: function(data){
+                //alert(data);
+                area.setData(data);
+            }
         });
 
     });
