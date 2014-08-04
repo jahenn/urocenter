@@ -64,11 +64,16 @@ class AppController extends Controller {
 			)
 		);
 
-		$this->set(compact('menus_bar'));
+		$this->loadModel('User');
+		$is_admin = $this->User->isAdmin($this->Auth->user()['id']);
+
+		$this->set(compact('menus_bar', 'is_admin'));
 
 		
 		$this->layout = 'agile';
 
+
+		
 
 		//pr($menus);
 

@@ -19,20 +19,26 @@
 )); ?>
 
 
-<div class="form-row"><div class="form-input col-md-10">		 <?= $this->Form->input('id', array(
-							'label'=>false
-							)) ?> 
+<div class="form-row">
+	<div class="form-input col-md-10">		 
+		<?= $this->Form->input('id', array(
+			'label'=>false
+		)) ?> 
 	</div>
-						</div><div class="form-row">
-							<div class="form-label col-md-2">
-								<label for="question_id" class=" text-transform-cap ">
-									question_id
-								</label>
-							</div><div class="form-input col-md-10">		 <?= $this->Form->input('question_id', array(
-							'label'=>false
-							)) ?> 
+</div>
+<div class="form-row">
+	<div class="form-label col-md-2">
+		<label for="question_id" class="text-transform-cap ">
+			question_id
+		</label>
 	</div>
-						</div><div class="form-row">
+	<div class="form-input col-md-10">		 
+		<?= $this->Form->input('question_id', array(
+			'label'=>false
+		)) ?> 
+	</div>
+</div>
+<div class="form-row">
 							<div class="form-label col-md-2">
 								<label for="answer" class=" text-transform-cap ">
 									answer

@@ -51,10 +51,10 @@ html {
 	text-align: center;
 }
 
-#page-header a,
+/*#page-header a,
 #header-logo a {
 	color: rgba(255,255,255,0.5);
-}
+}*/
 
 #page-header .button-group > a:hover,
 #page-header .top-icon-bar > a:hover, 

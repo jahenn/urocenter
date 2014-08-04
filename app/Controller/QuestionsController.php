@@ -74,6 +74,7 @@ class QuestionsController extends AppController {
 			}
 
 			$this->request->data['Question']['question_status_id'] = 1;
+			$this->request->data['Question']['fecha_creacion'] = null;
 			
 
 			$this->Question->create();
@@ -85,8 +86,9 @@ class QuestionsController extends AppController {
 			}
 		}
 		$questionCategories = $this->Question->QuestionCategory->find('list');
+		$questionTypes = $this->Question->QuestionType->find('list');
 		//$exams = $this->Question->Exam->find('list');
-		$this->set(compact('questionCategories'));
+		$this->set(compact('questionCategories', 'questionTypes'));
 	}
 
 /**
@@ -125,12 +127,24 @@ class QuestionsController extends AppController {
 			}
 		} else {
 			$options = array('conditions' => array('Question.' . $this->Question->primaryKey => $id));
-			//$this->Question->recursive = 2;
+			$this->Question->recursive = 3;
+			$this->Question->QuestionCategory->unbindModel(array(
+				'hasMany'=>array(
+					'Question'
+					)
+				));
+
+			$this->Question->QuestionType->unbindModel(array(
+				'hasMany'=>array(
+					'Question'
+					)
+				));
 			$this->request->data = $this->Question->find('first', $options);
 		}
 		$questionCategories = $this->Question->QuestionCategory->find('list');
+		$questionTypes = $this->Question->QuestionType->find('list');
 		//$exams = $this->Question->Exam->find('list');
-		$this->set(compact('questionCategories'));
+		$this->set(compact('questionCategories', 'questionTypes'));
 	}
 
 /**
@@ -217,6 +231,29 @@ class QuestionsController extends AppController {
 
 
 		echo json_encode($questions);
+	}
+
+	public function uploadImage($question_id){
+		$this->autoRender = false;
+
+
+		if(count($_FILES) > 0){
+
+			$filename = $_FILES['file']['name'];
+			$tmp_name = $_FILES['file']['tmp_name'];
+
+			$destino = WWW_ROOT . 'img' . DS . 'question-images' . DS . $filename ;
+
+
+			move_uploaded_file($tmp_name, $destino);
+
+			$this->Question->id = $question_id;
+			$this->Question->read();
+			$this->Question->saveField('imagen',$filename);
+
+		}
+
+
 	}
 
 

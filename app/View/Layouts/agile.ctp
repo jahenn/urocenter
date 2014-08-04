@@ -29,7 +29,7 @@
         <?= $this->Html->css('calendar.min') ?>
        
 
-
+        
         <?= $this->Html->css('app-production') ?>
         <?= $this->Html->css('themes/agileui/color-schemes/layouts/default') ?>
         <?= $this->Html->css('themes/agileui/color-schemes/elements/default') ?>
@@ -45,9 +45,13 @@
         <?= $this->Html->css('chosen') ?>
         <?= $this->Html->css('multi-select') ?>
         <?= $this->Html->css('custom') ?> 
+<!-- 
+        <?= $this->Html->css("font-awesome.min") ?> -->
 
-        <?= $this->Html->css("font-awesome.min") ?>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
         
+        <?= $this->Html->css("bootstrap") ?>
         
         
         
@@ -64,6 +68,8 @@
 
         <?= $this->Html->script('morris/morris') ?> 
         <?= $this->Html->script('qtip') ?> 
+        <?= $this->Html->script('jquery.easyWizard') ?> 
+
         
         <!-- Theme UI -->
 
@@ -202,7 +208,56 @@
                     <div id="page-header" class="clearfix" style="min-height:50px;">
                         <div id="page-header-wrapper" class="clearfix">
 
-                            
+
+                            <?php $user_data = $this->Session->read()['Auth']['User']; ?>
+
+
+                            <div class="top-icon-bar dropdown">
+                                <a data-toggle="dropdown" class="user-ico clearfix" title="" href="javascript:;">
+                                    <?= $this->element('avatar') ?>
+                                    <span><?= $user_data['nombre_completo'] ?></span>
+                                    <i class="glyph-icon icon-chevron-down"></i>
+                                </a>
+                                <ul class="dropdown-menu float-right">
+                                    <li>
+                                        <span data-original-title="You can add badges even to dropdown menus!" title="" class="badge badge-absolute float-left radius-all-100 mrg5R bg-green tooltip-button">7</span>
+                                        <?php $url_profile = $this->Html->url(array(
+                                            'controller'=>'users',
+                                            'action'=>'profile'
+                                        )); ?>
+                                        <a title="" href="<?= $url_profile ?>">
+                                            <i class="glyph-icon icon-user mrg5R"></i>
+                                            Perfil de Usuario
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <?php $signout_url = $this->Html->url(array(
+                                            'controller'=>'users',
+                                            'action'=>'logout'
+                                        )); ?>
+                                       <a href="<?= $signout_url ?>"><i class="fa fa-sign-out"></i> Cerrar Sesión</a> 
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <?php if(!$is_admin): ?>
+                            <div class="btn-group float-right">
+                                <?php $new_question_url = $this->Html->url(array(
+                                    'controller'=>'questions',
+                                    'action'=>'add'
+                                )); ?>
+                                <a href="#" class="btn btn-info" >
+                                    Examen Aleatorio 
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
+                                <a href="<?= $new_question_url ?>" class="btn btn-success">
+                                    Aportar Pregunta
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <?php endif ?>
+
+
                         </div>
                     </div><!-- #page-header -->
 

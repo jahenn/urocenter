@@ -39,14 +39,15 @@
 			<?= $this->Form->input('answer', array(
 				'label'=>array(
 					'text'=>'Captura La Respuesta',
-					'class'=>'text-transform-cap label'
+					'class'=>'text-transform-cap'
 					),
-				'type'=>'textarea'
+				'type'=>'textarea',
+				'class'=>'form-control'
 				)) ?> 
 			</div>
 		</div><div class="form-row">
-		<div class="col-md-3">
-			<label for="" class="text-trasform-cap label">
+		<div class="col-md-2">
+			<label for="" class="text-trasform-cap">
 				La respuesta es correcta?
 			</label>
 		</div>

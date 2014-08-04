@@ -1,41 +1,139 @@
-<h4 class="heading-1 clearfix">
-    <div class="heading-content">
-    	<?php echo __('User'); ?>       	       <!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
-
-<?php if($user['User']['activo'] == false): ?>
-	<div class="row">
+<div class="profile-box bg-white content-box">
+	<div class="content-box-header clearfix">
 		<div class="col-md-6">
-			<?php $aprobar_url = $this->Html->url(array(
-				'action'=>'aprobe', $user['User']['id']
-			)); ?>
-			<a href="#" class="btn btn-danger btn-lg"><i class="fa fa-times"></i></a>
-			<a href="<?= $aprobar_url ?>" class="btn btn-success btn-lg ">Aprobar Usuario <i class="fa fa-check"></i></a>
+			<a href="javascript:;" onclick="$('#white-modal-80').removeClass('hide');" class="white-modal-80 float-left">
+				<?= $this->element('avatar'); ?>
+			</a>
+			
+			<?php if($this->params['action'] == 'profile' ): ?>
+				<div class="hide" id="white-modal-80" title="Carga Imagen de Perfil">
+				    <div class="pad10A">
+
+
+					<?= $this->Form->create('uploadImage', array(
+						'class'=>'dropzone'
+					)) ?>
+						
+					<?= $this->Form->input('user_id', array(
+						'type'=>'hidden',
+						'value'=> $this->Session->read()['Auth']["User"]['id']
+					)) ?>
+					
+					<?= $this->Form->end() ?>
+					<br>
+					<!-- <button id="upload_image_btn" class="btn primary-bg">Guardar</button> -->
+
+				    </div>
+				</div>
+			<?php endif ?>
+
+			<div class="user-details float-left">
+				<?= ucwords($user['User']['nombre_completo']) ?>
+				<span><?= ucwords($user['User']['username']) ?></span>
+			</div>
 		</div>
+
+		<div class="col-md-6">
+			<?php $url_edit = $this->Html->url(array(
+				'action'=>'edit', $user['User']['id']
+			)); ?>
+			<a href="<?= $url_edit ?>" class="btn btn-info float-right"><i class="fa fa-gear" title="Editar Perfil"></i></a>
+			</div>
 	</div>
-<?php endif ?>
+	<div class="nav-list-horizontal clearfix nav-list-3 nav-list-horizontal-alt">
+		<div class="row">
+			<div class="col-md-12">
+				<label for="email"> <i class="fa fa-envelope"></i> Correo Electronico:</label>
+				<span id="email"><?= $user['User']['email'] ?></span>
+			</div>
+			<div class="col-md-12">
+				<label for="fecha_registro"><i class="fa fa-calendar"></i> Fecha de Registro</label>
+				<span id="fecha_registro"><?= date('d M Y', strtotime($user['User']['fecha_registro'] )) ?></span>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<?php if($user['User']['activo'] == false && $is_admin): ?>
+					<div class="button-group">
+						<?php $aprobar_url = $this->Html->url(array(
+							'action'=>'aprobe', $user['User']['id']
+						)); ?>
+						<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
+						<a href="<?= $aprobar_url ?>" class="btn btn-success">Aprobar Usuario <i class="fa fa-check"></i></a>
+					</div>
+				<?php else: ?>
+					<div class="btn btn-success"><i class="fa fa-check"></i> Usuario Activo</div>
+				<?php endif ?>
+			</div>
+			
+		</div>
+		<!-- <ul class="row">
+			<li>
+				<a title="" class="hover-white" href="javascript:;">
+					<i class="glyph-icon font-purple icon-dashboard"></i>
+					Dashboard
+				</a>
+			</li>
+			<li>
+				<a title="" class="hover-white" href="javascript:;">
+					<i class="glyph-icon font-orange icon-picture-o"></i>
+					Gallery
+				</a>
+			</li>
+			<li>
+				<a title="" class="hover-white" href="javascript:;">
+					<i class="glyph-icon font-blue-alt icon-map-marker"></i>
+					Location
+				</a>
+			</li>
+		</ul> -->
+	</div>
 
-<br>
+</div>
 
 
-<ul>
-	<li class="float-left">
-		<?= $this->Html->image("avatar77.jpg", array(
-			'width'=>100
-		)) ?>
-	</li>
-	<li class="float-left" style="margin-left:20px;">
-		<h2><?= strtoupper($user['User']['username'] ) ?></h2>
-		<h4>Correo Electronico: <small><?= $user['User']['email'] ?></small></h4>
-	</li>
-</ul>
 
 
+
+<script type="text/javascript">
+		
+	$(document).ready(function(){
+		Dropzone.options.uploadImageProfileForm = { // The camelized version of the ID of the form element
+
+		  // The configuration we've talked about above
+		  // autoProcessQueue: false,
+		  uploadMultiple: false,
+		  parallelUploads: 1,
+		  maxFiles: 1,
+		  dictDefaultMessage: 'Arrastra una imagen a esta zona',
+		  addRemoveLinks: true,
+		  dictRemoveFile: 'Quitar',
+		  success: function(e, response){
+		  	location.reload();
+		  },
+		  maxfilesexceeded: function(file){
+		  	alert("Has cargado mas de una imagen, solo la primera imagen sera cargada a tu perfil.");
+		  },
+
+		  // The setting up of the dropzone
+		  init: function() {
+		    var myDropzone = this;
+
+		    // First change the button to actually tell Dropzone to process the queue.
+		    // $("#upload_image_btn").on("click", function(e) {
+		    //   // Make sure that the form isn't actually being sent.
+		    //   e.preventDefault();
+		    //   e.stopPropagation();
+		    //   myDropzone.processQueue();
+
+		    // });
+		  }
+
+		};
+	});
+
+</script>
 
 <!-- <div class="row">
 	<div class="col-md-12">

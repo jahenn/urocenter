@@ -64,6 +64,12 @@ class User extends AppModel {
 	public function isAdmin($user){
 
 		$this->id = $user;
+
+		if(!$this->exists())
+		{	
+			return false;
+		}
+
 		foreach($this->read()['Role'] as $role){
 			if($role['id'] == 5)
 			{

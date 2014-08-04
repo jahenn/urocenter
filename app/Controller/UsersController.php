@@ -138,8 +138,9 @@ class UsersController extends AppController {
 				));
 
 
-
+			$this->request->data['User']['password'] = '';
 			$this->request->data['Role']['Role'][] = $role['Role']['id'];
+			$this->request->data['Role']['Role'][] = 6;
 
 
 			//pr($this->request->data);exit();
@@ -150,6 +151,8 @@ class UsersController extends AppController {
 				// $this->User->id = $id;
 				// $this->User->read();
 				// $this->User->saveField('role_id', $role['Role']['id']);
+
+
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -270,12 +273,15 @@ class UsersController extends AppController {
 						)
 					));
 
+
+				//pr($role_id);exit();
+
 				// $v = new View();
 				// pr($v->element('sql_dump'));
 				// exit();
 
 
-				if($role_id == null || count($role_id) <= 0 || 1==1){
+				if($role_id == null || count($role_id) <= 0){
 					
 
 					$this->Session->setFlash('No existe el usuario o grupo de usuarios', 'default', array(
@@ -321,6 +327,7 @@ class UsersController extends AppController {
 
 
 
+		$this->set('grupo', ucwords($type));
 
 		$this->set('users', $users);
 		$this->render('group');
@@ -357,9 +364,55 @@ class UsersController extends AppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 
+		$user = $this->User->find('first', array(
+		  'conditions'=> array(
+		  		'User.id' => $this->Session->read('Auth.User.id')
+		  	)
+		)); 
+		$this->Session->write('Auth', $user);
+
+		
+
+
 		$this->Auth->allow('register');
 		$this->Auth->allow('register_complete');
 		$this->Auth->allow('add');
+	}
+
+	public function profile(){
+
+
+		if($this->request->is('post')){
+
+			if(count($_FILES) > 0){
+
+
+
+				$img_name = $_FILES['file']['name'];
+				$tmp_name = $_FILES['file']['tmp_name'];
+
+				$destino = WWW_ROOT . 'img/profile/' . $img_name;
+
+				
+				move_uploaded_file($tmp_name, $destino);
+				$this->User->id = $this->Auth->user()['id'];
+				$this->User->read();
+
+				$this->User->saveField('avatar', $img_name);
+
+				exit();
+			}
+		}
+
+		$user_id = $this->Auth->user()['id'];
+		$user = $this->User->find('first', array(
+			'conditions'=>array(
+				'id'=>$user_id
+				)
+			));
+
+		$this->set(compact('user'));
+		$this->render('view');
 	}
 
 }

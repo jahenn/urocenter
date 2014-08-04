@@ -14,11 +14,13 @@
 	</div>
 	<?php if($question['Question']['question_status_id'] == 1): ?>
 	<div class="col-md-6">
-		<?php $aprobar_url = $this->Html->url(array(
-			'action'=>'aprobe', $question['Question']['id']
-		)); ?>
-		<a href="#" class="btn error-bg float-right large"><i class="fa fa-times"></i></a>
-		<a href="<?= $aprobar_url ?>" class="btn success-bg float-right large">Aprobar Pregunta <i class="fa fa-check"></i></a>
+		<div class="btn-group float-right">
+			<?php $aprobar_url = $this->Html->url(array(
+				'action'=>'aprobe', $question['Question']['id']
+			)); ?>
+			<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
+			<a href="<?= $aprobar_url ?>" class="btn btn-success">Aprobar Pregunta <i class="fa fa-check"></i></a>
+		</div>
 	</div>
 	<?php endif ?>
 </div>

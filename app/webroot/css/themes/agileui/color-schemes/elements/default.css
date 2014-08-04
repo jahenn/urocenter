@@ -6,7 +6,7 @@
 {
 	color:#57697e
 }
-.ui-state-default,.ui-tabs-nav,.ui-accordion-header,.table th,.ui-dialog-titlebar,.ui-datepicker-header,.ui-slider .ui-slider-range,.chosen-container .chosen-single,.chosen-container.chosen-disabled .chosen-single:hover,.selector,.selector.disabled:hover,a.btn.ui-state-default.disabled:hover,button.btn.ui-state-default[disabled]:hover,.ui-button.ui-state-default.ui-state-disabled:hover
+.ui-state-default,.ui-tabs-nav,.ui-accordion-header, .ui-dialog-titlebar,.ui-datepicker-header,.ui-slider .ui-slider-range,.chosen-container .chosen-single,.chosen-container.chosen-disabled .chosen-single:hover,.selector,.selector.disabled:hover,a.btn.ui-state-default.disabled:hover,button.btn.ui-state-default[disabled]:hover,.ui-button.ui-state-default.ui-state-disabled:hover
 {
 	border:#c1cad5 solid 1px;
 	background:#e4e9f0;
@@ -16,13 +16,13 @@
 {
 	background:#c1cad5
 }
-.ui-tabs,.ui-accordion,.table,.content-box-alt,.ui-dialog,.ui-datepicker,.chosen-drop
+.ui-tabs,.ui-accordion,.content-box-alt,.ui-dialog,.ui-datepicker,.chosen-drop
 {
 	background:#fff;
 	border:#c1cad5 solid 1px;
 	position:relative
 }
-.ui-tabs-nav,.ui-accordion-header,.table th,.ui-dialog-titlebar,.ui-datepicker-header
+.ui-tabs-nav,.ui-accordion-header,.ui-dialog-titlebar,.ui-datepicker-header
 {
 	border:0;
 	border-bottom:#c1cad5 solid 1px
@@ -119,15 +119,8 @@
 {
 	border-bottom:#c1cad5 solid 1px
 }
-.table td,.table th
-{
-	border-right:#c1cad5 solid 1px;
-	border-bottom:#c1cad5 solid 1px
-}
-.table tfoot td,.table tfoot th
-{
-	border-top:#c1cad5 solid 1px
-}
+
+
 .content-box-header
 {
 	box-shadow:inset 0 1px 0 0 rgba(255,255,255,.1)
@@ -231,7 +224,7 @@
 {
 	color:#004d8e
 }
-.btn,.ui-button,.icon-separator,.ui-tabs,.ui-accordion,.ui-dialog,.ui-dialog-titlebar-close,.ui-datepicker,.ui-datepicker-prev,.ui-datepicker-next,.ui-datepicker-buttonpane button,.jGrowl-notification,.input,.form-input input,.form-input textarea,.dropdown-menu,.popover,.minicolors-panel,.dropdown-menu li a,.chosen-container,.chosen-choices li.search-choice,.chosen-single,.chosen-choices,.chosen-results li.highlighted,.ui-menu li a,.selector,.content-box,.content-box-closed,.content-box-closed .content-box-header,.form-input-icon .glyph-icon,#sidebar-menu li a,.content-box .ui-widget-overlay.loader,.bootstrap-timepicker-widget table td input,.button-pane,.infobox,.icon-separator-vertical,.table-rounded,.info-box-alt,.notifications-box,.ui-toolbar select,.ui-toolbar input
+.btn,.ui-button,.icon-separator,.ui-tabs,.ui-accordion,.ui-dialog,.ui-dialog-titlebar-close,.ui-datepicker,.ui-datepicker-prev,.ui-datepicker-next,.ui-datepicker-buttonpane button,.jGrowl-notification,.input,.form-input input,.form-input textarea,.dropdown-menu,.popover,.minicolors-panel,.dropdown-menu li a,.chosen-container,.chosen-choices li.search-choice,.chosen-single,.chosen-choices,.chosen-results li.highlighted,.ui-menu li a,.selector,.content-box,.content-box-closed,.content-box-closed .content-box-header,.form-input-icon .glyph-icon,#sidebar-menu li a,.content-box .ui-widget-overlay.loader,.bootstrap-timepicker-widget table td input,.button-pane,.infobox,.icon-separator-vertical,.info-box-alt,.notifications-box,.ui-toolbar select,.ui-toolbar input
 {
 	border-radius:3px
 }
@@ -247,7 +240,7 @@
 	border-bottom-left-radius:3px;
 	border-bottom-right-radius:3px
 }
-.ui-tabs-nav li:first-child,.table-rounded thead tr:first-child th:first-child,.table-rounded thead tr:first-child td:first-child
+.ui-tabs-nav li:first-child
 {
 	border-top-left-radius:3px
 }
@@ -256,7 +249,7 @@
 	border-top-left-radius:0;
 	border-bottom-left-radius:3px
 }
-.ui-tabs-nav li.float-right:not(:last-child),.table-rounded thead tr:first-child th:last-child,.table-rounded thead tr:first-child td:last-child
+.ui-tabs-nav li.float-right:not(:last-child),
 {
 	border-top-right-radius:3px
 }
@@ -264,14 +257,6 @@
 {
 	border-top-right-radius:0;
 	border-bottom-right-radius:3px
-}
-.table-rounded tbody tr:last-child th:last-child,.table-rounded tbody tr:last-child td:last-child
-{
-	border-bottom-right-radius:3px
-}
-.table-rounded tbody tr:last-child th:first-child,.table-rounded tbody tr:last-child td:first-child
-{
-	border-bottom-left-radius:3px
 }
 .ui-dialog .ui-dialog-buttonpane,.ui-datepicker-buttonpane,.chosen-drop,.chosen-results li.no-results,.ui-menu,.content-box .content-box-wrapper,.ui-accordion-header:last-of-type,.button-group-vertical>.btn:last-of-type,.info-box,#sidebar-menu li ul,#sidebar-menu li ul li:last-child a,.notifications-box li:last-child
 {

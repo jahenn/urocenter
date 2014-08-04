@@ -1,7 +1,7 @@
 
 <h4 class="heading-1 clearfix">
     <div class="heading-content">
-        <?php echo __('Users'); ?>        <!-- <small>
+        <?php echo __($grupo); ?>        <!-- <small>
             File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
         </small> -->
     </div>
@@ -32,9 +32,9 @@
 				</tr>
 			</thead>
 		<tr>
-					<th><?php echo $this->Paginator->sort('id'); ?></th>
-					<th><?php echo $this->Paginator->sort('username'); ?></th>
-					<th><?php echo $this->Paginator->sort('email'); ?></th>
+					<th>ID</th>
+					<th>Username</th>
+					<th>Email</th>
 					<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($users as $user): ?>
@@ -49,31 +49,7 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
-		<tr>
-			<td colspan="5">
-				<div class="row">
-					<div class="col-md-4">
-						<?php
-							echo $this->Paginator->counter(array(
-								'format' => __('Pagina {:page} de {:pages}, {:current} de {:count} registros, de {:start}, a {:end}')
-								)); 
- ?>					</div>
-					<div class="col-md-8">
-						<div class="paging">
-						<div class="button-group float-right">
-							<?php
-		echo $this->Paginator->prev(__('<i class="fa fa-backward"></i>'), array('class'=>'btn medium primary-bg', 'escape'=>false), null, array('class' => 'prev disabled btn medium primary-bg', 'escape'=>false));
-		echo $this->Paginator->numbers(array('separator' => '', 'class'=>'btn medium primary-bg', 'modulus'=>4));
-		echo $this->Paginator->next(__('<i class="fa fa-forward"></i>'), array(
-											'class'=>'btn medium primary-bg', 'escape'=>false
-											), null, array('class' => 'next disabled btn medium primary-bg', 'escape'=>false));
-	?>
-						</div>
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
+		
 		</table>
 	</div>
 </div>

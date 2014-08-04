@@ -53,7 +53,8 @@ class Question extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+		'QuestionType'
 	);
 
 /**
@@ -87,7 +88,8 @@ class Question extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+		'QuestionQuestion'
 	);
 
 }

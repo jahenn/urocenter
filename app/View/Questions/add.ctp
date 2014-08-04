@@ -12,12 +12,15 @@
 		$("#QuestionQuestionCategoryId").chosen({
 			'width':'100px'
 		});
+		$("#QuestionQuestionTypeId").chosen({
+			'width':'100px'
+		});
 	});
 </script>
 
 <h4 class="heading-1 clearfix">
 	<div class="heading-content">
-		<?php echo __('Add Question'); ?>       	       
+		<?php echo __('Agregar Pregunta'); ?>       	       
     	<!-- <small>
             File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
         </small> -->
@@ -39,33 +42,36 @@
 			<div class="form-input col-md-12">		 <?= $this->Form->input('question', array(
 			'label'=>array(
 				'text'=>'Desarrolla tu Pregunta',
-				'class'=>'text-transform-cap label'
+				'class'=>'text-transform-cap '
 				),
-			'required'=>true
+			'required'=>true,
+			'class'=>'form-control'
 			)) ?> 
 	</div>
 </div><div class="form-row">
 			<div class="form-input col-md-12">		 <?= $this->Form->input('question_category_id', array(
 			'label'=>array(
 				'text'=>'Selecciona una Categoria para tu pregunta',
-				'class'=>'text-transform-cap label'
+				'class'=>'text-transform-cap '
 				),
 			'required'=>true,
 			'empty'=>''
 			)) ?> 
 	</div>
-</div><div class="form-row">
-			<div class="form-input col-md-12">		 <?= $this->Form->input('imagen', array(
-			'label'=>array(
-				'text'=>'Agrega una Imagen',
-				'class'=>'text-transform-cap label'
-				),
-			'type'=> 'file'
-			)) ?> 
-	</div>
 </div>		
 
-
+<div class="form-row">
+			<div class="form-input col-md-12">		 
+			<?= $this->Form->input('question_type_id', array(
+			'label'=>array(
+				'text'=>'Selecciona un tipo de pregunta',
+				'class'=>'text-transform-cap '
+				),
+			'required'=>true,
+			'empty'=>''
+			)) ?> 
+	</div>
+</div>	
 
 <br>
 

@@ -32,7 +32,22 @@
 			'label'=>false
 			)) ?> 
 	</div>
-</div><!-- <div class="form-row">
+</div>
+
+<div class="form-row">
+			<div class="form-label col-md-2">
+			<label for="nombre_completo" class=" text-transform-cap ">
+			Nombre Completo
+			</label>
+			</div><div class="form-input col-md-10">		 
+			<?= $this->Form->input('nombre_completo', array(
+			'label'=>false
+			)) ?> 
+	</div>
+</div>
+
+
+<!-- <div class="form-row">
 			<div class="form-label col-md-2">
 			<label for="password" class=" text-transform-cap ">
 			password
@@ -44,7 +59,7 @@
 </div> --><div class="form-row">
 			<div class="form-label col-md-2">
 			<label for="email" class=" text-transform-cap ">
-			email
+			correo electrónico
 			</label>
 			</div><div class="form-input col-md-10">		 <?= $this->Form->input('email', array(
 			'label'=>false
@@ -52,14 +67,19 @@
 	</div>
 </div>		
 
-		<div class="form-label">
-		<label for="Role" class=" text-transform-cap " >Role</label>
-		</div>
-		<div class="form-input">
-		<?= $this->Form->input('Role', array(
-			'label'=>false
-			)) ?> 
+
+<?php if($is_admin): ?>
+
+<div class="form-label">
+	<label for="Role" class=" text-transform-cap " >Grupos de Usuario</label>
 </div>
+<div class="form-input">
+	<?= $this->Form->input('Role', array(
+		'label'=>false
+		)) ?> 
+</div>
+
+<?php endif ?>
 
 <?= $this->Form->input('role_id', array(
 	'type'=>'hidden'
@@ -67,7 +87,9 @@
 
 <br>
 
-<button class="btn medium primary-bg submit" type="submit">Guardar</button>
+
+<a href="#" class="btn btn-default"><i class="fa fa-arrow-left"></i> Regresar</a>
+<button class="btn primary-bg" type="submit"><i class="fa fa-save"></i> Guardar</button>
 
 <?php echo $this->Form->end(); ?>
 <br>

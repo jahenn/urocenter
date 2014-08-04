@@ -3,7 +3,7 @@
     <div class="col-md-6">
         <h4 class="heading-1 clearfix">
             <div class="heading-content">
-                <i class="fa fa-dashboard"></i> Admin Dashboard
+                <i class="fa fa-dashboard"></i> Dashboard
             </div>
             <div class="clear"></div>
 
@@ -42,8 +42,12 @@
             <div class="infobox infobox-close-wrapper alert alert-info">
                 <div class="large btn font-black info-icon">
                     <!-- <i class="glyph-icon icon-comment"></i> -->
-                    <?= $this->Html->image("avatar77.jpg", array(
-                        'class'=>'avatar alert-info'
+                    <?= $this->element('avatar_user', array(
+                        'custom_user'=>$notification['User'],
+                        'opciones'=>array(
+                            'class'=>'avatar alert-info',
+
+                            )
                     )) ?>
                 </div>
                 <h4 class="infobox-title">
