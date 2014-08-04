@@ -2120,6 +2120,13 @@ fieldset[disabled] .btn-primary.active {
   color: #428bca;
   background-color: #fff;
 }
+
+.btn-primary{
+  background-color: #37485d;
+  color: #fff;
+  border-color: #37485d;
+}
+
 .btn-success {
   color: #fff;
   background-color: #5cb85c;

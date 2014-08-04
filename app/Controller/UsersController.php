@@ -202,7 +202,7 @@ class UsersController extends AppController {
 		// 	'username'=>'jahenn33',
 		// 	'password'=>'12345'
 		// 	));
-
+		
 
 		if ($this->request->is('post')) {
         if ($this->Auth->login()) {
@@ -218,6 +218,8 @@ class UsersController extends AppController {
         }
         	$this->Session->setFlash(__('Invalid username or password, try again'));
     	}
+
+
 	}
 
 
