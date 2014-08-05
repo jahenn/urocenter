@@ -1,16 +1,11 @@
 
+<div class="row">
+	<div class="col-md-12">
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Edtitar Usuario</span class="font-size-20">
+	<div class="divider"></div>
+	</div>
+</div>
 
-
-<h4 class="heading-1 clearfix">
-	<div class="heading-content">
-		<?php echo __('Edit User'); ?>       	       
-    	<!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
 
 <?php echo $this->Form->create('User', array(
 	'inputDefaults'=>array(
@@ -19,53 +14,28 @@
 )); ?>
 
 
-<div class="form-row"><div class="form-input col-md-10">		 <?= $this->Form->input('id', array(
-			'label'=>false
-			)) ?> 
-	</div>
-</div><div class="form-row">
-			<div class="form-label col-md-2">
-			<label for="username" class=" text-transform-cap ">
-			username
-			</label>
-			</div><div class="form-input col-md-10">		 <?= $this->Form->input('username', array(
-			'label'=>false
-			)) ?> 
-	</div>
-</div>
+<?= $this->Form->input('id', array(
+'label'=>false
+)) ?> 
+<br>
 
-<div class="form-row">
-			<div class="form-label col-md-2">
-			<label for="nombre_completo" class=" text-transform-cap ">
-			Nombre Completo
-			</label>
-			</div><div class="form-input col-md-10">		 
-			<?= $this->Form->input('nombre_completo', array(
-			'label'=>false
-			)) ?> 
-	</div>
-</div>
+<?= $this->Form->input('username', array(
+'label'=>'Nombre de Usuario',
+'class'=>'form-control width-12'
+)) ?> 
+<br>
+
+<?= $this->Form->input('nombre_completo', array(
+'label'=>'Nombre Completo',
+'class'=>'form-control width-12'
+)) ?> 
+<br>
 
 
-<!-- <div class="form-row">
-			<div class="form-label col-md-2">
-			<label for="password" class=" text-transform-cap ">
-			password
-			</label>
-			</div><div class="form-input col-md-10">		 <?= $this->Form->input('password', array(
-			'label'=>false
-			)) ?> 
-	</div>
-</div> --><div class="form-row">
-			<div class="form-label col-md-2">
-			<label for="email" class=" text-transform-cap ">
-			correo electrónico
-			</label>
-			</div><div class="form-input col-md-10">		 <?= $this->Form->input('email', array(
-			'label'=>false
-			)) ?> 
-	</div>
-</div>		
+<?= $this->Form->input('email', array(
+'label'=>'Correo Electronico',
+'class'=>'form-control width-12'
+)) ?> 
 
 
 <?php if($is_admin): ?>
@@ -85,6 +55,22 @@
 	'type'=>'hidden'
 )) ?>
 
+
+<?= $this->Form->input('password', array(
+	'type'=>'hidden'
+)) ?>
+<?= $this->Form->input('fecha_registro', array(
+	'type'=>'hidden'
+)) ?>
+<?= $this->Form->input('activo', array(
+	'type'=>'hidden'
+)) ?>
+<?= $this->Form->input('baja', array(
+	'type'=>'hidden'
+)) ?>
+<?= $this->Form->input('avatar', array(
+	'type'=>'hidden'
+)) ?>
 <br>
 
 

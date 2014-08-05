@@ -1,4 +1,10 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.user-avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
 .avatar{
     position: absolute;
     left: -28px;
@@ -54,7 +60,6 @@
 
 
 
-
 label{
   font-weight: bold;
 }
@@ -89,18 +94,67 @@ label{
 }
 
 
-
+.table th i{
+    font-size: 28px;
+}
 
 
 
 .text-black{
     color: black !important;
-}.text-primary{
+}
+.text-primary{
     color: #37485d !important;
+}
+.badge-red{
+    background-color: red !important;
 }
 
 
 
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.truncate-15{
+    width: 15em; 
+}
+
+.center-div{
+    margin: 0px auto;
+}
+
+.width-12{
+    width: 90% !important;
+}
+
+.width-50px{
+    width: 50px !important;
+}
+
+
+#header-logo img {
+    width: 180px;
+}
+
+#sidebar-search{
+    /*padding-top: 10px !important;*/
+}
+
+/*media querys*/
+
+@media (max-width: 1050px) {
+  #header-logo img {
+    width: 110px;
+  }
+}
+
+@media (max-width: 650px) {
+  #header-logo img {
+    width: 180px;
+  }
+}
 
 
 /**/

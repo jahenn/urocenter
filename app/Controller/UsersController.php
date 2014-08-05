@@ -21,8 +21,13 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
+		// $this->User->recursive = 0;
+		// $this->set('users', $this->Paginator->paginate());
+
+		$this->redirect(array(
+			'controller'=>'users',
+			'action'=>'group', 'usuarios'
+			));
 	}
 
 /**
@@ -47,12 +52,15 @@ class UsersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			//$this->User->create();
+			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 
 				//add own role
 				
 				$user_id = $this->User->getLastInsertId();
+
+
+
 
 
 				$this->User->Role->create();
@@ -67,12 +75,9 @@ class UsersController extends AppController {
 				
 				$this->User->id = $user_id;
 				$this->User->read();
-				$this->User->save(array(
-					'role_id'=> $role_id,
-					'password'=>$this->request->data['User']['password']
-					));
+				$this->User->saveField('role_id', $role_id);
 
-
+				
 
 				$this->User->RolesUser->create();
 				$this->User->RolesUser->save(array(
@@ -80,33 +85,34 @@ class UsersController extends AppController {
 					'role_id'=>$role_id
 					));
 
-				$user_role = $this->User->Role->find('first', array(
-					'conditions'=>array(
-						'nombre'=>'usuarios'
-						)
-					));
 
-				$this->User->RolesUser->create();
-				$this->User->RolesUser->save(array(
-					'user_id'=>$user_id,
-					'role_id'=>$user_role
-					));
+				// $this->User->RolesUser->create();
+				// $this->User->RolesUser->save(array(
+				// 	'user_id'=>$user_id,
+				// 	'role_id'=> USER_ROLE
+				// 	));
 
 
 
-				$this->Session->setFlash(__('The user has been saved.'));
+				$this->Session->setFlash(__('El Usuario se Guardo Correctamente'));
+
+				
 
 
 				if($this->Auth->user() != null){
+
+					//pr($this->User->isAdmin($this->Auth->user()['id']));
+
 					if($this->User->isAdmin($this->Auth->user()['id'])){
 						return $this->redirect(array('action' => 'index'));
 					}
 				}
 
+				exit();
 
 				return $this->redirect(array('action' => 'register_complete'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('No se pudo guardar el usuario'));
 			}
 		}
 		$roles = $this->User->Role->find('list', array(
@@ -125,7 +131,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		if (!$this->User->exists($id)) {
+		$this->User->id =$id;
+
+
+		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
@@ -138,19 +147,28 @@ class UsersController extends AppController {
 				));
 
 
-			$this->request->data['User']['password'] = '';
+
+			// $this->request->data['User']['password'] = '';
 			$this->request->data['Role']['Role'][] = $role['Role']['id'];
-			$this->request->data['Role']['Role'][] = 6;
+			// $this->request->data['Role']['Role'][] = USU;
 
 
 			//pr($this->request->data);exit();
 
+			
 
+			
+			//$this->User->read();
+
+			//pr($this->request->data);
 
 			if ($this->User->save($this->request->data)) {
-				// $this->User->id = $id;
-				// $this->User->read();
-				// $this->User->saveField('role_id', $role['Role']['id']);
+
+				//pr($this->request->data);exit();
+
+				//$this->User->id = $id;
+				//$this->User->read();
+				//$this->User->saveField('role_id', $role['Role']['id']);
 
 
 				$this->Session->setFlash(__('The user has been saved.'));
@@ -161,6 +179,10 @@ class UsersController extends AppController {
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
+
+			//pr($this->request->data);
+
+			//unset($this->request->data['User']['password']);
 		}
 		$roles = $this->User->Role->find('list', array(
 			'conditions'=>array(
@@ -183,7 +205,8 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		//$this->request->allowMethod('post', 'delete');
-		if ($this->User->delete()) {
+		if ($this->User->saveField('activo', 0)) {
+			$this->User->saveField('baja', 1);
 			$this->Session->setFlash(__('The user has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
@@ -199,7 +222,7 @@ class UsersController extends AppController {
 
 		// $this->User->create();
 		// $this->User->save(array(
-		// 	'username'=>'jahenn33',
+		// 	'username'=>'administrador',
 		// 	'password'=>'12345'
 		// 	));
 		
@@ -251,16 +274,28 @@ class UsersController extends AppController {
 	}
 
 	public function group($type){
-		$users = null;
+		$users = array();
 
 		switch ($type) {
-			case 'news':
+			case 'nuevos':
 				$users = $this->paginate(array(
+							'baja'=>false,
 							'OR'=>array(
-								'activo'=>false, 
+								'activo'=>false,
 								'datediff( current_timestamp ,fecha_registro) <=' => 3
 								)
 							));
+
+				//pr($users); exit();
+
+				break;
+
+			case 'pendientes':
+				$users = $this->paginate(array(
+					'activo'=>false,
+					'baja'=>false
+					));
+
 				break;
 			
 			default:
@@ -296,21 +331,50 @@ class UsersController extends AppController {
 						));
 				}else{
 					$role_id = $role_id['Role']['id'];
-					$this->User->Role->recursive = 2;
-					$this->User->Role->unbindModel(array(
-						'hasAndBelongsToMany' => array('Menu')
-						));
-					$roles = $this->User->Role->find('first', array(
+					// $this->User->Role->recursive = 2;
+					// $this->User->Role->unbindModel(array(
+					// 	'hasAndBelongsToMany' => array('Menu')
+					// 	));
+					// $roles = $this->User->Role->find('first', array(
+					// 	'conditions'=>array(
+					// 		'Role.id' => $role_id
+					// 		)
+					// 	));
+
+					// //pr($roles);
+
+					// foreach ($roles['User'] as $key => $value) {
+					// 	if(!$value['baja'] && !$value['activo'] || 1==1)
+					// 	{
+					// 		$users[]['User'] = $value;
+					// 	}
+					// }
+
+
+					$this->paginate = array(
 						'conditions'=>array(
-							'Role.id' => $role_id
+							'User.activo'=>true,
+							'User.baja'=>false,
+							'Role.id'=>$role_id
+							),
+						'joins'=>array(
+							array(
+								'alias'=>'RolesUser',
+								'table'=>'roles_users',
+								'type'=>'inner',
+								'conditions' => 'RolesUser.user_id = User.id'
+								),
+							array(
+								'alias'=>'Role',
+								'table'=>'roles',
+								'type'=>'inner',
+								'conditions' => 'Role.id = RolesUser.role_id'
+								)
 							)
-						));
+						);
 
-					//pr($roles);
+					$users = $this->paginate();
 
-					foreach ($roles['User'] as $key => $value) {
-						$users[]['User'] = $value;
-					}
 
 
 					//$users['User'] = $roles['User'];
@@ -327,12 +391,36 @@ class UsersController extends AppController {
 				break;
 		}
 
+		$grupos = $this->User->Role->find('list', array(
+			'conditions'=>array(
+				'user_role'=>false
+				)
+			));
+
+		$pendientes = $this->User->find('count', array(
+			'conditions'=>array(
+				'activo'=>false,
+				'baja'=>false
+				)
+			));
+
+		$nuevos = $this->User->find('count', array(
+			'conditions'=>array(
+				'baja'=>false,
+				'OR'=>array(
+					'activo'=>false, 
+					'datediff( current_timestamp ,fecha_registro) <=' => 3
+					)
+				)
+			));
 
 
+
+		$this->set(compact('grupos', 'pendientes', 'nuevos'));
 		$this->set('grupo', ucwords($type));
 
 		$this->set('users', $users);
-		$this->render('group');
+		//$this->render('group');
 	}
 
 	public function aprobe($id){
@@ -344,7 +432,7 @@ class UsersController extends AppController {
 		$this->User->saveField('activo', true);
 
 		$this->redirect(array(
-			'action'=>'group', 'news'
+			'action'=>'group', 'pendientes'
 			));
 
 	}

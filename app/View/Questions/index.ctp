@@ -46,43 +46,34 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<table class="table">
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>
-						<div title="" class="btn vertical-button remove-border"  style="color: #37485d;">
-							<span class="button-content font-size-22">Nuevas</span>
-							<span class="glyph-icon icon-separator-vertical pad0A">
-								<i class="fa fa-plus-circle font-size-28"></i>
-							</span>
-						</div>
+					<th class="text-center">
+						<i class="fa fa-plus-circle"></i>
+						<br>
+						Nuevas Preguntas
 					</th>
-					<th>
-						<div title="" class="btn vertical-button remove-border"  style="color: #37485d;">
-							<span class="button-content font-size-22">Temas</span>
-							<span class="glyph-icon icon-separator-vertical pad0A">
-								<i class="fa fa-bookmark font-size-28"></i>
-							</span>
-						</div>
+					<th class="text-center">
+						<i class="fa fa-bookmark"></i>
+						<br>
+						Temas
 					</th>
-					<th>
-						<div title="" class="btn vertical-button remove-border"  style="color: #37485d;">
-							<span class="button-content font-size-22">Opciones</span>
-							<span class="glyph-icon icon-separator-vertical pad0A">
-								<i class="fa fa-edit font-size-28"></i>
-							</span>
-						</div>
+					<th class="text-center">
+						<i class="fa fa-paste"></i>
+						<br>
+						Opciones
 					</th>
 				</tr>
 			</thead>
 		<?php foreach ($questions as $question): ?>
 	<tr>
-		<td><?php echo h($question['Question']['question']); ?>&nbsp;</td>
-		<td>
+		<td class="text-center"><?php echo h($question['Question']['question']); ?>&nbsp;</td>
+		<td class="text-center">
 			<?php echo $this->Html->link($question['QuestionCategory']['nombre'], array('controller' => 'question_categories', 'action' => 'view', $question['QuestionCategory']['id'])); ?>
 		</td>
-		<!-- <td><?php echo h($question['Question']['imagen']); ?>&nbsp;</td> -->
-		<td class="actions">
+		<!-- <td class="text-center"><?php echo h($question['Question']['imagen']); ?>&nbsp;</td> -->
+		<td class="text-center">
 		<div class="dropdown">
 		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
 		    Opciones

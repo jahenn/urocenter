@@ -1,13 +1,9 @@
-
-<h4 class="heading-1 clearfix">
-    <div class="heading-content">
-        <?php echo __('Answers'); ?>        <!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
+<div class="row">
+	<div class="col-md-12">
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Todas las Respuestas</span class="font-size-20">
+			<hr>
+	</div>
+</div>
 
 <div class="row">
 	<div class="col-md-12">

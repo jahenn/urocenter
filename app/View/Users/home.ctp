@@ -1,14 +1,5 @@
-<h4 class="heading-1 clearfix">
-	<div class="heading-content">
-		<i class="fa fa-dashboard"></i>
-		Dashboard     	       
-    	<!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
+
+
 
 
 <div class="row">
@@ -89,9 +80,9 @@
                 $('#calendar').fullCalendar({
                     height: 400, 
                     header: {
-                        left: 'prev,next today',
+                        left: 'prev,next',
                         center: 'title',
-                        right: 'month,basicWeek,basicDay'
+                        right: ''
                     },
                     editable: false,
                     dropable:false,

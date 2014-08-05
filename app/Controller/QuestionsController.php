@@ -125,7 +125,12 @@ class QuestionsController extends AppController {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Question.' . $this->Question->primaryKey => $id));
+			$options = array(
+				'conditions' => array(
+					'Question.' . $this->Question->primaryKey => $id,
+					));
+
+			
 			$this->Question->recursive = 3;
 			$this->Question->QuestionCategory->unbindModel(array(
 				'hasMany'=>array(
@@ -258,6 +263,21 @@ class QuestionsController extends AppController {
 
 		}
 
+
+	}
+
+
+	public function remove($answer_id, $question_id){
+
+		$this->Question->Answer->id = $answer_id;
+		$answer = $this->Question->Answer->read();
+
+		if($answer['Answer']['question_id'] == $question_id){
+			$this->Question->Answer->saveField('activa', false);
+			$this->redirect(array(
+				'action'=>'edit', $question_id
+				));
+		}
 
 	}
 

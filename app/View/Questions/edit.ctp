@@ -10,34 +10,27 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#QuestionQuestionCategoryId").chosen({
-			'width':'100px'
+			'width':'90%'
 		});
 
 		$("#QuestionQuestionTypeId").chosen({
-			'width':'100px'
+			'width':'90%'
 		});
 	});
 </script>
 
 
-<h4 class="heading-1 clearfix">
-	<div class="heading-content">
-		<?php echo __('Edicion de Pregunta'); ?>       	       
-    	<!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
+<div class="row">
+	<div class="col-md-12">
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Preguntas / Editar de Pregunta</span class="font-size-20">
+	<div class="divider"></div>
+	</div>
+</div>
 
 <div class="row">
 	<div class="col-md-12">
-		<?php if($this->request->data['Question']['imagen'] == ''): ?>
-			<a href="#" class="btn primary-bg white-modal-60" onclick="$('#white-modal-60').removeClass('hide');"> <i class="fa fa-file-image-o"></i> Agregar Imagen</a>
-		<?php else: ?>
-			<a href="#" class="btn primary-bg white-modal-60" onclick="$('#white-modal-60').removeClass('hide');">Cambiar Imagen</a>
-		<?php endif ?>
+
+		<a href="#" class="btn primary-bg white-modal-60" onclick="$('#white-modal-60').removeClass('hide');"> <i class="fa fa-file-image-o"></i> <?= ($this->request->data['Question']['imagen'] == '')?'Agregar':'Cambiar' ?> Imagen</a>
 		
 		<!-- Dialogos -->
 		<div class="hide" id="white-modal-60" title="Cargar imagen" style="top:0px">
@@ -52,7 +45,11 @@
 		</div>
 		<!--  -->
 	</div>
-	<br><br>
+	
+	<div class="col-md-12">
+		<div class="divider"></div>
+	</div>
+
 	<div class="col-md-12">
 		<?= $this->Html->image('question-images/' . $this->request->data['Question']['imagen'], array(
 			'height' => '300'
@@ -69,45 +66,38 @@
 	'enctype'=>'multipart/form-data'
 )); ?>
 
+<p>
+	<?= $this->Form->input('question', array(
+	'label'=>array(
+		'text'=>'Desarrolla tu Pregunta',
+		'class'=>'text-transform-cap'
+		),
+	'required'=>true,
+	'class'=>'form-control width-12'
+	)) ?> 
+</p>
 
-<div class="form-row">
-			<div class="form-input col-md-12">		 
-			<?= $this->Form->input('question', array(
-			'label'=>array(
-				'text'=>'Desarrolla tu Pregunta',
-				'class'=>'text-transform-cap'
-				),
-			'required'=>true,
-			'class'=>'form-control'
-			)) ?> 
-	</div>
-</div><div class="form-row">
-			<div class="form-input col-md-12">
-			<?= $this->Form->input('question_category_id', array(
-			'label'=>array(
-				'text'=>'Selecciona una Categoria para tu pregunta',
-				'class'=>'text-transform-cap'
-				),
-			'required'=>true,
-			'empty'=>''
-			)) ?> 
-	</div>
-</div>
+<p>
+	<?= $this->Form->input('question_category_id', array(
+	'label'=>array(
+		'text'=>'Selecciona una Categoria para tu pregunta',
+		'class'=>'text-transform-cap label-up'
+		),
+	'required'=>true,
+	'class'=>''
+	)) ?> 
+</p>
 
+<p>
+	<?= $this->Form->input('question_type_id', array(
+	'label'=>array(
+		'text'=>'Selecciona un tipo de pregunta',
+		'class'=>'text-transform-cap '
+		),
+	'required'=>true
+	)) ?> 
 
-<div class="form-row">
-			<div class="form-input col-md-12">		 
-			<?= $this->Form->input('question_type_id', array(
-			'label'=>array(
-				'text'=>'Selecciona un tipo de pregunta',
-				'class'=>'text-transform-cap '
-				),
-			'required'=>true,
-			'empty'=>''
-			)) ?> 
-	</div>
-</div>	
-
+</p>
 
 
 <br>
@@ -128,58 +118,66 @@
 
 
 <br>
+<div class="divider"></div>
 <?php switch($this->request->data['Question']['question_type_id']): 
 	case 1:?>
-		<div class="content-box">
-		    <h3 class="content-box-header primary-bg">
-		        <span class="float-left">Respuestas Asignadas</span>
-		        <?php $add_url = $this->Html->url(array(
-		        	'controller'=>'answers',
-		        	'action'=>'add', $this->request->data['Question']['id']
-		        )) ?>
-		        <a title="Agregar Respuesta" class="float-right icon-separator btn" href="<?= $add_url ?>">
-		            <i class="glyph-icon icon-toggle icon-plus"></i>
-		        </a>
-		    </h3>
-		    <div class="content-box-wrapper">
-
-		        <div class="row clearfix">
-		        	<div class="col-md-12">
-		        		<table class="table">
-		        			<thead>
-		        				<tr>
-		        					<th>ID</th>
-		        					<th>Respuesta</th>
-		        					<th>Correcta</th>
-		        					<th>&nbsp;</th>
-		        				</tr>
-		        			</thead>
-		        			<tbody>
-		        				<?php foreach($this->request->data['Answer'] as $answer): ?>
-		        					<tr>
-		        						<td class="text-center"><?= $answer['id'] ?></td>
-		        						<td class="text-center col-md-12"><?= $answer['answer'] ?></td>
-		        						<td class="text-center"><?= ($answer['answer_is_ok'] == true)?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' ?>
-		        						</td>
-		        						<td>
-		        							<div class="btn button-group">
-		        								<?php $delete_url = $this->Html->url(array(
-		        									'controller'=>'Answers',
-		        									'action'=>'delete',
-		        									$answer['id'], $this->request->data['Question']['id']
-		        								)); ?>
-		        								<a href="<?= $delete_url ?>" class="btn primary-bg"><i class="fa fa-times"></i> Eliminar</a>
-		        							</div>
-		        						</td>
-		        					</tr>
-		        				<?php endforeach ?>
-		        			</tbody>
-		        		</table>  
-		        	</div>            	
-		        </div>
-
-		    </div>
+		<div class="row">
+			<div class="col-md-12">
+				<?php $add_url = $this->Html->url(array(
+					'controller'=>'answers',
+					'action'=>'add', $this->request->data['Question']['id']
+				)) ?>
+				<a title="Agregar Respuesta" class="btn btn-primary btn-sm" href="<?= $add_url ?>">
+				    <i class="fa fa-plus"></i> Agregar Respuesta
+				</a>
+			</div>
 		</div>
+		<br><br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th colspan="3">Respuestas</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($this->request->data['Answer'] as $answer): ?>
+					<tr>
+						<td><?= $answer['answer'] ?></td>
+						<td><?= ($answer['answer_is_ok'] == true)?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' ?>
+						</td>
+						<td>
+							<div class="dropdown">
+							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+							    Opciones
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+							  	<?php $ver_url = $this->Html->url(array(
+							  		'controller'=>'answers',
+							  		'action' => 'view', $answer['id'])); ?>
+							  	<?php $edt_url = $this->Html->url(array(
+							  		'controller'=>'answers',
+							  		'action' => 'edit', $answer['id'])); ?>
+
+
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= $ver_url ?>">Ver</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= $edt_url ?>">Editar</a></li>
+							    <li role="presentation"><?= $this->Form->postLink(__('Eliminar'), array('action' => 'remove', 
+							    		$answer['id'],
+							    		$this->request->data['Question']['id']
+							    	 ), array( 
+							    	'escape'=>false,
+							    	'role'=>'menuitem',
+							    	'tabindex'=>"-1"
+							    	), __('Seguro que deseas eliminar la respuesta?', $answer['id']));  ?></li>
+							  </ul>
+							</div>
+						</td>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+		<!--  -->
 
 	<?php break; ?>
 	<?php case 2: ?>

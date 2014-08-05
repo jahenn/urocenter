@@ -1,9 +1,14 @@
+
 <div class="profile-box bg-white content-box">
 	<div class="content-box-header clearfix">
 		<div class="col-md-6">
 			<a href="javascript:;" onclick="$('#white-modal-80').removeClass('hide');" class="white-modal-80 float-left">
-				<?= $this->element('avatar'); ?>
+				<?= $this->element('avatar_user', array(
+					'custom_user'=>$user['User']
+				)); ?>
 			</a>
+			
+
 			
 			<?php if($this->params['action'] == 'profile' ): ?>
 				<div class="hide" id="white-modal-80" title="Carga Imagen de Perfil">
@@ -40,8 +45,17 @@
 			<a href="<?= $url_edit ?>" class="btn btn-info float-right"><i class="fa fa-gear" title="Editar Perfil"></i></a>
 			</div>
 	</div>
+
 	<div class="nav-list-horizontal clearfix nav-list-3 nav-list-horizontal-alt">
 		<div class="row">
+			<?php if($this->params['action'] == 'profile' ): ?>
+			<div class="col-md-12">
+				<a href="javascript:;" onclick="$('#white-modal-80').removeClass('hide');" class="white-modal-80 float-left btn btn-default">
+					Cambiar Imagen de Perfil
+				</a>
+				<br><br>
+			</div>
+			<?php endif ?>
 			<div class="col-md-12">
 				<label for="email"> <i class="fa fa-envelope"></i> Correo Electronico:</label>
 				<span id="email"><?= $user['User']['email'] ?></span>

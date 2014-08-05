@@ -1,11 +1,11 @@
 <?php
-App::uses('RolesController', 'Controller');
+App::uses('QuestionCategoriesController', 'Controller');
 
 /**
- * RolesController Test Case
+ * QuestionCategoriesController Test Case
  *
  */
-class RolesControllerTest extends ControllerTestCase {
+class QuestionCategoriesControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,20 +13,20 @@ class RolesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.role',
-		'app.menu',
-		'app.menus_role',
-		'app.user',
+		'app.question_category',
+		'app.question',
+		'app.question_type',
+		'app.answer',
 		'app.user_answer',
 		'app.user_exam',
 		'app.exam',
+		'app.user',
+		'app.role',
+		'app.menu',
+		'app.menus_role',
+		'app.roles_user',
 		'app.exam_status',
-		'app.question',
-		'app.question_category',
-		'app.question_type',
-		'app.answer',
-		'app.question_question',
-		'app.roles_user'
+		'app.question_question'
 	);
 
 /**

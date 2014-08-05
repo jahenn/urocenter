@@ -28,6 +28,7 @@ CREATE TABLE `answers` (
   `answer` varchar(45) DEFAULT NULL,
   `answer_is_ok` tinyint(1) DEFAULT NULL,
   `value` decimal(18,2) DEFAULT NULL,
+  `activa` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_answers_questions1_idx` (`question_id`),
   CONSTRAINT `fk_answers_questions1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -40,7 +41,7 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (1,1,'5',1,10.00),(13,9,'Filmosis',0,0.00),(14,9,'Higiene deficiente',0,0.00),(15,9,'Tabaquismo',1,0.00),(16,9,'CircunsiciÃ³n',0,1.00),(17,9,'Ninguna de las anteriores',0,1.00),(20,1,'8',0,1.00),(21,14,'Dieciocho',1,1.00),(22,14,'veintiseis',0,1.00),(23,2,'Noventa y Seis',1,1.00),(24,2,'ochenta y cuatro',0,1.00),(25,15,'Sensacional',1,1.00),(26,19,'Fimosis',0,1.00),(27,19,'Tabaquismo',1,1.00),(28,19,'Higiene deficiente',0,1.00),(29,19,'Circunsicion',0,1.00),(30,19,'Ninguna de las anteriores',0,1.00),(31,20,'Fimosis',1,1.00),(32,20,'Inflamacion cronica',0,1.00),(33,20,'Radiaciones',0,1.00),(34,20,'tabaquismo',0,1.00),(35,20,'Historia Sexual',0,1.00);
+INSERT INTO `answers` VALUES (1,1,'5',1,10.00,0),(13,9,'Filmosis',0,0.00,0),(14,9,'Higiene deficiente',0,0.00,0),(15,9,'Tabaquismo',1,0.00,0),(16,9,'CircunsiciÃ³n',0,1.00,0),(17,9,'Ninguna de las anteriores',0,1.00,0),(20,1,'8',0,1.00,0),(21,14,'Dieciocho',1,1.00,0),(22,14,'veintiseis',0,1.00,0),(23,2,'Noventa y Seis',1,1.00,0),(24,2,'ochenta y cuatro',0,1.00,0),(25,15,'Sensacional',1,1.00,0),(27,19,'Tabaquismo',1,1.00,1),(28,19,'Higiene deficiente',0,1.00,1),(29,19,'Circunsicion',0,1.00,1),(30,19,'Ninguna de las anteriores',0,1.00,0),(31,20,'Fimosis',1,1.00,1),(32,20,'Inflamacion cronica',0,1.00,1),(33,20,'Radiaciones',0,1.00,1),(34,20,'tabaquismo',0,1.00,1),(35,20,'Historia Sexual',0,1.00,1);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +96,7 @@ CREATE TABLE `colors` (
 
 LOCK TABLES `colors` WRITE;
 /*!40000 ALTER TABLE `colors` DISABLE KEYS */;
-INSERT INTO `colors` VALUES (1,'alert-success','green'),(2,'blue','0'),(3,'red','0'),(4,'brown','0'),(5,'peru','0');
+INSERT INTO `colors` VALUES (1,'alert-success','green'),(2,'alert-info','blue'),(3,'alert-warning','yellow'),(4,'alert-danger','red');
 /*!40000 ALTER TABLE `colors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +196,7 @@ CREATE TABLE `menus` (
   `action` varchar(45) DEFAULT NULL,
   `class` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +205,7 @@ CREATE TABLE `menus` (
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
-INSERT INTO `menus` VALUES (1,'Home',0,'pages','display','fa fa-home'),(6,'Usuarios',0,'users','index','fa fa-user'),(7,'Lista de Usuarios',6,'users','index',''),(8,'Estadisticas de Usuarios',6,'users','charts',''),(9,'Examenes',0,'','','fa fa-edit'),(10,'Examenes (Templates)',9,'exams','index',''),(11,'Examenes (Usuario)',9,'user_exams','index',''),(12,'Preguntas',0,'questions','index','fa fa-question-circle'),(13,'Perfil',0,'Users','profile','fa fa-user');
+INSERT INTO `menus` VALUES (1,'Home',0,'pages','display','fa fa-home'),(6,'Usuarios',0,'users','index','fa fa-user'),(7,'Lista de Usuarios',6,'users','index',''),(8,'Estadisticas de Usuarios',6,'users','charts',''),(9,'Examenes',0,'','','fa fa-edit'),(10,'Examenes Resueltos',9,'exams','index',''),(12,'Preguntas',0,'questions','index','fa fa-question-circle'),(13,'Perfil',0,'Users','profile','fa fa-user'),(15,'Grupos de Usuario',6,'roles','index',''),(16,'Preguntas',12,'questions','index','fa fa-question-circle'),(17,'Categorias',12,'question_categories','index','fa fa-question-circle');
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,7 +233,7 @@ CREATE TABLE `menus_roles` (
 
 LOCK TABLES `menus_roles` WRITE;
 /*!40000 ALTER TABLE `menus_roles` DISABLE KEYS */;
-INSERT INTO `menus_roles` VALUES (1,5),(6,5),(7,5),(9,5),(10,5),(11,5),(12,5),(1,6),(10,6),(11,6),(13,6),(8,10);
+INSERT INTO `menus_roles` VALUES (1,5),(6,5),(7,5),(9,5),(10,5),(12,5),(15,5),(16,5),(17,5),(1,6),(12,6),(13,6);
 /*!40000 ALTER TABLE `menus_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +262,7 @@ CREATE TABLE `notifications` (
 
 LOCK TABLES `notifications` WRITE;
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-INSERT INTO `notifications` VALUES (1,5,1,'2014-08-04 06:14:21','Hola como estas','Ya vas carnal',1),(2,0,2,'2014-08-04 06:14:24','Nuevo Examen Programado','Se ha programado un nuevo examen http://localhost/rx/ScheduledExams/resolve/26',1),(3,0,2,'2014-08-04 06:14:28','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/27\">Ver</a>',1),(4,0,2,'2014-08-04 06:14:31','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/28\">Ver</a>',1),(5,0,2,'2014-08-04 06:14:36','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/30\">Ver</a>',1),(6,0,2,'2014-08-04 05:00:00','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/32\">Ver</a>',1),(7,0,2,'2014-08-04 05:00:00','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/34\">Ver</a>',1);
+INSERT INTO `notifications` VALUES (1,5,1,'2014-08-04 06:14:21','Hola como estas','Ya vas carnal',1),(2,0,2,'2014-08-04 06:38:34','Nuevo Examen Programado','Se ha programado un nuevo examen http://localhost/rx/ScheduledExams/resolve/26',2),(3,0,2,'2014-08-04 06:14:28','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/27\">Ver</a>',1),(4,0,2,'2014-08-04 06:38:37','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/28\">Ver</a>',4),(5,0,2,'2014-08-04 06:14:36','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/30\">Ver</a>',1),(6,0,2,'2014-08-04 06:38:40','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/32\">Ver</a>',2),(7,0,2,'2014-08-04 06:38:42','Nuevo Examen Programado','Se ha programado un nuevo examen <a href=\"http://localhost/rx/ScheduledExams/resolve/34\">Ver</a>',3);
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,7 +287,7 @@ CREATE TABLE `question_categories` (
 
 LOCK TABLES `question_categories` WRITE;
 /*!40000 ALTER TABLE `question_categories` DISABLE KEYS */;
-INSERT INTO `question_categories` VALUES (1,'Cancer de Pene',''),(2,'Cancer Prostatico','');
+INSERT INTO `question_categories` VALUES (1,'Cancer de Pene','Categoria definida para preguntas relacionadas a cancer de pene'),(2,'Cancer Prostatico','Preguntas relacionadas a cancer prostatico');
 /*!40000 ALTER TABLE `question_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,7 +365,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,'Raiz Cuadrada de 25',2,'cover.jpg',3,'2014-07-28 04:13:44',0),(2,'Area de un cuadrado de 8cm de lado',1,'941164_3205218146449_589724074_n.jpg',3,'2014-07-28 04:13:44',1),(8,'aaa',2,'22.JPG',3,'2014-07-28 04:13:44',0),(9,'Factores de riesgo para cÃ¡ncer de pene excepto:',1,'10482835_308922619273117_1321548922_n.jpg',3,'2014-07-28 04:13:44',0),(10,'Raiz Cuadrada de 25',1,'cover.jpg',0,'2014-07-28 04:13:44',0),(11,'Raiz Cuadrada de 25',1,'cover.jpg',0,'2014-07-28 04:13:44',0),(12,'prueba',2,'',0,'2014-07-28 04:13:44',0),(13,'prueba',2,'',3,'2014-07-28 04:13:44',0),(14,'Cual es el tamaÃ±o de un pene',2,'10482835_308922619273117_1321548922_n.jpg',3,'0000-00-00 00:00:00',0),(15,'Cual es el area de un triangulo de 5cm de base y un angulo de 46 grados',2,'',3,'0000-00-00 00:00:00',1),(16,'Relacion de Columnas 1',2,'',3,'0000-00-00 00:00:00',2),(17,'Preguntame la pregunta',2,'',3,'2014-08-03 17:34:31',3),(18,'Hola como estas tu tambien',2,'',3,'2014-08-04 05:46:49',2),(19,'Factores de Riesgo para cancer de pene excepto',1,'',2,'2014-08-04 05:49:58',1),(20,'Factor de Riesgo mas importante para cancer de pene',1,'',2,'2014-08-04 05:53:16',1);
+INSERT INTO `questions` VALUES (1,'Raiz Cuadrada de 25',2,'cover.jpg',3,'2014-07-28 04:13:44',0),(2,'Area de un cuadrado de 8cm de lado',1,'941164_3205218146449_589724074_n.jpg',3,'2014-07-28 04:13:44',1),(8,'aaa',2,'22.JPG',3,'2014-07-28 04:13:44',0),(9,'Factores de riesgo para cÃ¡ncer de pene excepto:',1,'10482835_308922619273117_1321548922_n.jpg',3,'2014-07-28 04:13:44',0),(10,'Raiz Cuadrada de 25',1,'cover.jpg',0,'2014-07-28 04:13:44',0),(11,'Raiz Cuadrada de 25',1,'cover.jpg',3,'2014-07-28 04:13:44',0),(12,'prueba',2,'',0,'2014-07-28 04:13:44',0),(13,'prueba',2,'',3,'2014-07-28 04:13:44',0),(14,'Cual es el tamaÃ±o de un pene',2,'10482835_308922619273117_1321548922_n.jpg',3,'0000-00-00 00:00:00',0),(15,'Cual es el area de un triangulo de 5cm de base y un angulo de 46 grados',2,'',3,'0000-00-00 00:00:00',1),(16,'Relacion de Columnas 1',2,'',3,'0000-00-00 00:00:00',2),(17,'Preguntame la pregunta',2,'',3,'2014-08-03 17:34:31',3),(18,'Hola como estas tu tambien',2,'',3,'2014-08-04 05:46:49',2),(19,'Factores de Riesgo para cancer de pene excepto',1,'tumblr_mjkfl4qTxM1re12ono1_500.jpg',2,'2014-08-04 05:49:58',1),(20,'Factor de Riesgo mas importante para cancer de pene',1,'',2,'2014-08-04 05:53:16',1);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,7 +406,7 @@ CREATE TABLE `roles` (
   `nombre` varchar(45) DEFAULT NULL,
   `user_role` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,7 +415,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (5,'administradores',0),(6,'usuarios',0),(8,'jahenn123',1),(9,'jahenn999',1),(10,'jahenn1010',1),(11,'usuario',1),(12,'Manuel',1),(13,'Manuel',1),(14,'hola',1),(15,'vuela',1),(16,'unodos',1),(17,'12345',1),(18,'123456',1),(19,'ok',1),(20,'jas',1),(21,'hu',1),(22,'vui',1),(23,'jack',1);
+INSERT INTO `roles` VALUES (5,'administradores',0),(6,'usuarios',0),(46,'adminisrador',1),(47,'usuario',1);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -459,7 +460,7 @@ CREATE TABLE `roles_users` (
   KEY `fk_user_has_role_roles1_idx` (`role_id`),
   CONSTRAINT `fk_user_has_role_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_role_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -468,7 +469,7 @@ CREATE TABLE `roles_users` (
 
 LOCK TABLES `roles_users` WRITE;
 /*!40000 ALTER TABLE `roles_users` DISABLE KEYS */;
-INSERT INTO `roles_users` VALUES (1,1,5),(3,2,5),(4,3,5),(6,13,5),(13,22,6),(14,22,11),(19,27,16),(25,38,6),(26,38,23);
+INSERT INTO `roles_users` VALUES (1,62,5),(2,63,6),(3,62,46),(4,63,47);
 /*!40000 ALTER TABLE `roles_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,7 +527,7 @@ CREATE TABLE `user_answers` (
   CONSTRAINT `fk_user_answers_questions1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_answers_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_answers_user_exams1` FOREIGN KEY (`user_exam_id`) REFERENCES `user_exams` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -535,7 +536,6 @@ CREATE TABLE `user_answers` (
 
 LOCK TABLES `user_answers` WRITE;
 /*!40000 ALTER TABLE `user_answers` DISABLE KEYS */;
-INSERT INTO `user_answers` VALUES (1,1,1,1,1,'Raiz Cuadrada de 25','5',1,10.00);
 /*!40000 ALTER TABLE `user_answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -564,7 +564,6 @@ CREATE TABLE `user_exams` (
 
 LOCK TABLES `user_exams` WRITE;
 /*!40000 ALTER TABLE `user_exams` DISABLE KEYS */;
-INSERT INTO `user_exams` VALUES (1,1,0,1);
 /*!40000 ALTER TABLE `user_exams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -585,8 +584,9 @@ CREATE TABLE `users` (
   `role_id` int(11) NOT NULL,
   `avatar` varchar(255) NOT NULL DEFAULT 'avatar77.jpg',
   `nombre_completo` varchar(255) NOT NULL,
+  `baja` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -595,7 +595,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jahenn Darlaine','29c95bad258e20251c8dc5a08b3889c8daf74fd9','jjuarez007@gmail.com','2014-07-23 06:18:16',1,0,'',''),(2,'jahenn','29c95bad258e20251c8dc5a08b3889c8daf74fd9','saludos@hotmail.com','2014-07-23 06:18:16',1,0,'941164_3205218146449_589724074_n.jpg','Jahenn Darlaine pr2'),(3,'sasman','29c95bad258e20251c8dc5a08b3889c8daf74fd9','ok@yo.me','2014-07-23 06:18:16',1,0,'avatar77.jpg',''),(13,'okas','29c95bad258e20251c8dc5a08b3889c8daf74fd9','jjuarez007@gmail.com','0000-00-00 00:00:00',1,0,'avatar77.jpg',''),(22,'usuario','29c95bad258e20251c8dc5a08b3889c8daf74fd9','personal@miusuario.com.mx','2014-08-19 15:00:17',1,11,'1970850_4091687067618_1687985574_n.jpg','Juan Manual Lopez Perez'),(27,'unodos','29c95bad258e20251c8dc5a08b3889c8daf74fd9','','0000-00-00 00:00:00',1,16,'avatar77.jpg',''),(38,'jack','29c95bad258e20251c8dc5a08b3889c8daf74fd9','','2014-07-29 08:57:06',1,23,'avatar77.jpg','Jackman Stillson');
+INSERT INTO `users` VALUES (62,'administrador','29c95bad258e20251c8dc5a08b3889c8daf74fd9','','2014-08-05 05:00:00',1,0,'avatar77.jpg','',0),(63,'usuario','29c95bad258e20251c8dc5a08b3889c8daf74fd9','','2014-08-05 05:00:00',1,0,'avatar77.jpg','',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -608,4 +608,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-04  1:36:04
+-- Dump completed on 2014-08-05  3:32:55

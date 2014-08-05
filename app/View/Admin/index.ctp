@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> </span class="font-size-20">
+        <span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> </span>
     </div>
 </div>
 <div class="divider"></div>
@@ -48,7 +48,7 @@
             <div class="col-md-6">
                 <?php $new_user_url = $this->Html->url(array(
                     'controller'=>'users',
-                    'action'=>'group', 'news'
+                    'action'=>'group', 'nuevos'
                 )); ?>
                 <a href="<?= $new_user_url ?>" class="tile-button tile-button-alt btn bg-blue-alt pad0A" title="">
                     <div class="tile-header">
@@ -158,7 +158,7 @@
                 $('#calendar').fullCalendar({
                     height: 400, 
                     header: {
-                        left: '',
+                        left: 'prev, next',
                         center: 'title',
                         right: ''
                     },

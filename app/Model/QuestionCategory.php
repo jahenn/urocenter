@@ -49,7 +49,9 @@ class QuestionCategory extends AppModel {
 			'className' => 'Question',
 			'foreignKey' => 'question_category_id',
 			'dependent' => false,
-			'conditions' => '',
+			'conditions' => array(
+				'Question.question_status_id'=>2
+				),
 			'fields' => '',
 			'order' => '',
 			'limit' => '',

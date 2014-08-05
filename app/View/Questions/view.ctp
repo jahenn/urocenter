@@ -1,16 +1,15 @@
 
-<h4 class="heading-1 clearfix">
-	<div class="heading-content">
-    	<?php echo __('Pregunta'); ?>       	       <!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
+<div class="row">
+	<div class="col-md-12">
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Preguntas / Ver Pregunta</span class="font-size-20">
+	<div class="divider"></div>
+	</div>
+</div>
+
+
 <div class="row">
 	<div class="col-md-6">
-		<h2><?php echo h($question['Question']['question']); ?></h2>
+		<h3><?php echo h($question['Question']['question']); ?></h3>
 	</div>
 	<?php if($question['Question']['question_status_id'] == 1): ?>
 	<div class="col-md-6">
@@ -26,24 +25,26 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<h4>Categoria: <small><?php echo $this->Html->link($question['QuestionCategory']['nombre'], array('controller' => 'question_categories', 'action' => 'view', $question['QuestionCategory']['id'])); ?></small></h4>
+		<h4>Categoria: <small><?php echo $this->Html->link($question['QuestionCategory']['nombre'], array('controller' => 'question_categories', 'action' => 'view', $question['QuestionCategory']['id'])); ?></small>
+		</h4>
+		<h4>Tipo de Pregunta <small><?= $question['QuestionType']['tipo'] ?></small></h4>
 		<?= $this->Html->image('question-images/' . $question['Question']['imagen'], array(
 			'width'=>'350px'
 		)) ?>
 	</div>
 </div>
-<h4>Respuestas</h4>
+<br><br>
+
 <div class="row">
 	<div class="col-md-12">
 		<table class="table">
-			<tr>
-				<th>Id</th>
-				<th class="col-md-12">Respuesta</th>
-				<th>Corecta</th>
-			</tr>
+			<thead>
+				<tr>
+					<th colspan="2" class="font-size-20">Respuestas</th>
+				</tr>
+			</thead>
 			<?php foreach ($question['Answer'] as $answer): ?>
 				<tr>
-					<td><?= $answer['id'] ?></td>
 					<td><?= $answer['answer'] ?></td>
 					<td><?= ($answer['answer_is_ok'] == true)?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' ?></td>
 				</tr>

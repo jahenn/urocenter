@@ -22,7 +22,9 @@ class AnswersController extends AppController {
  */
 	public function index() {
 		$this->Answer->recursive = 0;
-		$this->set('answers', $this->Paginator->paginate());
+		$this->set('answers', $this->Paginator->paginate(array(
+			'activa'=>true
+			)));
 	}
 
 /**
@@ -101,24 +103,24 @@ class AnswersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null, $question_id=null) {
+	public function delete($id = null) {
 		$this->Answer->id = $id;
 		if (!$this->Answer->exists()) {
 			throw new NotFoundException(__('Invalid answer'));
 		}
 		//$this->request->allowMethod('post', 'delete');
-		if ($this->Answer->delete()) {
-			$this->Session->setFlash(__('The answer has been deleted.'), 'default', array(
-				'class'=> 'infobox success-bg'
+		if ($this->Answer->saveField('activa', false)) {
+			$this->Session->setFlash(__('La respuesta fue eliminada'), 'default', array(
+				'class'=> 'alert alert-success'
 				));
 		} else {
-			$this->Session->setFlash(__('The answer could not be deleted. Please, try again.'), 'default', array(
-				'class'=>'infobox success-bg'
+			$this->Session->setFlash(__('La respuesta no pudo ser eliminada'), 'default', array(
+				'class'=>'alert alert-success'
 				));
 		}
 		return $this->redirect(array(
-			'controller' => 'Questions',
-			'action'=>'edit', $question_id
+			'controller' => 'answers',
+			'action'=>'index'
 
 			));
 	}

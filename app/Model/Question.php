@@ -67,7 +67,9 @@ class Question extends AppModel {
 			'className' => 'Answer',
 			'foreignKey' => 'question_id',
 			'dependent' => false,
-			'conditions' => '',
+			'conditions' => array(
+				'Answer.activa'=>true
+				),
 			'fields' => '',
 			'order' => '',
 			'limit' => '',

@@ -22,7 +22,9 @@ class RolesController extends AppController {
  */
 	public function index() {
 		$this->Role->recursive = 0;
-		$this->set('roles', $this->Paginator->paginate());
+		$this->set('roles', $this->Paginator->paginate(array(
+			'user_role'=>false
+			)));
 	}
 
 /**
@@ -55,8 +57,9 @@ class RolesController extends AppController {
 				$this->Session->setFlash(__('The role could not be saved. Please, try again.'));
 			}
 		}
+		$menus = $this->Role->Menu->find('list');
 		$users = $this->Role->User->find('list');
-		$this->set(compact('users'));
+		$this->set(compact('menus', 'users'));
 	}
 
 /**
@@ -81,8 +84,9 @@ class RolesController extends AppController {
 			$options = array('conditions' => array('Role.' . $this->Role->primaryKey => $id));
 			$this->request->data = $this->Role->find('first', $options);
 		}
+		$menus = $this->Role->Menu->find('list');
 		$users = $this->Role->User->find('list');
-		$this->set(compact('users'));
+		$this->set(compact('menus', 'users'));
 	}
 
 /**
@@ -97,6 +101,7 @@ class RolesController extends AppController {
 		if (!$this->Role->exists()) {
 			throw new NotFoundException(__('Invalid role'));
 		}
+		$this->request->allowMethod('post', 'delete');
 		if ($this->Role->delete()) {
 			$this->Session->setFlash(__('The role has been deleted.'));
 		} else {

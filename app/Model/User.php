@@ -13,8 +13,27 @@ class User extends AppModel {
 	public $displayField = 'username';
 
 	public function beforeSave($options = array()) {
+
+
+		//pr($this->data); exit();
+
 	    if(!empty($this->data['User']['password'])) {
-	        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+	        $old = $this->find('first', array(
+	        	'conditions' => array(
+	        		'User.id' => $this->id
+	        		)
+	        	));
+
+	        if($old == null){
+	        	$old['User']['password'] ='';
+	        }
+
+	        if($old['User']['password'] != $this->data['User']['password'])
+	        {
+	        	$this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+	        }
+	        
+	        //pr($this->data); exit();
 	    } else {
 	        unset($this->data['User']['password']);
 	    }
@@ -63,6 +82,8 @@ class User extends AppModel {
 
 	public function isAdmin($user){
 
+
+
 		$this->id = $user;
 
 		if(!$this->exists())
@@ -70,12 +91,17 @@ class User extends AppModel {
 			return false;
 		}
 
+		
+
 		foreach($this->read()['Role'] as $role){
+			//pr($role);
 			if($role['id'] == 5)
 			{
 				return true;
 			}
 		}
+
+		//exit();
 
 		return false;
 	}

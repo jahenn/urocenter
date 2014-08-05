@@ -18,6 +18,17 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+
+
+if(!defined('ADMIN_ROLE')){
+	define('ADMIN_ROLE', 5);
+}
+
+if(!defined('USER_ROLE')){
+	define('USER_ROLE', 6);
+}
+
+
 /**
  * Use the DS to separate the directories in other defines
  */
