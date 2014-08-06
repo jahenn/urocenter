@@ -133,12 +133,15 @@ label{
     width: 50px !important;
 }
 
-
+#seach-container{
+    background-color: #c1cad5;
+}
 
 .search-input{
     width: 200px;
     margin-top: 10px;
     margin-left: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 5px 10px;

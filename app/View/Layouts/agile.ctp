@@ -122,7 +122,7 @@
                     </a>
                 </div>
 
-                <div>
+                <div id="seach-container">
                     <input type="text" placeholder="Buscar Pregunta" class="search-input" >
                     <i class="glyph-icon icon-search"></i>
                 </div>
