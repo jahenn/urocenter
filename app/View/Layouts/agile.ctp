@@ -93,7 +93,11 @@
         <?= $this->Html->css('morris/morris') ?> 
 
 
-
+        <script type="text/javascript">
+        $(window).resize(function(){
+            $(".autocomplete-input").val($(window).width());
+        });
+        </script>
 
     </head>
     <body class="fixed-sidebar fixed-header">
@@ -105,14 +109,14 @@
 
             <div id="page-sidebar">
                 <div id="header-logo">
-                    <?= $this->Html->Image('logo.png') ?>
+                    <?= $this->Html->Image('logo.png') ?> 
                     <a href="javascript:;" class="tooltip-button" data-placement="bottom" title="Close sidebar" id="close-sidebar">
                         <i class="glyph-icon icon-align-justify"></i>
                     </a>
                     <a href="javascript:;" class="tooltip-button hidden" data-placement="bottom" title="Open sidebar" id="rm-close-sidebar">
                         <i class="glyph-icon icon-align-justify"></i>
                     </a>
-                    <a href="javascript:;" class="tooltip-button hidden" title="Navigation Menu" id="responsive-open-menu">
+                    <a href="javascript:;" class="tooltip-button" title="Navigation Menu" id="responsive-open-menu">
                         <i class="glyph-icon icon-align-justify"></i>
                     </a>
                 </div>
