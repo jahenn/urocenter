@@ -134,6 +134,16 @@ label{
 }
 
 
+
+.search-input{
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
 /*#header-logo img {
     width: 180px;
 }*/
@@ -168,6 +178,9 @@ label{
     #header-logo img {
       width: 100px;
     }
+    .search-input{
+        width: 130px;
+    }
 }
 @media (max-width: 854px){
     #responsive-open-menu{
@@ -191,6 +204,9 @@ label{
     }
     #header-logo img {
       width: 180px;
+    }
+    .search-input{
+        width: 90%;
     }
 }
 

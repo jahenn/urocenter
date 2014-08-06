@@ -96,6 +96,7 @@
         <script type="text/javascript">
         $(window).resize(function(){
             $(".autocomplete-input").val($(window).width());
+            $(".search-input").val($(window).width());
         });
         </script>
 
@@ -121,8 +122,8 @@
                     </a>
                 </div>
 
-                <div id="sidebar-search">
-                    <input type="text" placeholder="Buscar Pregunta" class="autocomplete-input tooltip-button" data-placement="right" title="Type &apos;j&apos; to see the available tags..." id="" name="">
+                <div>
+                    <input type="text" placeholder="Buscar Pregunta" class="search-input" >
                     <i class="glyph-icon icon-search"></i>
                 </div>
 
