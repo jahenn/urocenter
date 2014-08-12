@@ -20,10 +20,7 @@
           <script src="assets/js/minified/core/html5shiv.min.js"></script>
           <script src="assets/js/minified/core/respond.min.js"></script>
         <![endif]-->
-
-        <?= $this->Html->css('calendar.min') ?>
        
-
         
         <?= $this->Html->css('app-production') ?>
         <?= $this->Html->css('themes/agileui/color-schemes/layouts/default') ?>
@@ -40,13 +37,16 @@
         <?= $this->Html->css('chosen') ?>
         <?= $this->Html->css('multi-select') ?>
         <?= $this->Html->css('custom') ?> 
+        <?= $this->Html->css('font-awesome.min') ?> 
 
 
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+       
 
         
         <?= $this->Html->css("bootstrap") ?>
-        
+        <?= $this->Html->css("responsive-calendar") ?>
+        <?= $this->Html->css("jquery.jgrowl") ?>
+
         
         
         
@@ -54,41 +54,30 @@
 
 
         <?= $this->Html->script('jquery') ?>
+        <?= $this->Html->script('bootstrap') ?> 
         <?= $this->Html->script('aui-production') ?>
 
         <?= $this->Html->script('chosen.jquery') ?>
+        <?= $this->Html->script('jquery.jgrowl') ?>
         <?= $this->Html->script('chosen.proto') ?>
         <?= $this->Html->script('jquery.multi-select') ?>
 
         <?= $this->Html->script('morris/morris') ?> 
         <?= $this->Html->script('qtip') ?> 
         <?= $this->Html->script('jquery.easyWizard') ?> 
+        <?= $this->Html->script('responsive-calendar') ?> 
+
+
+
+        <?= $this->Html->script('raphael-min') ?> 
+        <?= $this->Html->script('prettify.min') ?> 
+        <?= $this->Html->script('dropzone') ?> 
+        
+        
+
+
 
         
-        <!-- Theme UI -->
-
-        <!-- <link id="layout-theme" rel="stylesheet" type="text/css" href="assets/themes/minified/agileui/color-schemes/layouts/default.min.css"> -->
-
-        <!-- <link id="elements-theme" rel="stylesheet" type="text/css" href="assets/themes/minified/agileui/color-schemes/elements/default.min.css"> -->
-
-        <!-- AgileUI Responsive -->
-
-        <!-- <link rel="stylesheet" type="text/css" href="assets/themes/minified/agileui/responsive.min.css"> -->
-
-        <!-- AgileUI Animations -->
-
-        <!-- <link rel="stylesheet" type="text/css" href="assets/themes/minified/agileui/animations.min.css"> -->
-
-        <!-- AgileUI JS -->
-
-        <!-- <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script> -->
-
-        <!-- // <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
-         
-
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
         
         <?= $this->Html->css('morris/morris') ?> 
 
@@ -98,10 +87,16 @@
             $(".autocomplete-input").val($(window).width());
             $(".search-input").val($(window).width());
         });
+
+
+
+
         </script>
 
     </head>
     <body class="fixed-sidebar fixed-header">
+        
+        
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->

@@ -8,35 +8,107 @@
 
 <h4><i class="fa fa-info"></i> Actividad</h4>
 <br>
+
+
 <div class="row">
     <div class="col-md-6">
         
-        <?php foreach($notifications as $notification): ?>
-
-            <div class="infobox infobox-close-wrapper alert <?= $notification['Color']['valor'] ?>">
-                <div class="large btn font-black info-icon">
-                    <!-- <i class="glyph-icon icon-comment"></i> -->
-                    <?= $this->element('avatar_user', array(
-                        'custom_user'=>$notification['User'],
-                        'opciones'=>array(
-                            'class'=>'avatar ' . $notification['Color']['valor'],
-
-                            )
-                    )) ?>
-                </div>
-                <h4 class="infobox-title">
-                    <a href="#"><small><?= $notification['User']['username'] ?></small></a>
-                    <?= $notification['Notification']['titulo'] ?>
-                </h4>
-                <p>
-                    <?= $notification['Notification']['descripcion'] ?>
-                </p>
-
-                <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a>
-            </div>
-        <?php endforeach ?>
+        <?= $this->element('notifications', array(
+            'notifications'=>$notifications
+        )) ?>
+        
 
     </div>
+    
+    <div class="col-md-3">
+        <?php $new_user_url = $this->Html->url(array(
+            'controller'=>'users',
+            'action'=>'group', 'nuevos'
+        )); ?>
+        <a href="<?= $new_user_url ?>" class="tile-button tile-button-alt btn bg-blue-alt pad0A" title="">
+            <div class="tile-header">
+                Nuevos Usuarios
+
+                <!-- <div class="float-right">
+                    <i class="glyph-icon icon-caret-up mrg5R"></i>
+                    +55%
+                </div> -->
+            </div>
+            <div class="tile-content-wrapper">
+                <i class="glyph-icon icon-user"></i>
+                <div class="tile-content">
+                    <?= $users ?> / <span style="color:red;"><?= $users_pendientes ?></span>
+                </div>
+                <div class="float-right">Registrados / Inactivos</div>
+            </div>
+        </a>
+    </div>
+    
+
+    <div class="col-md-3">
+        <?php $new_user_url = $this->Html->url(array(
+            'controller'=>'questions',
+            'action'=>'index'
+        )); ?>
+        <a href="<?= $new_user_url ?>" class="tile-button tile-button-alt btn bg-green pad0A" title="">
+            <div class="tile-header">
+                Nuevas Preguntas
+
+                <!-- <div class="float-right">
+                    <i class="glyph-icon icon-caret-up mrg5R"></i>
+                    +55%
+                </div> -->
+            </div>
+            <div class="tile-content-wrapper">
+                <i class="glyph-icon icon-edit"></i>
+                <div class="tile-content">
+                    <?= $questions ?> / <span style="color:red;"><?= $questions_pendientes ?></span>
+                </div>
+                <div class="float-right">Nuevas / Inactivas</div>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="content-box border-top border-blue-alt mrg25B">
+            <h3 class="content-header clearfix">
+                Promedio de Calificaciones
+            </h3>
+            <div class="content-box-wrapper">
+                <div id="revenue-chart" style="height:200px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <!-- Responsive calendar - START -->
+        <div class="responsive-calendar">
+          <div class="controls">
+                <br>
+              <a class="pull-left" data-go="prev"><div class="btn"><i class="fa fa-arrow-left"></i></div></a>
+              <h4><span data-head-month></span>&nbsp;&nbsp;&nbsp;<span data-head-year></span></h4>
+              <a class="pull-right" data-go="next"><div class="btn"><i class="fa fa-arrow-right"></i></div></a>
+          </div>
+          <hr/>
+          <div class="day-headers">
+            <div class="day header">L</div>
+            <div class="day header">M</div>
+            <div class="day header">M</div>
+            <div class="day header">J</div>
+            <div class="day header">V</div>
+            <div class="day header">S</div>
+            <div class="day header">D</div>
+          </div>
+          <div class="days" data-group="days">
+            <!-- the place where days will be generated -->
+          </div>
+        </div>
+        <!-- Responsive calendar - END -->
+    </div>
+
+<!--  -->
+
     <div class="col-md-6">
 
 
@@ -45,69 +117,22 @@
 
 
         <div class="row">
-            <div class="col-md-6">
-                <?php $new_user_url = $this->Html->url(array(
-                    'controller'=>'users',
-                    'action'=>'group', 'nuevos'
-                )); ?>
-                <a href="<?= $new_user_url ?>" class="tile-button tile-button-alt btn bg-blue-alt pad0A" title="">
-                    <div class="tile-header">
-                        Nuevos Usuarios
 
-                        <!-- <div class="float-right">
-                            <i class="glyph-icon icon-caret-up mrg5R"></i>
-                            +55%
-                        </div> -->
-                    </div>
-                    <div class="tile-content-wrapper">
-                        <i class="glyph-icon icon-user"></i>
-                        <div class="tile-content">
-                            <?= $users ?> / <span style="color:red;"><?= $users_pendientes ?></span>
-                        </div>
-                        <div class="float-right">Registrados / Inactivos</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6">
-                <?php $new_user_url = $this->Html->url(array(
-                    'controller'=>'questions',
-                    'action'=>'index'
-                )); ?>
-                <a href="<?= $new_user_url ?>" class="tile-button tile-button-alt btn bg-green pad0A" title="">
-                    <div class="tile-header">
-                        Nuevas Preguntas
-
-                        <!-- <div class="float-right">
-                            <i class="glyph-icon icon-caret-up mrg5R"></i>
-                            +55%
-                        </div> -->
-                    </div>
-                    <div class="tile-content-wrapper">
-                        <i class="glyph-icon icon-edit"></i>
-                        <div class="tile-content">
-                            <?= $questions ?> / <span style="color:red;"><?= $questions_pendientes ?></span>
-                        </div>
-                        <div class="float-right">Nuevas / Inactivas</div>
-                    </div>
-                </a>
-            </div>
+            
         </div> <!-- End Row -->
 
         <br>
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="content-box border-top border-blue-alt mrg25B">
-                    <h3 class="content-header clearfix">
-                        Promedio de Calificaciones
-                    </h3>
-                    <div class="content-box-wrapper">
-                        <div id="revenue-chart" style="height:200px;"></div>
-                    </div>
-                </div>
-            </div>
+            
         </div> <!-- End row -->
+        
 
+
+
+        <div class="row">
+            
+        </div>
         <div class="row">
             <div class="col-md-12 ">
                 <div class="content-box border-top border-blue-alt pad0A">
@@ -134,7 +159,6 @@
 
 
 <script>
-
     $(document).ready(function() {
     
         var date = new Date();
@@ -151,36 +175,25 @@
             type: 'json',
             url: eventos,
             success: function(data){
-
-                //alert(data);
                 eventos = $.parseJSON(data);
 
-                $('#calendar').fullCalendar({
-                    height: 400, 
-                    header: {
-                        left: 'prev, next',
-                        center: 'title',
-                        right: ''
-                    },
-                    editable: false,
-                    dropable:false,
+                //alert(data);
+
+                $(".responsive-calendar").responsiveCalendar({
                     events: eventos,
-                    // eventColor: 'blue'
-                });
-
-                $(".fc-event").each(function(){
-                    var txt = $(this).find(".fc-event-title").html();
-                    $(this).attr("title", txt);
-
-                    $(this).tooltip();
-                });
+                    translateMonths: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+                }); 
                 
             }
-        })
-        
-        
+
+        });
+
+
+
         
     });
+
+    
 
 </script>
 
@@ -236,8 +249,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        //alert("ok");
-        
+        $.jGrowl("Bienvenido a Urocenter", { header: 'Bienvenido' });
     });
 </script>
 

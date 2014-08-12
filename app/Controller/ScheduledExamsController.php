@@ -297,8 +297,9 @@ class ScheduledExamsController extends AppController {
 				if(isset($this->request->data['Multiple'])){
 					foreach ($this->request->data['Multiple'] as $cK => $cV) {
 
+
 						$question_id = $cV['question'];
-						$answer_id = $cV['answer'];
+						$answer_id = (isset($cV['answer']))?$cV['answer']:0;
 
 
 						$this->loadModel('Question');
@@ -317,8 +318,9 @@ class ScheduledExamsController extends AppController {
 						 	));
 
 
+
 						 $question_text = $question['Question']['question'];
-						 $answer_text = $answer['Answer']['answer'];
+						 $answer_text = (isset($answer['Answer']['answer']))?$answer['Answer']['answer']:'';
 
 
 
