@@ -84,15 +84,17 @@ class QuestionsController extends AppController {
 				$id = $this->Question->getLastInsertId();
 
 				foreach ($this->request->data['answers'] as $key => $value) {
-					$this->Question->Answer->create();
+					if(!empty($value['answer'])){
+						$this->Question->Answer->create();
 
-					$this->Question->Answer->save(array(
-						'question_id'=>$id,
-						'answer'=>$value['answer'],
-						'value'=>0,
-						'activa'=>true,
-						'answer_is_ok' => (isset($value['isOK']))?true:false
-						));
+						$this->Question->Answer->save(array(
+							'question_id'=>$id,
+							'answer'=>$value['answer'],
+							'value'=>0,
+							'activa'=>true,
+							'answer_is_ok' => (isset($value['isOK']))?true:false
+							));
+					}
 				}
 
 				return $this->redirect(array('action' => 'edit', $id));
@@ -101,7 +103,11 @@ class QuestionsController extends AppController {
 			}
 		}
 		$questionCategories = $this->Question->QuestionCategory->find('list');
-		$questionTypes = $this->Question->QuestionType->find('list');
+		$questionTypes = $this->Question->QuestionType->find('list', array(
+			'conditions'=>array(
+				'QuestionType.activa'=>true
+				)
+			));
 		//$exams = $this->Question->Exam->find('list');
 		$questionDifficulties = $this->Question->QuestionDifficulty->find('list');
 		$this->set(compact('questionCategories', 'questionTypes', 'questionDifficulties'));

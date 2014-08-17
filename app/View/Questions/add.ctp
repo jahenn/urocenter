@@ -65,6 +65,47 @@
 
 			}
 		});
+
+		$("#QuestionAddForm").submit(function(e){
+			if($("#QuestionQuestion").val() == '')
+			{
+				alert("Ingresa una pregunta valida");
+				$("#QuestionQuestion").focus();
+				e.preventDefault();
+				return false;
+			}
+
+			if($("#QuestionQuestionCategoryId").val() == '')
+			{
+				alert("Ingresa una categoria valida");
+				$("#QuestionQuestionCategoryId").focus();
+				e.preventDefault();
+				return false;
+			}
+			if($("#QuestionQuestionTypeId").val() == '')
+			{
+				alert("Ingresa un tipo de pregunta valido");
+				$("#QuestionQuestionTypeId").focus();
+				e.preventDefault();
+				return false;
+			}
+			if($("#QuestionQuestionDifficultyId").val() == '')
+			{
+				alert("Ingresa un nivel de Dificultad valido");
+				$("#QuestionQuestionDifficultyId").focus();
+				e.preventDefault();
+				return false;
+			}
+			if($("#QuestionReferencias").val() == '')
+			{
+				alert("Ingresa referencias bibliograficas y/o datos sobre la pregunta");
+				$("#QuestionReferencias").focus();
+				e.preventDefault();
+				return false;
+			}
+
+
+		});
 	});
 </script>
 
@@ -90,7 +131,7 @@
 				'text'=>'Desarrolla tu Pregunta',
 				'class'=>'text-transform-cap '
 				),
-			'required'=>true,
+			'required'=>false,
 			'class'=>'form-control width-100'
 			)) ?> 
 	</div>
@@ -101,7 +142,7 @@
 				'text'=>'Selecciona una Categoria para tu pregunta',
 				'class'=>'text-transform-cap width-100'
 				),
-			'required'=>true,
+			'required'=>false,
 			'empty'=>''
 			)) ?> 
 	</div>
@@ -114,7 +155,7 @@
 				'text'=>'Selecciona un tipo de pregunta',
 				'class'=>'text-transform-cap '
 				),
-			'required'=>true,
+			'required'=>false,
 			'empty'=>''
 			)) ?> 
 	</div>
@@ -131,6 +172,18 @@
 			'empty'=>'Selecciona una Opción'
 		)) ?>
 		<i class="fa fa-question font-size-20 dif" style="color: white;"></i>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<?= $this->Form->input('referencias', array(
+			'class'=>'form-control width-100',
+			'label'=> array(
+				'text'=>'Referencias / Bibliografia',
+				'class'=>'text-transform-cap'
+				)
+		)) ?>
 	</div>
 </div>
 

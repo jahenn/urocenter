@@ -30,7 +30,7 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<a href="#" class="btn primary-bg white-modal-60" onclick="$('#white-modal-60').removeClass('hide');"> <i class="fa fa-file-image-o"></i> <?= ($this->request->data['Question']['imagen'] == '')?'Agregar':'Cambiar' ?> Imagen</a>
+		<a href="#" class="btn primary-bg white-modal-60" onclick="$('#white-modal-60').removeClass('hide');"> <i class="fa fa-image"></i> <?= ($this->request->data['Question']['imagen'] == '')?'Agregar':'Cambiar' ?> Imagen</a>
 		
 		<!-- Dialogos -->
 		<div class="hide" id="white-modal-60" title="Cargar imagen" style="top:0px">
