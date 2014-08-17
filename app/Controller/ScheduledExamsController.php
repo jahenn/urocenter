@@ -37,6 +37,7 @@ class ScheduledExamsController extends AppController {
 			throw new NotFoundException(__('Invalid scheduled exam'));
 		}
 		$options = array('conditions' => array('ScheduledExam.' . $this->ScheduledExam->primaryKey => $id));
+		$this->ScheduledExam->recursive = 2;
 		$this->set('scheduledExam', $this->ScheduledExam->find('first', $options));
 	}
 
@@ -97,13 +98,19 @@ class ScheduledExamsController extends AppController {
 
 
 				$this->Session->setFlash(__('The scheduled exam has been saved.'));
-				return $this->redirect(array('action' => 'edit', $this->ScheduledExam->getlastInsertId()));
+				return $this->redirect(array('action' => 'view', $this->ScheduledExam->getlastInsertId()));
 			} else {
 				$this->Session->setFlash(__('The scheduled exam could not be saved. Please, try again.'));
 			}
 		}
 		$questions = $this->ScheduledExam->Question->find('list');
-		$this->set(compact('questions'));
+		$roles = $this->ScheduledExam->Role->find('list', array(
+			'conditions'=>array(
+				'user_role'=>false
+				)
+			));
+
+		$this->set(compact('questions', 'roles'));
 	}
 
 /**
@@ -189,7 +196,7 @@ class ScheduledExamsController extends AppController {
 				));
 
 			$this->redirect(array(
-				'action'=>'edit', $exam_id
+				'action'=>'view', $exam_id
 				));
 		}else{
 			$question_categories = $this->ScheduledExam->Question->QuestionCategory->find('list');
@@ -420,6 +427,68 @@ class ScheduledExamsController extends AppController {
 
 	public function start($id)
 	{
+		
+	}
+
+
+	public function randomize($id, $elements = 10, $categoria = 0)
+	{
+		$this->autoRender = false;
+
+		$questions = $this->ScheduledExam->Question->find('all', array(
+			'conditions'=>array(
+				'OR'=>array(
+					'question_category_id'=>$categoria,
+					'"0"'=> "$categoria"
+					)
+				)
+			));
+
+		$questions_rnd = array();
+
+		foreach ($questions as $key => $value) {
+			$questions_rnd[] = $value['Question']['id'];
+		}
+
+		shuffle($questions_rnd);
+
+		$questions_rnd = array_slice($questions_rnd, 0, $elements);
+
+		//pr($questions_rnd);
+
+		//exit();
+
+		$this->ScheduledExam->QuestionsScheduledExam->deleteAll(array(
+			'scheduled_exam_id'=>$id
+			));
+
+
+		foreach ($questions_rnd as $key => $value) {
+
+
+
+			$this->ScheduledExam->QuestionsScheduledExam->create();
+
+			$this->ScheduledExam->QuestionsScheduledExam->save(array(
+				'scheduled_exam_id'=>$id,
+				'question_id'=>$value
+				));
+		}
+
+
+		$this->redirect(array(
+			'action'=>'view',
+			$id
+			));
+
+
+
+
+		// pr($questions); exit();
+
+
+		// $v = new View();
+		// pr($v->element('sql_dump'));
 		
 	}
 }

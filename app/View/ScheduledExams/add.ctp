@@ -1,16 +1,12 @@
+<div class="row">
+	<div class="col-md-12">
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Programar Examen</span class="font-size-20">
+	<div class="divider"></div>
+	</div>
+</div>
 
 
 
-<h4 class="heading-1 clearfix">
-	<div class="heading-content">
-		<?php echo __('Add Scheduled Exam'); ?>       	       
-    	<!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
 
 <?php echo $this->Form->create('ScheduledExam', array(
 	'inputDefaults'=>array(
@@ -19,72 +15,64 @@
 )); ?>
 
 
-<div class="form-row">
-	<div class="form-label col-md-2">
-		<label for="titulo" class=" text-transform-cap ">
-			titulo
-		</label>
-	</div>
-	<div class="form-input col-md-10">		 
+<div class="row">
+	
+	<div class="col-md-12">
 		<?= $this->Form->input('titulo', array(
-			'label'=>false
-			)) ?> 
+			'label'=>'Titulo del Examen',
+			'class'=>'form-control width-100'
+			)) ?> 	 
+			
 	</div>
-</div>
-
-<div class="form-row">
-	<div class="form-label col-md-2">
-		<label for="fecha_programada" class=" text-transform-cap ">
-			Fecha de Inicio
-		</label>
+	<div class="col-md-12">
+		<?= $this->Form->input('fecha_programada', array(
+				'label'=>'Fecha Programada',
+				'type'=>'text',
+				'class'=>'date form-control'
+				)) ?>
 	</div>
-	<div class="form-input col-md-10">		 <?= $this->Form->input('fecha_programada', array(
-		'label'=>false,
-		'type'=>'text',
-		'class'=>'date'
-		)) ?> 
-	</div>
-</div>
-
-<div class="form-row">
-	<div class="form-label col-md-2">
-		<label for="fecha_limite" class=" text-transform-cap ">
-			Fecha Limite
-		</label>
-	</div>
-	<div class="form-input col-md-10">		 <?= $this->Form->input('fecha_limite', array(
-		'label'=>false,
-		'type'=>'text',
-		'class'=>'date'
-		)) ?> 
-	</div>
-</div>
-
-<!--  -->
-
-
-<div class="form-row">
-	<div class="form-input col-md-10">		 
-		<?= $this->Form->input('estatus', array(
-			'label'=>false,
-			'type'=>'hidden',
-			'value'=>1
-			)) ?> 
-		</div>
-	</div><div class="form-row">
-	<div class="form-label col-md-2">
-		<label for="comentarios" class=" text-transform-cap ">
-			comentarios
-		</label>
-		</div><div class="form-input col-md-10">		 
+	<div class="col-md-12">
 		<?= $this->Form->input('comentarios', array(
-			'label'=>false
+			'label'=>'Comentarios / Notas del Examen',
+			'class'=>'form-control width-100'
 			)) ?> 
-		</div>
 	</div>
+
+
+	<div class="col-md-12">
+		<?= $this->Form->input('Role', array(
+			'label'=>'Usuarios / Grupos de Usuarios',
+			'class'=>'form-control width-100',
+			'data-placeholder'=>'Selecciona al menos un usuario o grupo de usuarios',
+			'required'=>true
+			)) ?> 
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<?= $this->Form->input('estatus', array(
+	'label'=>false,
+	'type'=>'hidden',
+	'value'=>1
+	)) ?> 
+
+
 <br>
 
-<button class="btn medium primary-bg submit" type="submit">Guardar</button>
+<button class="btn btn-primary submit" type="submit">Siguiente <i class="fa fa-arrow-right"></i></button>
+
+
+<div class="dialog" style="display:none;">
+	
+</div>
 
 <?php echo $this->Form->end(); ?>
 <br>
@@ -96,6 +84,15 @@
 		$(".date").datepicker({
 			dateFormat: 'yy-mm-dd'
 		});
+
+		$("#RoleRole").chosen();
+
+
+			// $("#ScheduledExamAddForm").submit(function(e){
+			// 	e.preventDefault();
+
+			// 	$(".dialog").dialog();
+			// });
 	});
 </script>
 
