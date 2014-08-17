@@ -78,9 +78,9 @@ class QuestionsController extends AppController {
 
 			$this->Question->create();
 			if ($this->Question->save($this->request->data)) {
-				$this->Session->setFlash(__('La pregunta fue guardada.', 'default', array(
+				$this->Session->setFlash(__('La pregunta fue guardada.'), 'default', array(
 					'class'=>'alert alert-success'
-					)));
+					));
 				$id = $this->Question->getLastInsertId();
 
 				foreach ($this->request->data['answers'] as $key => $value) {
