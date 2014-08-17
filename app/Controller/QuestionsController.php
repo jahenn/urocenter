@@ -58,19 +58,19 @@ class QuestionsController extends AppController {
 
 
 		if ($this->request->is('post')) {
-			//pr($this->request->data);exit();
-			$imagen = $this->request->data['Question']['imagen'];
-			$this->request->data['Question']['imagen'] = '';
-			if($imagen['error'] == 0)
-			{
-				$filename = $imagen['name'];	
-				$origen = $imagen['tmp_name'];	
-				$destino = WWW_ROOT . 'img/question-images/' . $filename ;
+			// pr($this->request->data);exit();
+			// $imagen = $this->request->data['Question']['imagen'];
+			// $this->request->data['Question']['imagen'] = '';
+			// if($imagen['error'] == 0)
+			// {
+			// 	$filename = $imagen['name'];	
+			// 	$origen = $imagen['tmp_name'];	
+			// 	$destino = WWW_ROOT . 'img/question-images/' . $filename ;
 
-				if(move_uploaded_file($origen, $destino)){
-					$this->request->data['Question']['imagen'] = $filename;
-				}
-			}
+			// 	if(move_uploaded_file($origen, $destino)){
+			// 		$this->request->data['Question']['imagen'] = $filename;
+			// 	}
+			// }
 
 			$this->request->data['Question']['question_status_id'] = 1;
 			$this->request->data['Question']['fecha_creacion'] = null;
@@ -78,8 +78,24 @@ class QuestionsController extends AppController {
 
 			$this->Question->create();
 			if ($this->Question->save($this->request->data)) {
-				$this->Session->setFlash(__('The question has been saved.'));
-				return $this->redirect(array('action' => 'edit', $this->Question->getLastInsertId()));
+				$this->Session->setFlash(__('La pregunta fue guardada.', 'default', array(
+					'class'=>'alert alert-success'
+					)));
+				$id = $this->Question->getLastInsertId();
+
+				foreach ($this->request->data['answers'] as $key => $value) {
+					$this->Question->Answer->create();
+
+					$this->Question->Answer->save(array(
+						'question_id'=>$id,
+						'answer'=>$value['answer'],
+						'value'=>0,
+						'activa'=>true,
+						'answer_is_ok' => (isset($value['isOK']))?true:false
+						));
+				}
+
+				return $this->redirect(array('action' => 'edit', $id));
 			} else {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}
@@ -87,7 +103,8 @@ class QuestionsController extends AppController {
 		$questionCategories = $this->Question->QuestionCategory->find('list');
 		$questionTypes = $this->Question->QuestionType->find('list');
 		//$exams = $this->Question->Exam->find('list');
-		$this->set(compact('questionCategories', 'questionTypes'));
+		$questionDifficulties = $this->Question->QuestionDifficulty->find('list');
+		$this->set(compact('questionCategories', 'questionTypes', 'questionDifficulties'));
 	}
 
 /**

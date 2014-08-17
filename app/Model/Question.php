@@ -54,7 +54,8 @@ class Question extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'QuestionType'
+		'QuestionType',
+		'QuestionDifficulty'
 	);
 
 /**

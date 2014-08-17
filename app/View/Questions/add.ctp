@@ -1,33 +1,79 @@
 <style type="text/css">
-	.label{
-		font-weight: bold;
-		font-size: 1.5em;
-		margin-left: 0px;
-		padding-left: 0px !important;
+	label{
+		display: block;
+	}
+	#QuestionQuestionDifficultyId{
+		display: inline-block !important;
 	}
 </style>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#QuestionQuestionCategoryId").chosen({
-			'width':'100px'
+			'width':'100%'
 		});
 		$("#QuestionQuestionTypeId").chosen({
-			'width':'100px'
+			'width':'100%'
+		});
+
+		$("#QuestionQuestionDifficultyId option").each(function(){
+			var i = $('<i class="fa fa-check"></i> &nbsp;');
+			//alert($(this).val());
+			switch($(this).val())
+			{
+				case '1':
+					$(i).css('color', 'green');
+					break;
+				case '2':
+					$(i).css('color', 'blue');
+					break;
+
+				case '3':
+					$(i).css('color', 'orange');
+					break;
+
+				case '4':
+					$(i).css('color', 'red');
+					break;
+
+
+			}
+
+			$(this).prepend(i);
+		});
+
+		$("#QuestionQuestionDifficultyId").change(function(){
+			switch($(this).val())
+			{
+				case '1':
+					$(".dif").css('color', 'green');
+					break;
+				case '2':
+					$(".dif").css('color', 'blue');
+					break;
+
+				case '3':
+					$(".dif").css('color', 'orange');
+					break;
+
+				case '4':
+					$(".dif").css('color', 'red');
+					break;
+				default:
+					$(".dif").css('color', 'white');
+					break;
+
+			}
 		});
 	});
 </script>
 
-<h4 class="heading-1 clearfix">
-	<div class="heading-content">
-		<?php echo __('Agregar Pregunta'); ?>       	       
-    	<!-- <small>
-            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
-        </small> -->
-    </div>
-    <div class="clear"></div>
-    <div class="divider"></div>
-</h4>
+<div class="row">
+	<div class="col-md-12">
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Nueva Pregunta</span class="font-size-20">
+	<div class="divider"></div>
+	</div>
+</div>
 
 <?php echo $this->Form->create('Question', array(
 	'inputDefaults'=>array(
@@ -45,14 +91,15 @@
 				'class'=>'text-transform-cap '
 				),
 			'required'=>true,
-			'class'=>'form-control'
+			'class'=>'form-control width-100'
 			)) ?> 
 	</div>
 </div><div class="form-row">
-			<div class="form-input col-md-12">		 <?= $this->Form->input('question_category_id', array(
+			<div class="form-input col-md-12">		 
+			<?= $this->Form->input('question_category_id', array(
 			'label'=>array(
 				'text'=>'Selecciona una Categoria para tu pregunta',
-				'class'=>'text-transform-cap '
+				'class'=>'text-transform-cap width-100'
 				),
 			'required'=>true,
 			'empty'=>''
@@ -73,7 +120,44 @@
 	</div>
 </div>	
 
+<div class="row">
+	<div class="col-md-12">
+		<?= $this->Form->input('question_difficulty_id', array(
+			'class'=>'form-control',
+			'label'=> array(
+				'text'=>'Nivel de Dificultad',
+				'class'=>'text-transform-cap'
+				),
+			'empty'=>'Selecciona una Opción'
+		)) ?>
+		<i class="fa fa-question font-size-20 dif" style="color: white;"></i>
+	</div>
+</div>
+
 <br>
+
+<h3>Respuestas</h3>
+
+<div class="answers">
+	<table class="table no-border">
+		<thead>
+			<tr>
+				<th>Desarrollo de la respuesta</th>
+				<th>Es Correcta?</th>
+			</tr>
+			<?php for($i=0; $i<5; $i++): ?>
+			<tr>
+				<td>
+					<input type="text" class="form-control width-100" name="data[answers][<?= $i ?>][answer]">
+				</td>
+				<td>
+					<input type="checkbox" name="data[answers][<?= $i ?>][isOK]">
+				</td>
+			</tr>
+			<?php endfor ?>
+		</thead>
+	</table>
+</div>
 
 <button class="btn large primary-bg submit" type="submit">Guardar <i class="fa fa-save"></i></button>
 
