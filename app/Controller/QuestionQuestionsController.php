@@ -50,7 +50,9 @@ class QuestionQuestionsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->QuestionQuestion->create();
 			if ($this->QuestionQuestion->save($this->request->data)) {
-				$this->Session->setFlash(__('The question question has been saved.'));
+				$this->Session->setFlash(__('La pregunta fue guardada.'), 'default', array(
+					'class'=>'alert alert-success'
+					));
 				return $this->redirect(array(
 					'controller' => 'questions',
 					'action'=>'edit', $question_id
