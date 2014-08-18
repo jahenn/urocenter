@@ -48,6 +48,33 @@
 			)) ?> 
 	</div>
 
+	<div class="col-md-12">
+		<?= $this->Form->input('question_category_id', array(
+			'label'=>'Categoria del Examen',
+			'class'=>'form-control',
+			'required'=>true,
+			'empty'=>'Selecciona una Opcion'
+			)) ?> 
+	</div>
+	
+	<div class="col-md-12">
+		<?= $this->Form->input('question_difficulty_id', array(
+			'label'=>'Dificultad Del Examen',
+			'class'=>'form-control',
+			'required'=>true,
+			'empty'=>'Selecciona una Opcion'
+			)) ?> 
+	</div>
+
+	<div class="col-md-12">
+		<?= $this->Form->input('numero_preguntas', array(
+			'label'=>'Cantidad de Preguntas',
+			'class'=>'form-control',
+			'required'=>true,
+			'type'=>'number'
+			)) ?> 
+	</div>
+
 </div>
 
 

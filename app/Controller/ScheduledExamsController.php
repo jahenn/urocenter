@@ -38,7 +38,17 @@ class ScheduledExamsController extends AppController {
 		}
 		$options = array('conditions' => array('ScheduledExam.' . $this->ScheduledExam->primaryKey => $id));
 		$this->ScheduledExam->recursive = 2;
-		$this->set('scheduledExam', $this->ScheduledExam->find('first', $options));
+
+		$scheduledExam = $this->ScheduledExam->find('first', $options);
+
+		$questions = $this->ScheduledExam->Question->find('list', array(
+			'conditions'=>array(
+				'question_category_id' => $scheduledExam['ScheduledExam']['question_category_id']
+				)
+			));
+
+		$this->set(compact('questions', 'scheduledExam'));
+
 	}
 
 /**
@@ -110,7 +120,12 @@ class ScheduledExamsController extends AppController {
 				)
 			));
 
-		$this->set(compact('questions', 'roles'));
+		$questionCategories = $this->ScheduledExam->Question->QuestionCategory->find('list');
+		$questionDifficulties = $this->ScheduledExam->Question->QuestionDifficulty->find('list');
+
+
+
+		$this->set(compact('questions', 'roles', 'questionCategories', 'questionDifficulties'));
 	}
 
 /**
@@ -431,7 +446,7 @@ class ScheduledExamsController extends AppController {
 	}
 
 
-	public function randomize($id, $elements = 10, $categoria = 0)
+	public function randomize($id, $elements = 10, $categoria = 0, $difficulty=1)
 	{
 		$this->autoRender = false;
 
@@ -440,7 +455,8 @@ class ScheduledExamsController extends AppController {
 				'OR'=>array(
 					'question_category_id'=>$categoria,
 					'"0"'=> "$categoria"
-					)
+					),
+				'question_difficulty_id'=>$difficulty
 				)
 			));
 
@@ -475,6 +491,18 @@ class ScheduledExamsController extends AppController {
 				));
 		}
 
+
+		if(count($questions_rnd) == 0){
+			$this->Session->setFlash('No hubo resultados para los criterios utilizados', 'default', array(
+				'class'=>'alert alert-danger'
+				));
+		}
+
+		if(count($questions_rnd) != $elements && count($questions_rnd) != 0){
+			$this->Session->setFlash('No se encontro la cantidad de preguntas solicitadas, para los criterios utilizados', 'default', array(
+				'class'=>'alert alert-danger'
+				));
+		}
 
 		$this->redirect(array(
 			'action'=>'view',

@@ -64,7 +64,10 @@
 }
 .today,
 .today a{
-  border: 1px solid #5cb85c !important;
+  /*border: 1px solid #5cb85c !important;*/
+  background-color: #5cb85c;
   border-radius: 10px;
+  color: #fff !important;
+
 }
 

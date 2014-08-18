@@ -208,7 +208,7 @@
 					$(p_input).prop('name', 'data[Columnas][' + $(p_input).attr("nq") + ']['  + i +'][pregunta][id_pregunta]');
 
 
-					alert($(p_input).prop('name'));
+					//alert($(p_input).prop('name'));
 
 					i++;
 				});
@@ -231,7 +231,7 @@
 
 					$(p_input).prop('name', 'data[Columnas][' + $(p_input).attr("nq") + ']['  + i +'][pregunta][id_respuesta]');
 
-					alert($(p_input).prop('name'));
+					//alert($(p_input).prop('name'));
 
 					i++;
 				});

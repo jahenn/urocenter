@@ -31,12 +31,16 @@
 <div class="row">
 	<div class="col-md-12">
 		<?php $random = $this->Html->url(array(
-			'action'=>'randomize', $scheduledExam['ScheduledExam']['id']
+			'action'=>'randomize', 
+			$scheduledExam['ScheduledExam']['id'], 
+			$scheduledExam['ScheduledExam']['numero_preguntas'],
+			$scheduledExam['ScheduledExam']['question_category_id'],
+			$scheduledExam['ScheduledExam']['question_difficulty_id']
 		)); ?>
 		
 		<a href="<?= $random ?>" class="btn btn-primary"><i class="fa fa-refresh"></i> Generar Examen Random</a>
 
-
+<!-- 
 		<?php $url_add_question = $this->Html->url(array(
 			'controller'=>'ScheduledExams',
 			'action'=>'addQuestion',
@@ -45,8 +49,10 @@
 		
 		<a href="<?= $url_add_question ?>" class="btn btn-default"><i class="fa fa-plus"></i> Agregar Pregunta</a>
 		<hr>
-		<br>
+		<br> -->
+		<br><br>
 
+		<?php $i=0; ?>
 		<?php if(!empty($scheduledExam['Question'])): ?>
 			<table class="table table-hover">
 				<thead>
@@ -57,7 +63,7 @@
 					</tr>
 				</thead>
 				<tbody>
-			<?php $i=0; ?>
+			
 			<?php foreach($scheduledExam['Question'] as $question): ?>
 
 				<?php $i++; ?>
@@ -84,5 +90,44 @@
 			</table>
 
 		<?php endif ?>
+		
+		<?= $this->Form->create(); ?>
+		<table class="table table-hover">
+		<?php for($i=$i; $i< $scheduledExam['ScheduledExam']['numero_preguntas']; $i++): ?>
+			<tr>
+				<td>
+					<?= $i+1 ?>
+				</td>
+				<td>
+					<?= $this->Form->input('Question.'.$i.'.question_id', array(
+						'label'=>false,
+						'div'=>false,
+						'class'=>'form-control width-100 chosen'
+					)) ?>
+				</td>
+			</tr>
+		<?php endfor ?>
+		</table>
+		<br>
+
+		<button class="btn btn-info" type="submit">Agregar Preguntas <i class="fa fa-save"></i></button>
+
+		<?= $this->Form->end(); ?>
+
 	</div>
 </div>
+
+
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".chosen").chosen({
+			'width':'100%'
+		});
+	});
+</script>
+
+
