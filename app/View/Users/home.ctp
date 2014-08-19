@@ -34,21 +34,29 @@
 
 	</div>
 	<div class="col-md-6">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="row">
-				    <div class="col-md-12 ">
-				        <div class="content-box border-top border-blue-alt pad0A">
-				            <h3 class="content-header clearfix">
-				            </h3>
-				            <div class="content-box-wrapper">
-				                <div id="calendar" class="col-md-12 center-margin"></div>
-				            </div>
-				        </div>
-				    </div>
-				</div> 
-			</div>
+		<!-- Responsive calendar - START -->
+		<div class="responsive-calendar">
+		  <div class="controls">
+		        <br>
+		      <a class="pull-left" data-go="prev"><div class="btn"><i class="fa fa-arrow-left"></i></div></a>
+		      <h4><span data-head-month></span>&nbsp;&nbsp;&nbsp;<span data-head-year></span></h4>
+		      <a class="pull-right" data-go="next"><div class="btn"><i class="fa fa-arrow-right"></i></div></a>
+		  </div>
+		  <hr/>
+		  <div class="day-headers">
+		    <div class="day header">L</div>
+		    <div class="day header">M</div>
+		    <div class="day header">M</div>
+		    <div class="day header">J</div>
+		    <div class="day header">V</div>
+		    <div class="day header">S</div>
+		    <div class="day header">D</div>
+		  </div>
+		  <div class="days" data-group="days">
+		    <!-- the place where days will be generated -->
+		  </div>
 		</div>
+		<!-- Responsive calendar - END -->
 	</div>
 </div>
 
@@ -77,28 +85,16 @@
             success: function(data){
                 eventos = $.parseJSON(data);
 
-                $('#calendar').fullCalendar({
-                    height: 400, 
-                    header: {
-                        left: 'prev,next',
-                        center: 'title',
-                        right: ''
-                    },
-                    editable: false,
-                    dropable:false,
+                //alert(data);
+
+                $(".responsive-calendar").responsiveCalendar({
                     events: eventos,
-                    // eventColor: 'blue'
-                });
-
-                $(".fc-event").each(function(){
-                    var txt = $(this).find(".fc-event-title").html();
-                    $(this).attr("title", txt);
-
-                    $(this).tooltip();
-                });
+                    translateMonths: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+                }); 
                 
             }
-        })
+
+        });
         
         
         
