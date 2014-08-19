@@ -72,6 +72,7 @@
         <?= $this->Html->script('raphael-min') ?> 
         <?= $this->Html->script('prettify.min') ?> 
         <?= $this->Html->script('dropzone') ?> 
+        <?= $this->Html->script('highchart/highcharts.js') ?> 
         
         
 
@@ -83,10 +84,10 @@
 
 
         <script type="text/javascript">
-        $(window).resize(function(){
-            $(".autocomplete-input").val($(window).width());
-            $(".search-input").val($(window).width());
-        });
+        // $(window).resize(function(){
+        //     $(".autocomplete-input").val($(window).width());
+        //     $(".search-input").val($(window).width());
+        // });
 
 
 
