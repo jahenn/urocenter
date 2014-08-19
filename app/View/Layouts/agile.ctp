@@ -211,7 +211,7 @@
                                 </a>
                                 <ul class="dropdown-menu float-right">
                                     <li>
-                                        <span data-original-title="You can add badges even to dropdown menus!" title="" class="badge badge-absolute float-left radius-all-100 mrg5R bg-green tooltip-button">7</span>
+                                        <!-- <span data-original-title="You can add badges even to dropdown menus!" title="" class="badge badge-absolute float-left radius-all-100 mrg5R bg-green tooltip-button">7</span> -->
                                         <?php $url_profile = $this->Html->url(array(
                                             'controller'=>'users',
                                             'action'=>'profile'
