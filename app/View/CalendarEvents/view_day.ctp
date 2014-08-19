@@ -7,19 +7,19 @@
   </div>
 </div>
 
-
+<?php $i=0; ?>
 <?php foreach($events as $event): ?>
-
+  <?php $i++; ?>
   <div class="panel-group" id="accordion">
     <div class="panel alert-success">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne_<?= $i ?>">
             <?= $event['CalendarEvent']['titulo'] ?>
           </a>
         </h4>
       </div>
-      <div id="collapseOne" class="panel-collapse collapse">
+      <div id="collapseOne_<?= $i ?>" class="panel-collapse collapse">
         <div class="panel-body">
           <?= $event['CalendarEvent']['descripcion'] ?>
     <br><br>
