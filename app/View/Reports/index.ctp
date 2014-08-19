@@ -40,7 +40,10 @@
 
 <script type="text/javascript">
 	$(function () {
-	    $.getJSON('http://localhost/rx/reports/users_year_data', function(response){
+
+		var url_general = "<?= $this->Html->url(array('action'=>'users_year_data', true)) ?>";
+
+	    $.getJSON(url_general, function(response){
 
 	    	console.log(response);
 
