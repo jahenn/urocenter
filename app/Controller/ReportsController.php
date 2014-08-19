@@ -3,7 +3,66 @@
 		public function index(){}
 
 
+		public function users_month_data() {
+			$this->autoRender = false;
 
+
+			$fecha_comienzo = date('Y-m-d', Strtotime ("-1 month")); 
+
+			$datos = array();
+
+			$this->loadModel('User');
+			$this->loadModel('Exam');
+
+			for($i=1; $i<= 31; $i++) {
+
+				$users = $this->User->find('count', array(
+					'conditions'=>array(
+						'fecha_registro >=' => $fecha_comienzo,
+						'fecha_registro <=' => $fecha_comienzo.' 23:59:59' 
+						)
+					));
+
+				$this->Exam->virtualFields['resultado'] = 0;
+				$examenes = $this->Exam->find('first', array(
+					'fields'=>array(
+						'ifnull(avg(Exam.resultado),0) as Exam__resultado'
+						),
+					'conditions'=>array(
+						'fecha >=' => $fecha_comienzo,
+						'fecha <=' => $fecha_comienzo.' 23:59:59' 
+						)
+
+					));
+
+				$examenes = $examenes['Exam']['resultado'];
+
+
+				$cantidad_examenes = $this->Exam->find('count', array(
+					'conditions'=>array(
+						'fecha >=' => $fecha_comienzo,
+						'fecha <=' => $fecha_comienzo.' 23:59:59' 
+					)));
+
+
+				if($users != 0 || abs($examenes) != 0 || $cantidad_examenes != 0)
+				{
+					$datos['fechas'][] = $fecha_comienzo;
+					$datos['usuarios'][] = $users;
+					$datos['examenes'][] = abs($examenes);
+					$datos['no_examenes'][] = abs($cantidad_examenes);
+				}
+
+				
+
+				$fecha_comienzo = date('Y-m-d', Strtotime ( $fecha_comienzo." +1 day")); 
+
+			}
+
+
+			echo json_encode($datos);
+
+		}
 
 		public function users_year_data(){
 			$this->autoRender = false;
