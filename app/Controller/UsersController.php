@@ -98,11 +98,11 @@ class UsersController extends AppController {
 				}
 
 
-				// $this->User->RolesUser->create();
-				// $this->User->RolesUser->save(array(
-				// 	'user_id'=>$user_id,
-				// 	'role_id'=> USER_ROLE
-				// 	));
+				$this->User->RolesUser->create();
+				$this->User->RolesUser->save(array(
+					'user_id'=>$user_id,
+					'role_id'=> USER_ROLE
+					));
 
 
 
