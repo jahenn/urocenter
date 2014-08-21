@@ -64,6 +64,18 @@
 				<label for="fecha_registro"><i class="fa fa-calendar"></i> Fecha de Registro</label>
 				<span id="fecha_registro"><?= date('d M Y', strtotime($user['User']['fecha_registro'] )) ?></span>
 			</div>
+			<div class="col-md-12">
+				<label for="nacionalidad"><i class="fa fa-flag"></i> Nacionalidad</label>
+				<span id="nacionalidad"><?= $user['User']['nacionalidad'] ?></span>
+			</div>
+			<div class="col-md-12">
+				<label for="nacionalidad"><i class="fa fa-bullseye"></i> Sexo</label>
+				<span id="nacionalidad"><?= $user['User']['sexo'] ?></span>
+			</div>
+			<div class="col-md-12">
+				<label for="hospital"><i class="fa fa-h-square"></i> Hospital</label>
+				<span id="hospital"><?= $user['User']['hospital'] ?></span>
+			</div>
 		</div>
 		<br>
 		<div class="row">

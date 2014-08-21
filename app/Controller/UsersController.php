@@ -52,8 +52,14 @@ class UsersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$this->request->data['User']['nombre_completo'] = $this->request->data['User']['nombre'] 
+				. ' ' 
+				. $this->request->data['User']['apellido'];
+
+				
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
+
 
 				//add own role
 				
@@ -64,10 +70,14 @@ class UsersController extends AppController {
 
 
 				$this->User->Role->create();
-				$this->User->Role->save(array(
+				if (!$this->User->Role->save(array(
+
 					'nombre'=>$this->request->data['User']['username'],
 					'user_role'=>true
-					));
+					))) {
+
+					debug($this->validationErrors); die();
+				}
 
 				$role_id = $this->User->Role->getLastInsertId();
 
@@ -80,10 +90,12 @@ class UsersController extends AppController {
 				
 
 				$this->User->RolesUser->create();
-				$this->User->RolesUser->save(array(
+				if(!$this->User->RolesUser->save(array(
 					'user_id'=>$user_id,
 					'role_id'=>$role_id
-					));
+					))) {
+					debug($this->validationErrors); die();
+				}
 
 
 				// $this->User->RolesUser->create();
@@ -108,7 +120,7 @@ class UsersController extends AppController {
 					}
 				}
 
-				exit();
+				//exit();
 
 				return $this->redirect(array('action' => 'register_complete'));
 			} else {

@@ -131,7 +131,9 @@ label{
 .width-12{
     width: 90% !important;
 }
-
+.width-6{
+    width: 30% !important;
+}
 .width-50px{
     width: 50px !important;
 }
