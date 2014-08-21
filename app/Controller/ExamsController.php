@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Exams Controller
  *
@@ -142,4 +143,7 @@ class ExamsController extends AppController {
 		echo json_encode($exams);
 
 	}
+
+
+	
 }

@@ -238,7 +238,11 @@
                                     'controller'=>'questions',
                                     'action'=>'add'
                                 )); ?>
-                                <a href="#" class="btn btn-info" >
+                                <?php $random_url = $this->Html->url(array(
+                                    'controller'=>'scheduled_exams',
+                                    'action'=>'add_random'
+                                )); ?>
+                                <a href="<?= $random_url ?>" class="btn btn-info" >
                                     Examen Aleatorio 
                                     <i class="fa fa-arrow-right"></i>
                                 </a>

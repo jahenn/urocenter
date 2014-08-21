@@ -17,18 +17,12 @@
         	<?php endforeach ?>
         </div>
         <?php $fecha = new DateTime($this->request->data['ScheduledExam']['fecha_programada']); ?>
-        <?php $fecha_limite = new DateTime($this->request->data['ScheduledExam']['fecha_limite']); ?>
 
         <div class="group2 col-md-6">
                <div class="float-right">
 	               	<i class="fa fa-clock-o"></i>
 	               	Fecha Programada
 	               	<span class="font-blue-alt"><?= $fecha->format('d M Y') ?></span>  
-
-	               	<br>
-	               	<i class="fa fa-clock-o"></i>
-	               	Fecha Limite
-	               	<span class="font-blue-alt"><?= $fecha_limite->format('d M Y') ?></span>  
                </div>               
         </div>
     </div>

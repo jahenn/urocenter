@@ -236,17 +236,22 @@ class ScheduledExamsController extends AppController {
 			$tmp_exam = array(
 				'titulo'=>$exam['ScheduledExam']['titulo'],
 				'descripcion' => $exam['ScheduledExam']['comentarios'],
-				'fecha'=>null,
+				'fecha'=>date('Y-m-d'),
 				'user_id'=>$this->Auth->user()['id'],
 				'resultado'=>0,
-				'estatus'=>1
+				'estatus'=>1,
 				);
 
 
+
 			$this->loadModel('Exam');
+
+
 			$this->Exam->create();
 			if($this->Exam->save($tmp_exam))
 			{
+
+
 
 				$exam_id = $this->Exam->getlastInsertId();
 				$this->loadModel('ExamAnswer');
@@ -446,7 +451,7 @@ class ScheduledExamsController extends AppController {
 	}
 
 
-	public function randomize($id, $elements = 10, $categoria = 0, $difficulty=1)
+	public function randomize($id, $elements = 10, $categoria = 0, $difficulty=1, $redirect = true)
 	{
 		$this->autoRender = false;
 
@@ -504,10 +509,15 @@ class ScheduledExamsController extends AppController {
 				));
 		}
 
-		$this->redirect(array(
-			'action'=>'view',
-			$id
-			));
+		
+		if($redirect) {
+			$this->redirect(array(
+				'action'=>'view',
+				$id
+				));
+		}else{
+			return true;
+		}
 
 
 
@@ -518,5 +528,60 @@ class ScheduledExamsController extends AppController {
 		// $v = new View();
 		// pr($v->element('sql_dump'));
 		
+	}
+
+
+	public function add_random() {
+
+		if($this->request->is('post'))
+		{
+			// App::import('Controller', 'Questions');
+
+			// $q = new QuestionsController;
+			$this->ScheduledExam->create();
+			$exam = array(
+				'fecha_programada'=>date('Y-m-d'),
+				'estatus'=>3,
+				'titulo' => 'Examen Random',
+				'question_category_id' => $this->request->data['random_exam']['question_category_id'],
+				'question_difficulty_id'=> $this->request->data['random_exam']['question_difficulty_id'],
+				'numero_preguntas'=> $this->request->data['random_exam']['cantidad'],
+				'scheduled_exam_status_id'=> 3
+
+				);
+
+
+			$this->ScheduledExam->save($exam);
+
+			$id = $this->ScheduledExam->getlastInsertId();
+			$cantidad  = $this->request->data['random_exam']['cantidad'];
+			$categoria = $this->request->data['random_exam']['question_category_id'];
+			$dificultad = $this->request->data['random_exam']['question_difficulty_id'];
+
+
+			$this->randomize($id, $cantidad, $categoria, $dificultad, false);
+
+			$this->redirect(array(
+				'controller'=>'scheduled_exams',
+				'action'=>'resolve', $id
+				));
+
+			pr($this->request->data); exit();
+
+
+
+
+		}
+
+
+		$this->loadModel('QuestionCategory');
+		$this->loadModel('QuestionDifficulty');
+
+
+		$questionCategories = $this->QuestionCategory->find('list');
+		$questionDifficulties = $this->QuestionDifficulty->find('list');
+
+
+		$this->set(compact('questionCategories', 'questionDifficulties'));
 	}
 }
