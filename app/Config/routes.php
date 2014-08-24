@@ -15,6 +15,10 @@ $c = new Controller();
 
 
 $rutas = explode('/', Router::url());
+
+
+pr($rutas); exit();
+
 $rutas = $rutas[2];
 
 
