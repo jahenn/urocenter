@@ -17,9 +17,19 @@ $c = new Controller();
 $rutas = explode('/', Router::url());
 
 
-pr($rutas); exit();
+switch (count($rutas)) {
+	case 2:
+		$rutas = $rutas[1];
+		break;
+	case 3:
+		$rutas = $rutas[2];
+		break;
+	default:
+		$rutas = '';
+		break;
+}
 
-$rutas = $rutas[2];
+
 
 
 $user_id = $users->field('id', array(
