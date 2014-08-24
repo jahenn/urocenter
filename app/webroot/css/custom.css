@@ -142,14 +142,14 @@ label{
     background-color: #c1cad5;
 }
 
-.search-input{
-    width: 200px;
+.search-input-o{
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 5px 10px;
+    width: 80%;
 }
 
 /*#header-logo img {
@@ -186,9 +186,6 @@ label{
     #header-logo img {
       width: 100px;
     }
-    .search-input{
-        width: 130px;
-    }
 }
 @media (max-width: 854px){
     #responsive-open-menu{
@@ -212,9 +209,6 @@ label{
     }
     #header-logo img {
       width: 180px;
-    }
-    .search-input{
-        width: 90%;
     }
 }
 

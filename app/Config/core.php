@@ -1,4 +1,5 @@
 <?php
+// Configure::write('Routing.prefixes', array('admin'));
 /**
  * This is core configuration file.
  *

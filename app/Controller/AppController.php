@@ -49,6 +49,10 @@ class AppController extends Controller {
 
 	public function beforeFilter()
 	{
+
+		
+
+
 		$this->loadModel('Menu');
 		$this->Menu->unbindModel(array(
 			'belongsTo' => array(
@@ -68,7 +72,7 @@ class AppController extends Controller {
 		$is_admin = $this->User->isAdmin($this->Auth->user()['id']);
 
 		$this->set(compact('menus_bar', 'is_admin'));
-
+		
 		
 		$this->layout = 'agile';
 

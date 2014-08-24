@@ -30,6 +30,9 @@ class UsersController extends AppController {
 			));
 	}
 
+
+
+
 /**
  * view method
  *
@@ -106,7 +109,9 @@ class UsersController extends AppController {
 
 
 
-				$this->Session->setFlash(__('El Usuario se Guardo Correctamente'));
+				$this->Session->setFlash(__('El Usuario se Guardo Correctamente'), 'default', array(
+					'class'=>'alert alert-success'
+					));
 
 				
 
@@ -158,29 +163,19 @@ class UsersController extends AppController {
 					)
 				));
 
+			if(!$this->User->isAdmin($id))
+			{
+				$this->request->data['Role']['Role'][] = USER_ROLE;
+			}
 
-
-			// $this->request->data['User']['password'] = '';
 			$this->request->data['Role']['Role'][] = $role['Role']['id'];
-			// $this->request->data['Role']['Role'][] = USU;
-
-
-			//pr($this->request->data);exit();
-
 			
 
-			
-			//$this->User->read();
-
-			//pr($this->request->data);
+			$this->request->data['User']['nombre_completo'] = $this->request->data['User']['nombre'] 
+				. ' ' 
+				. $this->request->data['User']['apellido'];
 
 			if ($this->User->save($this->request->data)) {
-
-				//pr($this->request->data);exit();
-
-				//$this->User->id = $id;
-				//$this->User->read();
-				//$this->User->saveField('role_id', $role['Role']['id']);
 
 
 				$this->Session->setFlash(__('The user has been saved.'));
@@ -477,8 +472,18 @@ class UsersController extends AppController {
 
 
 		$this->Auth->allow('register');
+		$this->Auth->allow('login');
+		$this->Auth->allow('login_redirect');
 		$this->Auth->allow('register_complete');
-		$this->Auth->allow('add');
+		$this->Auth->allow('profile');
+		$this->Auth->allow('home');
+		$this->Auth->allow('publico');
+		$this->Auth->allow('logout');
+		// $this->Auth->allow('add');
+	}
+
+	public function publico() {
+
 	}
 
 	public function profile(){
@@ -515,6 +520,10 @@ class UsersController extends AppController {
 
 		$this->set(compact('user'));
 		$this->render('view');
+	}
+
+	public function isAuthorized($user) {
+		return false;
 	}
 
 }

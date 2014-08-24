@@ -1,4 +1,39 @@
 <?php
+
+
+
+/**
+ * Seccion que define los perfiles de usuario en accespo rapido domain.com/miusuario
+ * que redirecciona a profiles/1
+ */
+
+App::uses('User', 'Model');
+App::uses('Controller', 'Controller');
+
+$users = new User();
+$c = new Controller();
+
+
+$rutas = explode('/', Router::url());
+$rutas = $rutas[2];
+
+
+$user_id = $users->field('id', array(
+	'username'=>$rutas
+	)); 
+
+
+
+if($rutas != '' && $user_id > 0)
+{
+	Router::connect('/'.$rutas, array('controller' => 'users', 'action' => 'publico', $user_id));
+}
+
+
+
+//exit();
+
+
 /**
  * Routes configuration
  *
@@ -29,6 +64,8 @@
  * ...and connect the rest of 'Pages' controller's URLs.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+
+	// Router::connect('/u*', array('controller'=>'users', 'action'=>'ok'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

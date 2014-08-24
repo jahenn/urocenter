@@ -20,20 +20,26 @@
 		<?= $this->Form->input('username', array(
 					'label'=>false,
 					'class'=>'form-control',
-					'placeholder'=>'Nombre de Usuario'
+					'placeholder'=>'Nombre de Usuario',
+					'autocomplete'=>'off',
+					'required'=>true
 
 					)) ?> 
 		<?= $this->Form->input('password', array(
 					'label'=>false,
 					'class'=>'form-control',
-					'placeholder'=>'Contraseña'
+					'placeholder'=>'Contraseña',
+					'autocomplete'=>'off',
+					'required'=>true
 					)) ?> 
 
 		<?= $this->Form->input('email', array(
 					'label'=>false,
 					'class'=>'form-control',
 					'placeholder'=>'Correo Electronico',
-					'type'=>'email'
+					'type'=>'email',
+					'autocomplete'=>'off',
+					'required'=>true
 					)) ?> 
 	</div>
 
@@ -44,21 +50,27 @@
 		<?= $this->Form->input('nombre', array(
 					'label'=>false,
 					'class'=>'form-control',
-					'placeholder'=>'Nombre'
+					'placeholder'=>'Nombre',
+					'autocomplete'=>'off',
+					'required'=>true
 					)) ?>
 	</div>
 	<div class="col-md-6">
 		<?= $this->Form->input('apellido', array(
 					'label'=>false,
 					'class'=>'form-control',
-					'placeholder'=>'Apellido'
+					'placeholder'=>'Apellido',
+					'autocomplete'=>'off',
+					'required'=>true
 					)) ?> 
 	</div>
 	<div class="col-md-6">
 		<?= $this->Form->input('nacionalidad', array(
 					'label'=>false,
 					'class'=>'form-control',
-					'placeholder'=>'Nacionalidad'
+					'placeholder'=>'Nacionalidad',
+					'autocomplete'=>'off',
+					'required'=>true
 					)) ?> 
 	</div>
 	<div class="col-md-6">
@@ -66,22 +78,26 @@
 					'label'=>false,
 					'class'=>'form-control',
 					'placeholder'=>'Sexo',
-					'options'=>array('H'=>'Hombre', 'M'=>'Mujer')
+					'options'=>array('H'=>'Hombre', 'M'=>'Mujer'),
+					'autocomplete'=>'off',
+					'required'=>true
 					)) ?> 
 	</div>
 	<div class="col-md-12">
 		<?= $this->Form->input('hospital', array(
 					'label'=>false,
 					'class'=>'form-control',
-					'placeholder'=>'Hospital'
+					'placeholder'=>'Hospital',
+					'autocomplete'=>'off',
+					'required'=>true
 					)) ?> 
 	</div>
 </div>
 
 
+<br>
 
-
-<button class="btn medium primary-bg submit" type="submit">Registrarse <i class="fa fa-check"></i></button>
+<button class="btn btn-lg btn-primary" type="submit">Registrarse <i class="fa fa-check"></i></button>
 <?= $this->Form->end() ?>
 
 

@@ -19,23 +19,60 @@
 )) ?> 
 <br>
 
-<?= $this->Form->input('username', array(
-'label'=>'Nombre de Usuario',
-'class'=>'form-control width-12'
-)) ?> 
-<br>
+<div class="row">
+	<div class="col-md-6">
+		<?= $this->Form->input('username', array(
+		'label'=>'Nombre de Usuario',
+		'class'=>'form-control width-12', 'disabled'=>false
+		)) ?> 
+	</div>
+	<div class="col-md-6">
+		<?= $this->Form->input('email', array(
+		'label'=>'Correo Electronico',
+		'class'=>'form-control width-12'
+		)) ?> 
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<?= $this->Form->input('nombre', array(
+		'label'=>'Nombre',
+		'class'=>'form-control width-12'
+		)) ?> 
+	</div>
+	<div class="col-md-6">
+		<?= $this->Form->input('apellido', array(
+		'label'=>'Apellido (s)',
+		'class'=>'form-control width-12'
+		)) ?> 
+	</div>
+	
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<?= $this->Form->input('nacionalidad', array(
+		'label'=>'Nacionalidad',
+		'class'=>'form-control width-12'
+		)) ?> 
+	</div>
+	<div class="col-md-6">
+		<?= $this->Form->input('sexo', array(
+		'options'=>array('H'=>'Hombre', 'M'=>'Mujer'),
+		'label'=>'Sexo',
+		'class'=>'form-control width-12'
+		)) ?> 
+	</div>
+	
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<?= $this->Form->input('hospital', array(
+		'label'=>'Hospital',
+		'class'=>'form-control width-12'
+		)) ?> 
+	</div>
+</div>
 
-<?= $this->Form->input('nombre_completo', array(
-'label'=>'Nombre Completo',
-'class'=>'form-control width-12'
-)) ?> 
-<br>
-
-
-<?= $this->Form->input('email', array(
-'label'=>'Correo Electronico',
-'class'=>'form-control width-12'
-)) ?> 
 
 
 <?php if($is_admin): ?>
