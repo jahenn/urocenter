@@ -26,6 +26,8 @@ $user_id = $users->field('id', array(
 
 if($rutas != '' && $user_id > 0)
 {
+	pr("entra");
+
 	Router::connect('/'.$rutas, array('controller' => 'users', 'action' => 'publico', $user_id));
 }
 
