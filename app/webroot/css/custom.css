@@ -1,3 +1,30 @@
+#sidebar-menu {
+    width: 90% !important;
+}
+.profile-bar{
+    display: block !important;
+    min-height: 300px !important;
+
+}
+
+.profile-bar .content-avatar {
+    /*background-color: #37485d;*/
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 100%;
+
+}
+
+.profile-bar .content-avatar img {
+    border-radius: 20px;
+    height: 120px;
+    margin: 0 auto;
+    width: 120px;
+
+}
+
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 .user-avatar{
     width: 35px;
@@ -167,6 +194,22 @@ label{
       width: 120px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*media querys*/
 
 

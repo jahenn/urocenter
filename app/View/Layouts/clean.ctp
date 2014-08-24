@@ -118,8 +118,31 @@
                     </a>
                 </div>
 
-                
 
+
+
+                <div id="sidebar-menu" class="scrollable-content" >
+                    
+                    <div class="profile-bar">
+                        <div class="content-avatar">
+                            <?= $this->element('avatar_user', array(
+                                'custom_user'=>$public_user['User']
+                            )) ?>
+                        </div>
+                        <div class="content-body">
+                            <table class="table">
+                                <tr>
+                                    <th>Mi Calificación</th>
+                                    <td>80 Pts <i class="fa fa-check" style="color:green;"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Examenes Resueltos</th>
+                                    <td>26</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
             </div><!-- #page-sidebar -->
            
@@ -127,19 +150,14 @@
 
                 <div id="page-main-wrapper">
 
-                    <div id="page-header" class="clearfix" style="min-height:50px;">
+                    <div id="page-header" class="clearfix " style="min-height:50px;">
                         <div id="page-header-wrapper" class="clearfix">
-
-
-
-
-
 
 
                         </div>
                     </div><!-- #page-header -->
 
-                    <div id="page-breadcrumb-wrapper" style="height:0px;padding:0px; margin:0px;min-height:50px;">
+                    <div id="page-breadcrumb-wrapper" class='hidden-xs' style="height:0px;padding:0px; margin:0px;min-height:50px;">
                         <!-- <div id="page-breadcrumb">
                             <a href="javascript:;" title="Dashboard">
                                 <i class="glyph-icon icon-dashboard"></i>
@@ -158,14 +176,25 @@
 
                     <div id="page-content">
                     
+<!-- <h4 class="heading-1 clearfix">
+    <div class="heading-content">
+        Files uploader
+        <small>
+            File Upload widget with multiple file selection, drag&drop support, progress bars, validation and preview images, audio and video for jQuery.
+        </small>
+    </div>
+    <div class="clear"></div>
+    <div class="divider"></div>
+</h4> -->
+
+<?php echo $this->Session->flash(); ?>
+<?php echo $this->fetch('content'); ?>
 
 
 
 
-
-
-                	</div><!-- #page-content -->
-	            </div><!-- #page-main -->
+                    </div><!-- #page-content -->
+                </div><!-- #page-main -->
             </div><!-- #page-main-wrapper -->
         </div><!-- #page-wrapper -->
 

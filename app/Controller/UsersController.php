@@ -482,7 +482,17 @@ class UsersController extends AppController {
 		// $this->Auth->allow('add');
 	}
 
-	public function publico() {
+	public function publico($id) {
+		$this->loadModel('User');
+
+
+		$public_user = $this->User->find('first', array(
+			'conditions'=>array(
+				'id'=>$id
+				)
+			));
+
+		$this->set(compact('public_user'));
 
 	}
 
