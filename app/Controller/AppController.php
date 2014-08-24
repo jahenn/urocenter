@@ -74,7 +74,7 @@ class AppController extends Controller {
 		$this->set(compact('menus_bar', 'is_admin'));
 		
 		
-		$this->layout = 'agile';
+		//$this->layout = 'agile';
 
 
 		

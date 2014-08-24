@@ -1,14 +1,15 @@
-#sidebar-menu {
-    width: 90% !important;
-}
+
 .profile-bar{
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     display: block !important;
-    min-height: 300px !important;
+    /*min-height: 300px !important;*/
+    /*height:100%;*/
 
 }
 
 .profile-bar .content-avatar {
-    /*background-color: #37485d;*/
+    background-color: #3D5777;
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;

@@ -488,11 +488,19 @@ class UsersController extends AppController {
 
 		$public_user = $this->User->find('first', array(
 			'conditions'=>array(
-				'id'=>$id
+				'User.id'=>$id
 				)
 			));
 
-		$this->set(compact('public_user'));
+
+		$users_top = $this->User->find('all', array(
+			'order'=>array(
+				'UserRating.rating'
+				),
+			'limit'=>10
+			));
+
+		$this->set(compact('public_user', 'users_top'));
 
 	}
 
