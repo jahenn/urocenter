@@ -1,3 +1,4 @@
+
 <?php $logged_user = $this->Session->read('Auth.User') ?>
 <!DOCTYPE html>
 <html>

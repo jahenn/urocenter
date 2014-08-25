@@ -1,3 +1,4 @@
+<?php $this->layout = 'agile'; ?>
 
 <div class="profile-box bg-white content-box">
 	<div class="content-box-header clearfix">
@@ -89,7 +90,11 @@
 						<a href="<?= $aprobar_url ?>" class="btn btn-success">Aprobar Usuario <i class="fa fa-check"></i></a>
 					</div>
 				<?php else: ?>
-					<div class="btn btn-success"><i class="fa fa-check"></i> Usuario Activo</div>
+					<!-- <div class="btn btn-success"><i class="fa fa-check"></i> Usuario Activo</div> -->
+					<?php $user_profle = $this->Html->url(array(
+						'controller'=> str_replace(' ', '-', trim($user['User']['username']))
+					)); ?>
+					<a href="<?= $user_profle ?>" class="btn btn-primary btn-lg"><i class="fa fa-user"></i> Ver Perfil</a>
 				<?php endif ?>
 			</div>
 			

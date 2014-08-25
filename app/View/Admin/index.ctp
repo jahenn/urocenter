@@ -1,4 +1,5 @@
 
+<?php $this->layout = 'agile'; ?>
 <div class="row">
     <div class="col-md-12">
         <span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> </span>
@@ -109,44 +110,6 @@
 
 <!--  -->
 
-    <div class="col-md-6">
-
-
-        
-
-
-
-        <div class="row">
-
-            
-        </div> <!-- End Row -->
-
-        <br>
-
-        <div class="row">
-            
-        </div> <!-- End row -->
-        
-
-
-
-        <div class="row">
-            
-        </div>
-        <div class="row">
-            <div class="col-md-12 ">
-                <div class="content-box border-top border-blue-alt pad0A">
-                    <h3 class="content-header clearfix">
-                    </h3>
-                    <div class="content-box-wrapper">
-                        <div id="calendar" class="col-md-12 center-margin"></div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End row -->
-
-
-    </div>
 </div>
 
 <br>

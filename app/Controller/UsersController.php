@@ -59,6 +59,9 @@ class UsersController extends AppController {
 				. ' ' 
 				. $this->request->data['User']['apellido'];
 
+
+			$this->request->data['User']['fecha_registro'] = date('Y-m-d H:i:s');
+
 				
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -105,6 +108,13 @@ class UsersController extends AppController {
 				$this->User->RolesUser->save(array(
 					'user_id'=>$user_id,
 					'role_id'=> USER_ROLE
+					));
+
+
+				$this->User->UserRating->create();
+				$this->User->UserRating->save(array(
+					'user_id'=>$user_id,
+					'rating'=>0
 					));
 
 
@@ -280,8 +290,12 @@ class UsersController extends AppController {
 
 	}
 
+
+
 	public function group($type){
 		$users = array();
+
+		
 
 		switch ($type) {
 			case 'nuevos':
@@ -293,7 +307,7 @@ class UsersController extends AppController {
 								)
 							));
 
-				//pr($users); exit();
+				//print_r($users); exit();
 
 				break;
 
@@ -338,24 +352,6 @@ class UsersController extends AppController {
 						));
 				}else{
 					$role_id = $role_id['Role']['id'];
-					// $this->User->Role->recursive = 2;
-					// $this->User->Role->unbindModel(array(
-					// 	'hasAndBelongsToMany' => array('Menu')
-					// 	));
-					// $roles = $this->User->Role->find('first', array(
-					// 	'conditions'=>array(
-					// 		'Role.id' => $role_id
-					// 		)
-					// 	));
-
-					// //pr($roles);
-
-					// foreach ($roles['User'] as $key => $value) {
-					// 	if(!$value['baja'] && !$value['activo'] || 1==1)
-					// 	{
-					// 		$users[]['User'] = $value;
-					// 	}
-					// }
 
 
 					$this->paginate = array(
@@ -427,6 +423,8 @@ class UsersController extends AppController {
 		$this->set('grupo', ucwords($type));
 
 		$this->set('users', $users);
+		
+		// pr($users); exit();
 		//$this->render('group');
 	}
 
@@ -479,7 +477,7 @@ class UsersController extends AppController {
 		$this->Auth->allow('home');
 		$this->Auth->allow('publico');
 		$this->Auth->allow('logout');
-		// $this->Auth->allow('add');
+		$this->Auth->allow('add');
 	}
 
 	public function publico($id) {
@@ -495,7 +493,7 @@ class UsersController extends AppController {
 
 		$users_top = $this->User->find('all', array(
 			'order'=>array(
-				'UserRating.rating'
+				'UserRating.rating desc'
 				),
 			'limit'=>10
 			));
@@ -541,6 +539,10 @@ class UsersController extends AppController {
 	}
 
 	public function isAuthorized($user) {
+		if($this->User->isAdmin($user)){
+			return true;
+		}
+
 		return false;
 	}
 

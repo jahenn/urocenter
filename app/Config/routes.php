@@ -17,6 +17,9 @@ $c = new Controller();
 $rutas = explode('/', Router::url());
 
 
+//	pr($rutas); exit();
+
+
 switch (count($rutas)) {
 	case 2:
 		$rutas = $rutas[1];
@@ -29,18 +32,23 @@ switch (count($rutas)) {
 		break;
 }
 
+$username = str_replace('-', ' ', $rutas);
+
 
 
 
 $user_id = $users->field('id', array(
-	'username'=>$rutas
+	'username'=>$username,
+	'activo'=>1
 	)); 
 
+
+//pr($user_id); exit();
 
 
 if($rutas != '' && $user_id > 0)
 {
-	//pr("entra");
+	//pr("entra"); exit();
 
 	Router::connect('/'.$rutas, array('controller' => 'users', 'action' => 'publico', $user_id));
 }

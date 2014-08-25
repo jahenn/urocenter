@@ -1,3 +1,7 @@
+<?php $this->layout = 'agile'; ?>
+
+
+
 <style type="text/css">
 	/*media querys*/
 @media (max-width: 500px) {
