@@ -530,7 +530,7 @@ class UsersController extends AppController {
 		$user_id = $this->Auth->user()['id'];
 		$user = $this->User->find('first', array(
 			'conditions'=>array(
-				'id'=>$user_id
+				'User.id'=>$user_id
 				)
 			));
 
