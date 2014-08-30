@@ -93,18 +93,18 @@
 				
 
 			<tr>
-				<th>
+				<td>
 					<?= $answer['pregunta'] ?>
-				</th>
-				<th>
+				</td>
+				<td>
 					<?= $answer['respuesta'] ?>
-				</th>
-				<th>
+				</td>
+				<td>
 					<?= $answer['respuesta_correcta'] ?>
-				</th>
-				<th>
+				</td>
+				<td>
 					<?= (($answer['correcta'])?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>') ?>
-				</th>
+				</td>
 			</tr>
 		<?php endforeach ?>
 	</tbody>
