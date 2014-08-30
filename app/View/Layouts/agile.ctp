@@ -243,7 +243,7 @@
                                     'action'=>'add_random'
                                 )); ?>
                                 <a href="<?= $random_url ?>" class="btn btn-info" >
-                                    Examen Aleatorio 
+                                    Auto Evaluación
                                     <i class="fa fa-arrow-right"></i>
                                 </a>
                                 <a href="<?= $new_question_url ?>" class="btn btn-success">
