@@ -225,12 +225,20 @@ class ScheduledExamsController extends AppController {
 
 		if($this->request->is('post'))
 		{
-
+			$this->ScheduledExam->bindModel(array(
+				'belongsTo'=>array(
+					'QuestionCategory'
+					)
+				));
 			$exam = $this->ScheduledExam->find('first', array(
 				'conditions'=>array(
 					'ScheduledExam.id'=>$id
 					)
 				));
+
+			$exam_category = $exam['QuestionCategory']['nombre'];
+
+			//pr($exam); exit();
 
 
 			$tmp_exam = array(
@@ -240,6 +248,7 @@ class ScheduledExamsController extends AppController {
 				'user_id'=>$this->Auth->user()['id'],
 				'resultado'=>0,
 				'estatus'=>1,
+				'categoria'=>$exam_category
 				);
 
 
@@ -292,6 +301,10 @@ class ScheduledExamsController extends AppController {
 							 		)
 							 	));
 
+							 //pr($answer_correct);
+
+							 $correct_text = $answer_correct['Answer']['answer'];
+
 							 $correcto = false;
 							 if(count($answer_correct) > 0){
 							 	$correcto = true;
@@ -302,6 +315,7 @@ class ScheduledExamsController extends AppController {
 							 	'exam_id'=>$exam_id,
 							 	'pregunta'=>$question_text,
 							 	'respuesta'=>$answer_text,
+							 	'respuesta_correcta'=>$correct_text,
 							 	'correcta'=>$correcto,
 							 	'calificada'=>true
 							 	);
@@ -316,7 +330,10 @@ class ScheduledExamsController extends AppController {
 
 						}
 					}
+
+
 				}
+
 
 				//Opcion Multiple
 
@@ -332,11 +349,18 @@ class ScheduledExamsController extends AppController {
 						$this->loadModel('Question');
 						$this->loadModel('Answer');
 
+						$this->Question->bindModel(array(
+						 	'belongsTo'=>array(
+						 		'QuestionCategory'
+						 		)
+						 	));
+						// $this->Question->recursive = 3;
 						 $question = $this->Question->find('first', array(
 						 	'conditions'=>array(
 						 		'Question.id'=>$question_id
 						 		)
 						 	));
+
 
 						 $answer = $this->Answer->find('first', array(
 						 	'conditions'=>array(
@@ -349,6 +373,10 @@ class ScheduledExamsController extends AppController {
 						 $question_text = $question['Question']['question'];
 						 $answer_text = (isset($answer['Answer']['answer']))?$answer['Answer']['answer']:'';
 
+						 //pr($question);exit();
+						 $categoria =  $question['QuestionCategory']['nombre'];
+
+						 //pr($categoria);exit();
 
 
 						 $answer_correct = $this->Answer->find('first', array(
@@ -359,9 +387,14 @@ class ScheduledExamsController extends AppController {
 						 		)
 						 	));
 
+
+
+
+						 $correct_text = 'Sin respuesta correcta';
 						 $correcto = false;
 						 if(count($answer_correct) > 0){
 						 	$correcto = true;
+						 	$correct_text = $answer_correct['Answer']['answer'];
 						 }
 
 
@@ -369,8 +402,10 @@ class ScheduledExamsController extends AppController {
 						 	'exam_id'=>$exam_id,
 						 	'pregunta'=>$question_text,
 						 	'respuesta'=>$answer_text,
+						 	'respuesta_correcta'=>$correct_text,
 						 	'correcta'=>$correcto,
-						 	'calificada'=>true
+						 	'calificada'=>true,
+						 	'categoria'=>$categoria
 						 	);
 
 
@@ -378,6 +413,8 @@ class ScheduledExamsController extends AppController {
 						 $this->ExamAnswer->create();
 						 $this->ExamAnswer->save($tmp_answer);
 					}
+
+					//exit();
 				}
 
 
@@ -410,10 +447,9 @@ class ScheduledExamsController extends AppController {
 
 
 				$this->redirect(array(
-					'action'=>'thanks'
+					'controller'=>'exams',
+					'action'=>'review', $exam_id
 					));
-
-				echo "saved"; exit();
 			}
 
 

@@ -145,5 +145,21 @@ class ExamsController extends AppController {
 	}
 
 
+	public function review($id) {
+		$this->Exam->bindModel(array(
+			'hasMany'=>array(
+				'ExamAnswer'
+				)
+			));	
+		$exam = $this->Exam->find('first', array(
+			'conditions'=>array(
+				'Exam.id'=>$id
+				)
+			));
+
+		$this->set(compact('exam'));
+	}
+
+
 	
 }
