@@ -101,7 +101,7 @@ class RolesController extends AppController {
 		if (!$this->Role->exists()) {
 			throw new NotFoundException(__('Invalid role'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		//$this->request->allowMethod('post', 'delete');
 		if ($this->Role->delete()) {
 			$this->Session->setFlash(__('The role has been deleted.'));
 		} else {
