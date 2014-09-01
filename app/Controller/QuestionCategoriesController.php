@@ -93,7 +93,7 @@ class QuestionCategoriesController extends AppController {
 		if (!$this->QuestionCategory->exists()) {
 			throw new NotFoundException(__('Invalid question category'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		//$this->request->allowMethod('post', 'delete');
 		if ($this->QuestionCategory->delete()) {
 			$this->Session->setFlash(__('The question category has been deleted.'));
 		} else {
