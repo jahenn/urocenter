@@ -37,7 +37,9 @@
         <?= $this->Html->css('chosen') ?>
         <?= $this->Html->css('multi-select') ?>
         <?= $this->Html->css('custom') ?> 
-        <?= $this->Html->css('font-awesome.min') ?> 
+        <!-- <?= $this->Html->css('font-awesome.min') ?>  -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 
        

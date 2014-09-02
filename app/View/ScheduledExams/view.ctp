@@ -60,12 +60,13 @@
 						<th>#</th>
 						<th>Pregunta</th>
 						<th>Respuesta</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 			
 			<?php foreach($scheduledExam['Question'] as $question): ?>
-
+				<!-- <?php pr($question); ?> -->
 				<?php $i++; ?>
 				
 				<tr>
@@ -83,6 +84,11 @@
 						 ?>
 						<?= ($answer_is_ok=='')?'No hay Respuesta':$answer_is_ok ?>
 					</td>
+					<?php $url_remove_question = $this->Html->url(array(
+						'controller'=>'QuestionsScheduledExams',
+						'action'=>'delete', $question['QuestionsScheduledExam']['id'], $scheduledExam['ScheduledExam']['id']
+					)) ?>
+					<th><a href="<?= $url_remove_question ?>"><i class="fa fa-trash"></i></a></th>
 				</tr>
 					
 			<?php endforeach ?>
