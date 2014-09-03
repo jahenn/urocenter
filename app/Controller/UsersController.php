@@ -442,9 +442,11 @@ class UsersController extends AppController {
 	}
 	public function home() {
 		$this->loadModel ( 'Notification' );
-		$notifications = $this->Notification->find ( 'all', array (
-				'order' => 'Notification.id desc' 
-		) );
+// 		$notifications = $this->Notification->find ( 'all', array (
+// 				'order' => 'Notification.id desc' 
+// 		) );
+
+		$notifications = $this->Notification->query('call SP_GetNotifications('.$this->Auth->user()['id'].')');
 		
 		$this->set ( compact ( 'notifications' ) );
 	}
