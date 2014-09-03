@@ -79,12 +79,15 @@ class ScheduledExamsController extends AppController {
 	public function add() {
 		if ($this->request->is ( 'post' )) {
 			
-			// pr($this->request->data);exit();
+			 //pr($this->request->data);exit();
 			
+			$this->request->data['ScheduledExam']['user_id'] = $this->Auth->user()['id'];
 			$this->ScheduledExam->create ();
 			if ($this->ScheduledExam->save ( $this->request->data )) {
 				
 				// add to calendar
+				
+				//pr("ok"); exit();
 				
 				$this->loadModel ( 'CalendarEvent' );
 				$this->CalendarEvent->create ();
@@ -109,18 +112,20 @@ class ScheduledExamsController extends AppController {
 				
 				// add notification
 				
-				$this->loadModel ( 'Notification' );
-				$this->Notification->create ();
-				$this->Notification->save ( array (
-						'role_id' => 0,
-						'user_id' => $this->Auth->user ()['id'],
-						'fecha' => date ( 'Y-m-d' ),
-						'titulo' => 'Nuevo Examen Programado',
-						'descripcion' => 'Se ha programado un nuevo examen <a href="' . $event_url . '">Ver</a>',
-						'color_id' => 1 
-				) );
+// 				$this->loadModel ( 'Notification' );
+// 				$this->Notification->create ();
+// 				$this->Notification->save ( array (
+// 						'role_id' => 0,
+// 						'user_id' => $this->Auth->user ()['id'],
+// 						'fecha' => date ( 'Y-m-d' ),
+// 						'titulo' => 'Nuevo Examen Programado',
+// 						'descripcion' => 'Se ha programado un nuevo examen <a href="' . $event_url . '">Ver</a>',
+// 						'color_id' => 1 
+// 				) );
 				
-				$this->Session->setFlash ( __ ( 'The scheduled exam has been saved.' ) );
+				$this->Session->setFlash ( __ ( 'Se programo el examen correctamente' ), 'default', array(
+					'class'=>'alert alert-success'
+				) );
 				return $this->redirect ( array (
 						'action' => 'view',
 						$this->ScheduledExam->getlastInsertId () 

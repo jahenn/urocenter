@@ -35,10 +35,15 @@
 				));
 
 			$this->loadModel('Notification');
-			$notifications = $this->Notification->find('all', array(
-				'order'=>'Notification.id desc'
-				));
+// 			$notifications = $this->Notification->find('all', array(
+// 				'order'=>'Notification.id desc'
+// 				));
 
+			$notifications = $this->Notification->query('call SP_GetNotifications('.$this->Auth->user()['id'].')');
+			
+			//pr($this->Auth);
+			//pr($notifications); exit();
+			
 			$this->set(compact('users', 'users_pendientes','notifications', 'questions', 'questions_pendientes'));
 		}
 	}

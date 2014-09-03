@@ -1,3 +1,4 @@
+
 <?php foreach($notifications as $notification): ?>
 
     <div class="infobox infobox-close-wrapper alert <?= $notification['Color']['valor'] ?>">
@@ -18,7 +19,12 @@
         <p>
             <?= $notification['Notification']['descripcion'] ?>
         </p>
+        <br>
+        <p>
+            <span class="pull-right"><?= date('Y-m-d') ?></span>
+        </p>
+        <br>
 
-        <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a>
+        <!-- <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a> -->
     </div>
 <?php endforeach ?>
