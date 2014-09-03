@@ -165,7 +165,7 @@
 							</div>
 							<?php endif ?>
 						</div>
-						<div class="col-md-6">
+						<!-- <div class="col-md-6">
 							<div class="chat-container">
 
 							    <ul class="chat-box">
@@ -211,7 +211,7 @@
 							    </ul>
 
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
