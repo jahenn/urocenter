@@ -82,6 +82,12 @@ class ScheduledExamsController extends AppController {
 			 //pr($this->request->data);exit();
 			
 			$this->request->data['ScheduledExam']['user_id'] = $this->Auth->user()['id'];
+			if($this->request->data['ScheduledExam']['question_difficulty_id'] == ''){
+				$this->request->data['ScheduledExam']['question_difficulty_id'] = rand ( 1 , 3 );
+			}
+			
+			
+			
 			$this->ScheduledExam->create ();
 			if ($this->ScheduledExam->save ( $this->request->data )) {
 				
@@ -143,6 +149,8 @@ class ScheduledExamsController extends AppController {
 		
 		$questionCategories = $this->ScheduledExam->Question->QuestionCategory->find ( 'list' );
 		$questionDifficulties = $this->ScheduledExam->Question->QuestionDifficulty->find ( 'list' );
+		
+		
 		
 		$this->set ( compact ( 'questions', 'roles', 'questionCategories', 'questionDifficulties' ) );
 	}

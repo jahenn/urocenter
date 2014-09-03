@@ -61,8 +61,7 @@
 		<?= $this->Form->input('question_difficulty_id', array(
 			'label'=>'Dificultad Del Examen',
 			'class'=>'form-control',
-			'required'=>true,
-			'empty'=>'Selecciona una Opcion'
+			'empty'=>'Nivel Aleatorio'
 			)) ?> 
 	</div>
 
