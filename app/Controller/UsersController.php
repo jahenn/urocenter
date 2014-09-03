@@ -203,7 +203,9 @@ class UsersController extends AppController {
 			
 			if ($this->User->save ( $this->request->data )) {
 				
-				$this->Session->setFlash ( __ ( 'The user has been saved.' ) );
+				$this->Session->setFlash ( __ ( 'Datos de usuario guardados'), 'default', array(
+					'class'=>'alert alert-success'
+				) );
 				return $this->redirect ( array (
 						'action' => 'index' 
 				) );
@@ -522,6 +524,17 @@ class UsersController extends AppController {
 			return true;
 		} elseif ($user != null && $this->view == 'home') {
 			return true;
+		}else{
+			switch ($this->view) {
+				case 'edit':
+					
+					if(isset($this->request->params['pass'][0])){
+						if($this->request->params['pass'][0] == $user['id']){
+							return true;
+						}	
+					}
+					break;
+			}
 		}
 		return false;
 	}

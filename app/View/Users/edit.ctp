@@ -1,7 +1,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Edtitar Usuario</span class="font-size-20">
+		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Editar Usuario</span class="font-size-20">
 	<div class="divider"></div>
 	</div>
 </div>
