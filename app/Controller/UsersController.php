@@ -361,6 +361,7 @@ class UsersController extends AppController {
 					$role_id = $role_id ['Role'] ['id'];
 					
 					$this->paginate = array (
+							'fields'=>'DISTINCT User.*',
 							'conditions' => array (
 									'User.activo' => true,
 									'User.baja' => false,

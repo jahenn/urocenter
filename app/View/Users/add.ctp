@@ -19,8 +19,15 @@
 </p>
 
 <p>
-	 <?= $this->Form->input('nombre_completo', array(
-		'label'=>'Nombre Completo',
+	 <?= $this->Form->input('nombre', array(
+		'label'=>'Nombre',
+		'class'=>'form-control width-12'
+		)) ?> 
+</p>
+
+<p>
+	 <?= $this->Form->input('Apellido', array(
+		'label'=>'Apellido',
 		'class'=>'form-control width-12'
 		)) ?> 
 </p>
@@ -71,30 +78,3 @@
 
 </script>
 
-<!-- ################ -->
-<!--
-<div class="users form">
-<?php echo $this->Form->create('User'); ?>
-	<fieldset>
-		<legend><?php echo __('Add User'); ?></legend>
-	<?php
-		echo $this->Form->input('username');
-		echo $this->Form->input('password');
-		echo $this->Form->input('email');
-		echo $this->Form->input('Role');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List User Answers'), array('controller' => 'user_answers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User Answer'), array('controller' => 'user_answers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
--->
