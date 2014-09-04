@@ -89,8 +89,24 @@ class ScheduledExamsController extends AppController {
 			
 			
 			
+			
 			$this->ScheduledExam->create ();
 			if ($this->ScheduledExam->save ( $this->request->data )) {
+				
+				$new_id = $this->ScheduledExam->getlastInsertId () ;
+				
+				$v = new View ();
+				$event_url = $v->Html->url ( array (
+						'controller' => 'ScheduledExams',
+						'action' => 'resolve', $new_id
+				
+				));
+				
+				
+				//Asignamos url a el examen
+				$this->ScheduledExam->id = $new_id;
+				$this->ScheduledExam->saveField('private_url', $event_url);
+				
 				
 				// add to calendar
 				
@@ -99,13 +115,8 @@ class ScheduledExamsController extends AppController {
 				$this->loadModel ( 'CalendarEvent' );
 				$this->CalendarEvent->create ();
 				
-				$v = new View ();
 				
-				$event_url = $v->Html->url ( array (
-						'controller' => 'ScheduledExams',
-						'action' => 'resolve',
-						$this->ScheduledExam->getlastInsertId () 
-				), true );
+				
 				
 				$fecha = $this->request->data ['ScheduledExam'] ['fecha_programada'];
 				$titulo = $this->request->data ['ScheduledExam'] ['titulo'];
@@ -310,13 +321,12 @@ class ScheduledExamsController extends AppController {
 							
 							$answer_correct = $this->Answer->find ( 'first', array (
 									'conditions' => array (
-											'Answer.id' => $answer_id,
 											'Answer.question_id' => $question_id,
 											'Answer.answer_is_ok' => true 
 									) 
 							) );
 							
-							// pr($answer_correct);
+							pr($answer_correct); exit();
 							
 							$correct_text = $answer_correct ['Answer'] ['answer'];
 							
@@ -391,8 +401,21 @@ class ScheduledExamsController extends AppController {
 						$correcto = false;
 						if (count ( $answer_correct ) > 0) {
 							$correcto = true;
-							$correct_text = $answer_correct ['Answer'] ['answer'];
+							
 						}
+						
+						$answer_real_correct= $this->Answer->find ( 'first', array (
+								'conditions' => array (
+										'Answer.question_id' => $question_id,
+										'Answer.answer_is_ok' => true,
+										'Answer.activa'=> true
+								)
+						) );
+						
+						if(!empty($answer_real_correct)){
+							$correct_text = $answer_real_correct ['Answer'] ['answer'];
+						}
+
 						
 						$tmp_answer = array (
 								'exam_id' => $exam_id,

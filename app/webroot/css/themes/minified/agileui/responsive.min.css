@@ -39,10 +39,10 @@
     margin-left: -170px;
 }
 #page-main-wrapper {
-    margin-left: 170px;
+    /*margin-left: 170px;*/
 }
 .close-sidebar #page-sidebar {
-    margin-left: -171px;
+    /*margin-left: -171px;*/
 }
 .fixed-header #page-header #page-header-wrapper {
     padding-left: 170px;

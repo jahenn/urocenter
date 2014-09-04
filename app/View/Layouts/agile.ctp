@@ -48,6 +48,7 @@
         <?= $this->Html->css("bootstrap") ?>
         <?= $this->Html->css("responsive-calendar") ?>
         <?= $this->Html->css("jquery.jgrowl") ?>
+        <?= $this->Html->css("jquery.steps") ?>
 
         
         
@@ -66,7 +67,6 @@
 
         <?= $this->Html->script('morris/morris') ?> 
         <?= $this->Html->script('qtip') ?> 
-        <?= $this->Html->script('jquery.easyWizard') ?> 
         <?= $this->Html->script('responsive-calendar') ?> 
 
 
@@ -75,6 +75,7 @@
         <?= $this->Html->script('prettify.min') ?> 
         <?= $this->Html->script('dropzone') ?> 
         <?= $this->Html->script('highchart/highcharts.js') ?> 
+        <?= $this->Html->script('jquery.steps') ?> 
         
         
 

@@ -12,17 +12,17 @@
                     )
             )) ?>
         </div>
-        <h4 class="infobox-title">
+        <!-- <h4 class="infobox-title">
             <a href="#"><small><?= $notification['User']['username'] ?></small></a>
             <?= $notification['Notification']['titulo'] ?>
-        </h4>
+        </h4> -->
         <p>
             <?= $notification['Notification']['descripcion'] ?>
         </p>
-        <br>
+        <!-- <br>
         <p>
             <span class="pull-right"><?= date('Y-m-d') ?></span>
-        </p>
+        </p> -->
         <br>
 
         <!-- <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a> -->

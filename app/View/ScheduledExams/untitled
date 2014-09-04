@@ -1,0 +1,15 @@
+
+
+
+<!-- inicio de preguntas -->
+
+
+
+
+
+<!-- Relacion de columnas -->
+
+
+<div class="divider"></div>
+</section>
+<?php endforeach ?>

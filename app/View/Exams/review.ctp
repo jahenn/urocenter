@@ -64,7 +64,7 @@
     <span ><?= (($porcentaje_res < $porcentaje )?number_format($porcentaje, 2). ' Puntos' :'') ?></span>
   </div>
   <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $porcentaje_res ?>%;">
-    <span ><?= (($porcentaje_res > $porcentaje )?number_format($porcentaje, 2):'') . ' Puntos' ?></span>
+    <span ><?= (($porcentaje_res > $porcentaje )?number_format($porcentaje, 2). ' Puntos':'')  ?></span>
   </div>
 </div>
 
