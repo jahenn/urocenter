@@ -52,12 +52,14 @@
 								</tr>
 								<tr>
 									<th>Examenes Resueltos</th>
-									<td>0</td>
+									<td><?= $public_user['UserRating']['rating'] ?></td>
 								</tr>
+								<!--
 								<tr>
 									<th>Preguntas Aportadas</th>
 									<td>0</td>
 								</tr>
+								-->
 							</table>
 						</div>
 					</div>
