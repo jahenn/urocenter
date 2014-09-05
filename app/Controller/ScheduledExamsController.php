@@ -498,8 +498,9 @@ class ScheduledExamsController extends AppController {
 				'conditions' => array (
 						'OR' => array (
 								'question_category_id' => $categoria,
-								'"0"' => "$categoria" 
+								'"0"' => "$categoria"
 						),
+						'question_type_id'=>1,
 						'question_difficulty_id' => $difficulty 
 				) 
 		) );
