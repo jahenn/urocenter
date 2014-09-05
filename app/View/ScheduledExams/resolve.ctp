@@ -21,7 +21,7 @@
  	</div> -->
  	<?php $fecha = new DateTime($this->request->data['ScheduledExam']['fecha_programada']); ?>
  	<div class="col-md-6">
- 		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Todos los usuarios</span class="font-size-20">
+ 		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Resolver Examen</span class="font-size-20">
  			<!-- <div class="divider"></div> -->
  		</div>
  		<div class="col-md-6">
@@ -48,7 +48,7 @@
  			<div>
  				<h3><?= $this->request->data['ScheduledExam']['titulo'] ?></h3>
  				<p>
- 					<?= $this->request->data['ScheduledExam']['comentarios'] ?>lklkjkljkljkljkl
+ 					<?= $this->request->data['ScheduledExam']['comentarios'] ?>
  				</p>
  				<p>Para continuar da clic en <b>Siguiente</b></p>
  			</div>
