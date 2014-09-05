@@ -52,7 +52,7 @@
 								</tr>
 								<tr>
 									<th>Examenes Resueltos</th>
-									<td><?= $public_user['UserRating']['rating'] ?></td>
+									<td><?= $public_user['UserRating']['examenes'] ?></td>
 								</tr>
 								<!--
 								<tr>
