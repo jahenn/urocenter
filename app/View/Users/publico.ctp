@@ -48,15 +48,15 @@
 							<table class="table">
 								<tr>
 									<th>Mi Calificación</th>
-									<td>80 Pts <i class="fa fa-check" style="color:green;"></i></td>
+									<td> <?= $public_user['UserRating']['rating'] ?> <i class="fa fa-check" style="color:green;"></i></td>
 								</tr>
 								<tr>
 									<th>Examenes Resueltos</th>
-									<td>26</td>
+									<td>0</td>
 								</tr>
 								<tr>
 									<th>Preguntas Aportadas</th>
-									<td>12</td>
+									<td>0</td>
 								</tr>
 							</table>
 						</div>
