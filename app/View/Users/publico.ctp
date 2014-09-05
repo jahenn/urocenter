@@ -1,6 +1,6 @@
 <?php $this->layout = 'clean'; ?>
 
-<?php pr($public_user) ?>
+<?php pr($public_user); exit(); ?>
 
 <style type="text/css">
 .top10 .position {
