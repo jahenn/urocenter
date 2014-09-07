@@ -38,7 +38,7 @@ class Role extends AppModel {
 			'foreignKey' => 'role_id',
 			'associationForeignKey' => 'user_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
+			'conditions' => 'User.activo=1 and User.username != ""',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',

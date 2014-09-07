@@ -263,14 +263,17 @@ class ScheduledExamsController extends AppController {
 		if ($this->request->is ( 'post' )) {
 			$this->ScheduledExam->bindModel ( array (
 					'belongsTo' => array (
-							'QuestionCategory' 
+							'QuestionCategory', 'QuestionDifficulty' 
 					) 
 			) );
+			
 			$exam = $this->ScheduledExam->find ( 'first', array (
 					'conditions' => array (
 							'ScheduledExam.id' => $id 
 					) 
 			) );
+			
+// 			pr($exam); exit();
 			
 			$exam_category = $exam ['QuestionCategory'] ['nombre'];
 			
@@ -283,7 +286,8 @@ class ScheduledExamsController extends AppController {
 					'user_id' => $this->Auth->user ()['id'],
 					'resultado' => 0,
 					'estatus' => 1,
-					'categoria' => $exam_category 
+					'categoria' => $exam_category ,
+					'dificultad'=>$exam['QuestionDifficulty']['descripcion']
 			);
 			
 			$this->loadModel ( 'Exam' );
@@ -384,10 +388,11 @@ class ScheduledExamsController extends AppController {
 						$question_text = $question ['Question'] ['question'];
 						$answer_text = (isset ( $answer ['Answer'] ['answer'] )) ? $answer ['Answer'] ['answer'] : '';
 						
-						// pr($question);exit();
+// 						pr($question);exit();
 						$categoria = $question ['QuestionCategory'] ['nombre'];
+						$bibliografia = $question['Question']['referencias'];
 						
-						// pr($categoria);exit();
+// 						pr($categoria);exit();
 						
 						$answer_correct = $this->Answer->find ( 'first', array (
 								'conditions' => array (
@@ -424,7 +429,8 @@ class ScheduledExamsController extends AppController {
 								'respuesta_correcta' => $correct_text,
 								'correcta' => $correcto,
 								'calificada' => true,
-								'categoria' => $categoria 
+								'categoria' => $categoria ,
+								'bibliografia'=>$bibliografia
 						);
 						
 						$this->ExamAnswer->create ();

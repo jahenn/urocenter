@@ -97,16 +97,16 @@
 		  						'controller'=>'answers',
 		  						'action'=>'add', $this->request->data['Question']['id']
 		  					)) ?>
-		  					<a title="Agregar Respuesta" class="btn btn-primary btn-sm" href="<?= $add_url ?>">
+		  					<!-- <a title="Agregar Respuesta" class="btn btn-primary btn-sm" href="<?= $add_url ?>">
 		  					    <i class="fa fa-plus"></i> Agregar Respuesta
-		  					</a>
+		  					</a> -->
 		  				</div>
 		  			</div>
-		  			<br><br>
+		  			<!-- <br><br> -->
 		  			<table class="table table-hover">
 		  				<thead>
 		  					<tr>
-		  						<th colspan="3">Respuestas</th>
+		  						<th colspan="2">Respuestas</th>
 		  					</tr>
 		  				</thead>
 		  				<tbody>
@@ -115,7 +115,7 @@
 		  							<td><?= $answer['answer'] ?></td>
 		  							<td><?= ($answer['answer_is_ok'] == true)?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' ?>
 		  							</td>
-		  							<td>
+		  							<!-- <td>
 		  								<div class="dropdown">
 		  								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
 		  								    Opciones
@@ -142,7 +142,7 @@
 		  								    	), __('Seguro que deseas eliminar la respuesta?', $answer['id']));  ?></li>
 		  								  </ul>
 		  								</div>
-		  							</td>
+		  							</td> -->
 		  						</tr>
 		  					<?php endforeach ?>
 		  				</tbody>
@@ -228,7 +228,7 @@
 	'controller'=>'Questions',
 	'action'=>'index'
 ));?>
-<a href="<?= $back_url ?>" class="btn bg-gray"><i class="fa fa-arrow-left"></i> Regresar</a>
+<!-- <a href="<?= $back_url ?>" class="btn bg-gray"><i class="fa fa-arrow-left"></i> Regresar</a> -->
 
 
 

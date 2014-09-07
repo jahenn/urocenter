@@ -142,10 +142,10 @@ class QuestionsController extends AppController {
 			}
 
 			if ($this->Question->save($this->request->data)) {
-				$this->Session->setFlash(__('La imagen fue guardada.'), 'default', array(
+				$this->Session->setFlash(__('La pregunta fue guardada.'), 'default', array(
 					'class' => 'alert alert-success'
 					));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'edit', $id));
 			} else {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}

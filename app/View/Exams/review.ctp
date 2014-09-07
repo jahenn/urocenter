@@ -4,7 +4,8 @@
 	<div class="divider"></div>
 	</div>
 </div>
-
+<!-- 
+<?php pr($exam); ?> -->
 
 <div class="row">
 	<div class="col-md-12">
@@ -17,7 +18,24 @@
 	</div>
 	<div class="col-md-12">
 		<label for="">Nivel de Dificultad</label>
-		<span>Basico</span>
+		<span><?= $exam['Exam']['dificultad'] ?></span>
+	</div>
+	<div class="col-md-12">
+		<label for="">Bibliografia</label>
+		<ul>
+			<?php if(!empty($exam['ExamAnswer'])): ?>
+				<?php $qs = array(); ?>
+				<?php foreach($exam['ExamAnswer'] as $q): ?>
+					<?php if($q['bibliografia'] != '' && !in_array($q['bibliografia'], $qs)): ?>
+						<li style="list-style:disc !important;">
+							<?= $q['bibliografia'] ?>
+						</li>
+						<?php $qs[] = $q['bibliografia'] ?>
+					<?php endif ?>
+				<?php endforeach ?>
+
+			<?php endif ?>
+		</ul>
 	</div>
 </div>
 <br>

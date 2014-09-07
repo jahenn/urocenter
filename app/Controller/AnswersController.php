@@ -51,8 +51,8 @@ class AnswersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Answer->create();
 			if ($this->Answer->save($this->request->data)) {
-				$this->Session->setFlash(__('The answer has been saved.'), 'default', array(
-					'class'=>'infobox success-bg'
+				$this->Session->setFlash(__('Respuesta Agregada'), 'default', array(
+					'class'=>'alert alert-success'
 					));
 				return $this->redirect(array(
 					'controller'=>'Questions',

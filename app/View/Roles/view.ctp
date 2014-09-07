@@ -2,31 +2,47 @@
 <div class="row">
 	<div class="col-md-12">
 		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Ver Grupo</span class="font-size-20">
-	<!-- <div class="divider"></div> -->
-	<br>
-	<br>
-	<br>
+	<div class="divider"></div>
 	</div>
 </div>
+
 
 <div class="row">
 	<div class="col-md-12">
-		<table class="table table-stripped">
-			<tr>		
-				<th class="col-md-2 float-none text-left "><?php echo __('Id'); ?></th>
-				<td class=" col-md-10 float-none text-left ">
-					<?php echo h($role['Role']['id']); ?>
-					&nbsp;
-				</td>
-			</tr>
-			<tr>
-				<th class="col-md-2 float-none text-left "><?php echo __('Nombre'); ?></th>
-				<td class=" col-md-10 float-none text-left ">
-					<?php echo h($role['Role']['nombre']); ?>
-					&nbsp;
-				</td>
-			</tr>
-		</table>
+		<h3><?php echo ucwords(h($role['Role']['nombre'])); ?></h3>
 	</div>
 </div>
 
+
+<div class="row">
+	<div class="col-md-12">
+		<h4>Lista de Usuarios</h4>
+	</div>
+	<div class="col-md-12">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>
+						Nombre de Usuario
+					</th>
+					<th>Nombre Completo</th>
+					<th>Correo Electronico</th>
+					<th>Hospital</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($role['User'] as $user): ?>
+					<tr>
+						<td><?= $user['username'] ?></td>
+						<td><?= $user['nombre_completo'] ?></td>
+						<td><?= $user['email'] ?></td>
+						<td><?= $user['hospital'] ?></td>
+
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!-- 
+<?php pr($role); ?> -->
