@@ -99,7 +99,14 @@
 
     </head>
     <body class="fixed-sidebar fixed-header">
-        
+        <?php 
+            App::import('Model', 'User');
+            $this->User = new User();
+
+            $user = $this->Session->read('Auth.User');
+
+
+         ?>
         
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -122,20 +129,23 @@
                 </div>
 
                 <div id="seach-container">
-                    <input type="text" placeholder="Buscar Pregunta" class="search-input-o" >
+                    <?= $this->Form->create('Json', array('url'=>array('controller'=>'Json', 'action'=>'busca'), 'id'=>'buscador')) ?>
+                    <?php if($this->User->isAdmin($this->Session->read()['Auth']['User']['id'])) {
+                        $buscador = 'Buscar Usuarios, Categorias';
+                    }else{
+                        $buscador = 'Buscar Usuarios' ;
+                    } ?>
+
+                    <input type="text" name="finder" placeholder="<?= $buscador ?>" class="search-input-o" >
+                    <i class="glyph-icon icon-search"></i>
+                    <?= $this->Form->end() ?>
+                    
                     <i class="glyph-icon icon-search"></i>
                 </div>
 
 
                 <div id="sidebar-menu" class="scrollable-content">
-                    <?php 
-                        App::import('Model', 'User');
-                        $this->User = new User();
-
-                        $user = $this->Session->read('Auth.User');
-
-
-                     ?>
+                    
                     <ul>
                         
                         <?php foreach($menus_bar as $menu):?>
@@ -317,6 +327,33 @@
 	            </div><!-- #page-main -->
             </div><!-- #page-main-wrapper -->
         </div><!-- #page-wrapper -->
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+
+        $(".search-input-o").autocomplete({
+            source: function(request, response){
+                var _url = "<?= $this->Html->url(array('controller'=>'Json', 'action'=>'buscador_admin')).'/' ?>" + $(".search-input-o").val();
+                $.ajax({
+                    url: _url,
+                    dataType: 'json',
+                    success: function(data){
+                        response(data);
+                    }
+                })
+            },
+            select: function(event, ui){
+                //console.log(ui.item);
+                // alert("OK");
+                $(".search-input-o").val(ui.item.label);
+                $("#buscador").submit();
+            }
+        });
+    });
+</script>
 
     </body>
 </html>
