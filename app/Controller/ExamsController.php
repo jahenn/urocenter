@@ -41,6 +41,9 @@ class ExamsController extends AppController {
 		if (!$this->Exam->exists($id)) {
 			throw new NotFoundException(__('Invalid exam'));
 		}
+		
+		$this->redirect(array('action'=>'review', $id));
+		
 		$options = array('conditions' => array('Exam.' . $this->Exam->primaryKey => $id));
 		$this->set('exam', $this->Exam->find('first', $options));
 	}
