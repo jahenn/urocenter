@@ -81,6 +81,16 @@ class JsonController extends AppController {
 				}
 			}
 		}
+		
+		
+		$this->Session->setFlash('Busqueda No arrojo resultados', 'default', array(
+			'class'=>'alert alert-info'
+			));
+			
+		$this->redirect(array(
+			'controller'=>'users',
+			'action'=>'login_redirect'
+			));
 
 	}
 
