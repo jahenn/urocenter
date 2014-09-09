@@ -507,7 +507,8 @@ class ScheduledExamsController extends AppController {
 								'"0"' => "$categoria"
 						),
 						'question_type_id'=>1,
-						'question_difficulty_id' => $difficulty 
+						'question_difficulty_id' => $difficulty,
+						'question_status_id'=>1
 				) 
 		) );
 		
