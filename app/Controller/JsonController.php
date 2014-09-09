@@ -73,11 +73,13 @@ class JsonController extends AppController {
 					$category = $this->QuestionCategory->field('id', array(
 						'nombre'=>$string
 						));
-
-					$this->redirect(array(
-						'controller'=>'question_categories',
-						'action'=>'view', $category
+					
+					if($category != ''){
+						$this->redirect(array(
+								'controller'=>'question_categories',
+								'action'=>'view', $category
 						));
+					}
 				}
 			}
 		}
