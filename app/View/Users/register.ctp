@@ -396,7 +396,7 @@
             <li><a href="#contact">Contacto</a>
             </li>
           </ul>
-          <p class="copyright text-muted small">Version 0.14 alpha. Urocenter 2014 - 2015</p>
+          <p class="copyright text-muted small">Version 0.84 alpha. Urocenter 2014 - 2015</p>
         </div>
       </div>
     </div>
