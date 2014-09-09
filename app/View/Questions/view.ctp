@@ -32,7 +32,7 @@
 
 		<?php $img_url = WWW_ROOT . 'img' . DS . 'question-images' . DS .  $question['Question']['imagen']; ?>
 
-		<?php if(file_exists($img_url)): ?>
+		<?php if(file_exists($img_url) && $question['Question']['imagen'] != ''): ?>
 			<?= $this->Html->image('question-images/' . $question['Question']['imagen'], array(
 				'width'=>'350px'
 			)) ?>
