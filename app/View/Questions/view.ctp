@@ -29,9 +29,17 @@
 		<h4>Categoria: <small><?php echo $this->Html->link($question['QuestionCategory']['nombre'], array('controller' => 'question_categories', 'action' => 'view', $question['QuestionCategory']['id'])); ?></small>
 		</h4>
 		<h4>Tipo de Pregunta <small><?= $question['QuestionType']['tipo'] ?></small></h4>
-		<?= $this->Html->image('question-images/' . $question['Question']['imagen'], array(
-			'width'=>'350px'
-		)) ?>
+
+		<?php $img_url = WWW_ROOT . 'img' . DS . 'question-images' . DS .  $question['Question']['imagen']; ?>
+
+		<?php if(file_exists($img_url)): ?>
+			<?= $this->Html->image('question-images/' . $question['Question']['imagen'], array(
+				'width'=>'350px'
+			)) ?>
+		<?php endif ?>
+
+
+		
 	</div>
 </div>
 <br><br>
