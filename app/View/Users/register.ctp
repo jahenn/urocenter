@@ -251,7 +251,9 @@
     <div class="navbar-header">
       <!-- <img src="img/logo1.png" class="img-responsive2" width="50%" alt="" /> -->
 
-      <?php echo $this->Html->image('logo1.png') ?>
+      <?php echo $this->Html->image('logo.png', array(
+      	'height'=>'50px;'
+      )) ?>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
