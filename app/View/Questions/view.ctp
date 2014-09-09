@@ -17,7 +17,8 @@
 			<?php $aprobar_url = $this->Html->url(array(
 				'action'=>'aprobe', $question['Question']['id']
 			)); ?>
-			<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
+			<?php $disaprobe = $this->Html->url(array('controller'=>'questions','action'=>'reject', $question['Question']['id'])) ?>
+			<a href="<?= $disaprobe ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
 			<a href="<?= $aprobar_url ?>" class="btn btn-success">Aprobar Pregunta <i class="fa fa-check"></i></a>
 		</div>
 	</div>

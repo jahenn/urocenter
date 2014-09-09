@@ -270,7 +270,7 @@
 
       <div class="row">
         <div class="col-lg-5 col-sm-6">
-          <h2 class="section-heading">Inicia sesión</h2>
+          <h2 class="section-heading">Registrate</h2>
 
           <?php echo $this->Session->flash(); ?>
 

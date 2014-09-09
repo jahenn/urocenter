@@ -31,6 +31,27 @@ class QuestionsController extends AppController {
 
 		
 	}
+	
+	public function reject($id){
+		$this->Question->id = $id;
+		if (!$this->Question->exists()) {
+			throw new NotFoundException(__('Invalid question'));
+		}
+		//$this->request->allowMethod('post', 'delete');
+
+		if ($this->Question->save(array(
+			'question_status_id'=>3
+			))) {
+			$this->Session->setFlash(__('La pregunta fue desaprobada'), 'default', array(
+				'class'=>'alert alert-success'
+				));
+		} else {
+			$this->Session->setFlash(__('La pregunta no pudo ser desaprobada'), 'default', array(
+				'class'=>'alert alert-danger'
+				));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
 
 /**
  * view method
@@ -241,6 +262,8 @@ class QuestionsController extends AppController {
 			}
 		}
 	}
+	
+	
 
 	public function json($category_id)
 	{

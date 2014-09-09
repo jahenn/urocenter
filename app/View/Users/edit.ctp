@@ -110,8 +110,7 @@
 )) ?>
 <br>
 
-
-<a href="#" class="btn btn-default"><i class="fa fa-arrow-left"></i> Regresar</a>
+<a href="<?= $this->request->referer() ?>" class="btn btn-default"><i class="fa fa-arrow-left"></i> Regresar</a>
 <button class="btn primary-bg" type="submit"><i class="fa fa-save"></i> Guardar</button>
 
 <?php echo $this->Form->end(); ?>
