@@ -21,7 +21,8 @@
 			'div'=>'false',
 			'class'=>'form-control',
 			'label'=>'Selecciona un Nivel de Dificultad',
-			'style'=>'width: 120px;'
+			'style'=>'width: 120px;',
+			'empty'=>'Nivel Aleatorio'
 		)) ?>
 
 		<?= $this->Form->input('cantidad', array(
