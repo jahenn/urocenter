@@ -571,13 +571,21 @@ class ScheduledExamsController extends AppController {
 			// App::import('Controller', 'Questions');
 			
 			// $q = new QuestionsController;
+			$dificultad = $this->request->data ['random_exam'] ['question_difficulty_id'];
+			if($dificultad == '')
+			{
+				$dificultad = rand(1, 3);
+			}
+			$this->request->data ['random_exam'] ['question_difficulty_id'] = $dificultad;
+			//pr($dificultad); exit();
+
 			$this->ScheduledExam->create ();
 			$exam = array (
 					'fecha_programada' => date ( 'Y-m-d' ),
 					'estatus' => 3,
 					'titulo' => 'Examen Random',
 					'question_category_id' => $this->request->data ['random_exam'] ['question_category_id'],
-					'question_difficulty_id' => $this->request->data ['random_exam'] ['question_difficulty_id'],
+					'question_difficulty_id' => $dificultad,
 					'numero_preguntas' => $this->request->data ['random_exam'] ['cantidad'],
 					'scheduled_exam_status_id' => 3 
 			)
