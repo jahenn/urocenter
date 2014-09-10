@@ -7,10 +7,31 @@
 </div>
 <div class="divider"></div>
 
+
+
+<div class="hidden-sm hidden-lg hidden-md" style="padding-left:20px;">
+    <div class="row">
+        <div class="btn-group">
+            <?php 
+                $url_new_question = $this->Html->url(array(
+                    'controller'=>'questions',
+                    'action'=>'add'
+                    ), true);
+
+                $url_program_examen = $this->Html->url(array(
+                     'controller'=>'ScheduledExams',
+                     'action'=>'add'
+                 ), true);
+
+             ?>
+            <a href="<?= $url_program_examen ?>" class="btn btn-success"> <i class="fa fa-clock-o"></i> Programar Examen </a>
+            <a href="<?= $url_new_question ?>" class="btn btn-info"> <i class="fa fa-check-square-o"></i> Nueva Pregunta</a>
+        </div>
+    </div>
+</div>
+<br>
 <h4><i class="fa fa-info"></i> Actividad</h4>
 <br>
-
-
 <div class="row">
     <div class="col-md-6">
         
