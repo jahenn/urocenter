@@ -1,6 +1,28 @@
 
 
-
+<div class="hidden-sm hidden-lg hidden-md" style="padding-left:20px;">
+    <div class="row">
+        <div class="btn-group">
+            <?php $new_question_url = $this->Html->url(array(
+                'controller'=>'questions',
+                'action'=>'add'
+            )); ?>
+            <?php $random_url = $this->Html->url(array(
+                'controller'=>'scheduled_exams',
+                'action'=>'add_random'
+            )); ?>
+            <a href="<?= $random_url ?>" class="btn btn-info" >
+                Auto Evaluación
+                <i class="fa fa-arrow-right"></i>
+            </a>
+            <a href="<?= $new_question_url ?>" class="btn btn-success">
+                Aportar Pregunta
+                <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
 
 <div class="row">
 	<div class="col-md-6">
