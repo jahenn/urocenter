@@ -17,6 +17,16 @@
 		}
 
 
+		public function delete($id)
+		{
+			$this->CalendarEvent->id = $id;
+			if($this->CalendarEvent->exists())
+			{
+				$this->CalendarEvent->delete();
+			}
+
+			$this->redirect($this->referer());
+		}
 
 		public function json()
 		{
