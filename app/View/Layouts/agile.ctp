@@ -246,40 +246,44 @@
 
 
                             <?php if(!$is_admin): ?>
-                            <div class="btn-group float-right">
-                                <?php $new_question_url = $this->Html->url(array(
-                                    'controller'=>'questions',
-                                    'action'=>'add'
-                                )); ?>
-                                <?php $random_url = $this->Html->url(array(
-                                    'controller'=>'scheduled_exams',
-                                    'action'=>'add_random'
-                                )); ?>
-                                <a href="<?= $random_url ?>" class="btn btn-info" >
-                                    Auto Evaluación
-                                    <i class="fa fa-arrow-right"></i>
-                                </a>
-                                <a href="<?= $new_question_url ?>" class="btn btn-success">
-                                    Aportar Pregunta
-                                    <i class="fa fa-arrow-right"></i>
-                                </a>
+                            <div class="hidden-xs">
+                                <div class="btn-group float-right">
+                                    <?php $new_question_url = $this->Html->url(array(
+                                        'controller'=>'questions',
+                                        'action'=>'add'
+                                    )); ?>
+                                    <?php $random_url = $this->Html->url(array(
+                                        'controller'=>'scheduled_exams',
+                                        'action'=>'add_random'
+                                    )); ?>
+                                    <a href="<?= $random_url ?>" class="btn btn-info" >
+                                        Auto Evaluación
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                    <a href="<?= $new_question_url ?>" class="btn btn-success">
+                                        Aportar Pregunta
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
                             <?php else: ?>
-                                <div class="btn-group float-right">
-                                    <?php 
-                                        $url_new_question = $this->Html->url(array(
-                                            'controller'=>'questions',
-                                            'action'=>'add'
-                                            ), true);
+                                <div class="hidden-xs">
+                                    <div class="btn-group float-right">
+                                        <?php 
+                                            $url_new_question = $this->Html->url(array(
+                                                'controller'=>'questions',
+                                                'action'=>'add'
+                                                ), true);
 
-                                        $url_program_examen = $this->Html->url(array(
-                                             'controller'=>'ScheduledExams',
-                                             'action'=>'add'
-                                         ), true);
+                                            $url_program_examen = $this->Html->url(array(
+                                                 'controller'=>'ScheduledExams',
+                                                 'action'=>'add'
+                                             ), true);
 
-                                     ?>
-                                    <a href="<?= $url_program_examen ?>" class="btn btn-success"> <i class="fa fa-clock-o"></i> Programar Examen </a>
-                                    <a href="<?= $url_new_question ?>" class="btn btn-info"> <i class="fa fa-check-square-o"></i> Nueva Pregunta</a>
+                                         ?>
+                                        <a href="<?= $url_program_examen ?>" class="btn btn-success"> <i class="fa fa-clock-o"></i> Programar Examen </a>
+                                        <a href="<?= $url_new_question ?>" class="btn btn-info"> <i class="fa fa-check-square-o"></i> Nueva Pregunta</a>
+                                    </div>
                                 </div>
                             <?php endif ?>
 
