@@ -37,7 +37,25 @@ class QuestionCategoriesController extends AppController {
 			throw new NotFoundException(__('Invalid question category'));
 		}
 		$options = array('conditions' => array('QuestionCategory.' . $this->QuestionCategory->primaryKey => $id));
-		$this->set('questionCategory', $this->QuestionCategory->find('first', $options));
+		$this->QuestionCategory->recursive = -1;
+		$category = $this->QuestionCategory->find('first', $options);
+		$this->set('questionCategory', $category);
+
+		$this->loadModel('Question');
+		$this->Paginator->settings = array(
+			'order'=>array('Question.question'=>'asc')
+			);
+		$questions = $this->Paginator->paginate('Question', array(
+			'Question.question_category_id'=>$category['QuestionCategory']['id'],
+			'Question.question_status_id'=>2
+			));
+
+
+		// $v = new View();
+		// pr($v->element('sql_dump'));exit();
+
+		$this->set('questions', $questions);
+		//pr($ok); exit();
 	}
 
 /**

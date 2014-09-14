@@ -222,7 +222,7 @@ class QuestionsController extends AppController {
 				'class'=>'alert alert-danger'
 				));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 
 	public function lists()

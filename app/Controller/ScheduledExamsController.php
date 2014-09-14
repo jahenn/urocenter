@@ -88,7 +88,7 @@ class ScheduledExamsController extends AppController {
 			}
 			
 			
-			
+			// pr($this->request->data); exit();
 			
 			$this->ScheduledExam->create ();
 			if ($this->ScheduledExam->save ( $this->request->data )) {
@@ -113,20 +113,25 @@ class ScheduledExamsController extends AppController {
 				//pr("ok"); exit();
 				
 				$this->loadModel ( 'CalendarEvent' );
-				$this->CalendarEvent->create ();
 				
-				
-				
+
 				
 				$fecha = $this->request->data ['ScheduledExam'] ['fecha_programada'];
 				$titulo = $this->request->data ['ScheduledExam'] ['titulo'];
-				$this->CalendarEvent->save ( array (
-						'titulo' => $titulo,
-						'descripcion' => 'Nuevo Examen Programado',
-						'fecha' => $fecha,
-						'color_id' => 1,
-						'url' => $event_url 
-				) );
+
+				foreach ($this->request->data['Role']['Role'] as $key => $value) {
+
+					$this->CalendarEvent->create ();
+					$this->CalendarEvent->save ( array (
+							'titulo' => $titulo,
+							'descripcion' => 'Nuevo Examen Programado',
+							'fecha' => $fecha,
+							'color_id' => 1,
+							'url' => $event_url ,
+							'role_id'=>$value
+					) );
+				}
+
 				
 				// add notification
 				

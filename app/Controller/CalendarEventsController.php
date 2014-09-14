@@ -4,12 +4,26 @@
 
 		public function view_day($day, $month, $year)
 		{
+
+			$this->loadModel('User');
+
+			$roles = $this->User->find('first', array(
+				'User.id'=> $this->Auth->user()['id']
+				));
+			
+			
+			$roles_ids = array();
+			foreach ($roles['Role'] as $key => $value) {
+				$roles_ids[] = $value['id'];
+			}
+
 			$this->CalendarEvent->recursive = 3;
 			$events = $this->CalendarEvent->find('all', array(
 				'conditions'=>array(
 					'day(fecha)'=>$day,
 					'month(fecha)'=>$month,
-					'year(fecha)'=>$year
+					'year(fecha)'=>$year,
+					'role_id'=>$roles_ids
 					)
 			));
 
@@ -31,8 +45,26 @@
 		public function json()
 		{
 			$this->autoRender = false;
+
+			$this->loadModel('User');
+
+			$roles = $this->User->find('first', array(
+				'User.id'=> $this->Auth->user()['id']
+				));
+			
+			
+			$roles_ids = array();
+			foreach ($roles['Role'] as $key => $value) {
+				$roles_ids[] = $value['id'];
+			}
+
+			//pr($roles_ids); exit();
 			$this->CalendarEvent->recursive = 3;
-			$events = $this->CalendarEvent->find('all');
+			$events = $this->CalendarEvent->find('all', array(
+				'conditions'=>array(
+					'CalendarEvent.role_id' => $roles_ids
+					)
+				));
 
 			$_evensts = array();
 			$_days = array();
