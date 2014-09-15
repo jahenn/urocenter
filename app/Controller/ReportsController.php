@@ -30,7 +30,7 @@
 				$this->Exam->virtualFields['resultado'] = 0;
 				$examenes = $this->Exam->find('first', array(
 					'fields'=>array(
-						'ifnull(avg(Exam.resultado),0) as Exam__resultado'
+						'ifnull(cast(avg(Exam.resultado),0) as decimal(18,2)) as Exam__resultado'
 						),
 					'conditions'=>array(
 						'fecha >=' => $fecha_comienzo,
@@ -84,7 +84,7 @@
 				$this->Exam->virtualFields['resultado'] = 0;
 				$examenes = $this->Exam->find('first', array(
 						'fields'=>array(
-								'ifnull(avg(Exam.resultado),0) as Exam__resultado'
+								'ifnull(cast(avg(Exam.resultado),0) as decimal(18,2)) as Exam__resultado'
 						),
 						'conditions'=>array(
 								'fecha >=' => $fecha_comienzo,
@@ -149,7 +149,7 @@
 								$this->Exam->virtualFields['resultado'] = 0;
 								$examenes = $this->Exam->find('first', array(
 										'fields'=>array(
-												'ifnull(avg(Exam.resultado),0) as Exam__resultado'
+												'ifnull(cast(avg(Exam.resultado),0) as decimal(18,2)) as Exam__resultado'
 										),
 										'conditions'=>array(
 						'month(fecha)'=> $month,
@@ -217,7 +217,7 @@
 				$this->Exam->virtualFields['resultado'] = 0;
 				$examenes = $this->Exam->find('first', array(
 					'fields'=>array(
-						'ifnull(avg(Exam.resultado),0) as Exam__resultado'
+						'ifnull(cast(avg(Exam.resultado),0) as decimal(18,2)) as Exam__resultado'
 						),
 					'conditions'=>array(
 						'month(fecha)'=> $month,
