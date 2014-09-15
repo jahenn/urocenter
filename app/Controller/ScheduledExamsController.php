@@ -119,6 +119,8 @@ class ScheduledExamsController extends AppController {
 				$fecha = $this->request->data ['ScheduledExam'] ['fecha_programada'];
 				$titulo = $this->request->data ['ScheduledExam'] ['titulo'];
 
+				// pr($this->request->data); exit();
+
 				foreach ($this->request->data['Role']['Role'] as $key => $value) {
 
 					$this->CalendarEvent->create ();
@@ -265,6 +267,27 @@ class ScheduledExamsController extends AppController {
 		}
 	}
 	public function resolve($id) {
+
+		$this->loadModel('Exam');
+
+		$exam_exists = $this->Exam->find('count', array(
+			'conditions'=>array(
+				'exam_id'=>$id,
+				'user_id'=>$this->Auth->user()['id']
+				)
+			));
+
+		// pr($exam_exists); exit();
+
+
+		if($exam_exists > 0){
+			$this->Session->setFlash('El examen ya fue resuelto', 'default', array(
+				'class'=>'alert alert-danger'
+				));
+
+			$this->redirect($this->referer());
+		}
+
 		if ($this->request->is ( 'post' )) {
 			$this->ScheduledExam->bindModel ( array (
 					'belongsTo' => array (
@@ -272,6 +295,9 @@ class ScheduledExamsController extends AppController {
 					) 
 			) );
 			
+
+
+
 			$exam = $this->ScheduledExam->find ( 'first', array (
 					'conditions' => array (
 							'ScheduledExam.id' => $id 
@@ -292,7 +318,8 @@ class ScheduledExamsController extends AppController {
 					'resultado' => 0,
 					'estatus' => 1,
 					'categoria' => $exam_category ,
-					'dificultad'=>$exam['QuestionDifficulty']['descripcion']
+					'dificultad'=>$exam['QuestionDifficulty']['descripcion'],
+					'exam_id'=>$id
 			);
 			
 			$this->loadModel ( 'Exam' );
@@ -335,7 +362,7 @@ class ScheduledExamsController extends AppController {
 									) 
 							) );
 							
-							pr($answer_correct); exit();
+							//pr($answer_correct); exit();
 							
 							$correct_text = $answer_correct ['Answer'] ['answer'];
 							

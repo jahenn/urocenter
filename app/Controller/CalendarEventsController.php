@@ -8,7 +8,7 @@
 			$this->loadModel('User');
 
 			$roles = $this->User->find('first', array(
-				'User.id'=> $this->Auth->user()['id']
+				'conditions'=>array('User.id'=> $this->Auth->user()['id'])
 				));
 			
 			
@@ -47,18 +47,25 @@
 			$this->autoRender = false;
 
 			$this->loadModel('User');
+			$user_id = $this->Auth->user()['id'];
+
 
 			$roles = $this->User->find('first', array(
-				'User.id'=> $this->Auth->user()['id']
+				'conditions'=>array('User.id'=> $user_id)
 				));
 			
+
+			// $vv = new View();
+			// pr($vv->element('sql_dump'));
+
+			// pr($roles); exit();
 			
 			$roles_ids = array();
 			foreach ($roles['Role'] as $key => $value) {
 				$roles_ids[] = $value['id'];
 			}
 
-			//pr($roles_ids); exit();
+			// pr($roles_ids); exit();
 			$this->CalendarEvent->recursive = 3;
 			$events = $this->CalendarEvent->find('all', array(
 				'conditions'=>array(
