@@ -118,7 +118,7 @@ class ExamsController extends AppController {
 		$this->autoRender = false;
 		$this->Exam->virtualFields['resultado'] = 0;
 		$this->Exam->virtualFields['fecha'] = 0;
-		$examenes = $this->Exam->query('select cast(fecha as date) as Exam__fecha, avg(resultado) as Exam__resultado from exams as Exam group by month(fecha)');
+		$examenes = $this->Exam->query('select cast(fecha as date) as Exam__fecha, cast(avg(resultado) as decimal(18,2)) as Exam__resultado from exams as Exam group by month(fecha)');
 		
 		$exams = array();
 
