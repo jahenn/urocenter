@@ -73,7 +73,7 @@
 
 .wizard > .steps > ul > li
 {
-    width: 25%;
+    width: 50px;
 }
 
 .wizard > .steps > ul > li,
@@ -95,8 +95,9 @@
     display: block;
     width: auto;
     margin: 0 0.5em 0.5em;
-    padding: 1em 1em;
+    padding: 5px;
     text-decoration: none;
+    font-size: 12px;
 
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
