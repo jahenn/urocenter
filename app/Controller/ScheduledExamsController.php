@@ -105,8 +105,8 @@ class ScheduledExamsController extends AppController {
 						'action' => 'resolve', $new_id
 				
 				));
-				pr($this->request->data);
-				exit();
+				// pr($this->request->data);
+				// exit();
 				
 				//Asignamos url a el examen
 				// $this->ScheduledExam->id = $new_id;
