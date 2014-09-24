@@ -29,7 +29,7 @@
               'action'=>'delete', 
               $event['CalendarEvent']['id']
               )) ?>
-            <a href="<?= $delete_event ?>" class="btn btn-primary">Eliminar</a>
+            <!-- <a href="<?= $delete_event ?>" class="btn btn-primary">Eliminar</a> -->
             <a href="<?= $this->Html->url(array(
               'controller'=>$event['CalendarEvent']['controller'],
               'action'=>$event['CalendarEvent']['accion'],
