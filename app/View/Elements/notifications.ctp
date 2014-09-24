@@ -12,18 +12,20 @@
                     )
             )) ?>
         </div>
-        <!-- <h4 class="infobox-title">
-            <a href="#"><small><?= $notification['User']['username'] ?></small></a>
-            <?= $notification['Notification']['titulo'] ?>
-        </h4> -->
         <p>
             <?= $notification['Notification']['descripcion'] ?>
+
         </p>
-        <!-- <br>
         <p>
-            <span class="pull-right"><?= date('Y-m-d') ?></span>
-        </p> -->
+                <a href="<?php echo $this->Html->url(array(
+                'controller'=> $notification['Notification']['controller'],
+                'action'=>$notification['Notification']['accion'],
+                $notification['Notification']['params']
+            )) ?>"><?php echo utf8_encode($notification['Notification']['label']) ?></a>
+        </p>
         <br>
+
+        
 
         <!-- <a class="glyph-icon infobox-close icon-remove" title="Close Message" href="#"></a> -->
     </div>

@@ -19,6 +19,7 @@
 						</tr>
 					</thead>
 					<?php foreach ($exams as $exam): ?>
+					<tbody>
 					<tr>
 						<td><?php echo h($exam['Exam']['titulo']); ?>&nbsp;</td>
 						<td><?php echo h($exam['Exam']['descripcion']); ?>&nbsp;</td>
@@ -94,6 +95,7 @@
 									</div>
 								</td>
 							</tr>
+						</tbody>
 						</table>
 					</div>
 				</div>

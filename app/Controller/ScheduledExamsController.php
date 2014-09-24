@@ -23,7 +23,16 @@ class ScheduledExamsController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$this->ScheduledExam->recursive = 0;
+		$this->ScheduledExam->recursive = 2;
+		$this->ScheduledExam->unbindModel(array(
+			'hasAndBelongsToMany'=>array('Question')
+			));
+		$this->ScheduledExam->Role->unbindModel(array(
+			'hasAndBelongsToMany'=>array('Menu', 'User')
+			));
+		$this->Paginator->settings = array(
+			'order'=>array('id'=>'desc')
+			);
 		$this->set ( 'scheduledExams', $this->Paginator->paginate () );
 	}
 	
@@ -80,15 +89,10 @@ class ScheduledExamsController extends AppController {
 	public function add() {
 		if ($this->request->is ( 'post' )) {
 			
-			 //pr($this->request->data);exit();
-			
 			$this->request->data['ScheduledExam']['user_id'] = $this->Auth->user()['id'];
 			if($this->request->data['ScheduledExam']['question_difficulty_id'] == ''){
 				$this->request->data['ScheduledExam']['question_difficulty_id'] = rand ( 1 , 3 );
 			}
-			
-			
-			// pr($this->request->data); exit();
 			
 			$this->ScheduledExam->create ();
 			if ($this->ScheduledExam->save ( $this->request->data )) {
@@ -101,52 +105,37 @@ class ScheduledExamsController extends AppController {
 						'action' => 'resolve', $new_id
 				
 				));
-				
+				pr($this->request->data);
+				exit();
 				
 				//Asignamos url a el examen
-				$this->ScheduledExam->id = $new_id;
-				$this->ScheduledExam->saveField('private_url', $event_url);
+				// $this->ScheduledExam->id = $new_id;
+				// $this->ScheduledExam->saveField('private_url', $event_url);
 				
 				
-				// add to calendar
+				// // add to calendar
 				
-				//pr("ok"); exit();
 				
-				$this->loadModel ( 'CalendarEvent' );
+				// $this->loadModel ( 'CalendarEvent' );
 				
 
 				
-				$fecha = $this->request->data ['ScheduledExam'] ['fecha_programada'];
-				$titulo = $this->request->data ['ScheduledExam'] ['titulo'];
+				// $fecha = $this->request->data ['ScheduledExam'] ['fecha_programada'];
+				// $titulo = $this->request->data ['ScheduledExam'] ['titulo'];
 
-				// pr($this->request->data); exit();
 
-				foreach ($this->request->data['Role']['Role'] as $key => $value) {
+				// foreach ($this->request->data['Role']['Role'] as $key => $value) {
 
-					$this->CalendarEvent->create ();
-					$this->CalendarEvent->save ( array (
-							'titulo' => $titulo,
-							'descripcion' => 'Nuevo Examen Programado',
-							'fecha' => $fecha,
-							'color_id' => 1,
-							'url' => $event_url ,
-							'role_id'=>$value
-					) );
-				}
-
-				
-				// add notification
-				
-// 				$this->loadModel ( 'Notification' );
-// 				$this->Notification->create ();
-// 				$this->Notification->save ( array (
-// 						'role_id' => 0,
-// 						'user_id' => $this->Auth->user ()['id'],
-// 						'fecha' => date ( 'Y-m-d' ),
-// 						'titulo' => 'Nuevo Examen Programado',
-// 						'descripcion' => 'Se ha programado un nuevo examen <a href="' . $event_url . '">Ver</a>',
-// 						'color_id' => 1 
-// 				) );
+				// 	$this->CalendarEvent->create ();
+				// 	$this->CalendarEvent->save ( array (
+				// 			'titulo' => $titulo,
+				// 			'descripcion' => 'Nuevo Examen Programado',
+				// 			'fecha' => $fecha,
+				// 			'color_id' => 1,
+				// 			'url' => $event_url ,
+				// 			'role_id'=>$value
+				// 	) );
+				// }
 				
 				$this->Session->setFlash ( __ ( 'Se programo el examen correctamente' ), 'default', array(
 					'class'=>'alert alert-success'
@@ -159,6 +148,10 @@ class ScheduledExamsController extends AppController {
 				$this->Session->setFlash ( __ ( 'The scheduled exam could not be saved. Please, try again.' ) );
 			}
 		}
+
+
+
+
 		$questions = $this->ScheduledExam->Question->find ( 'list' );
 		$roles = $this->ScheduledExam->Role->find ( 'list', array (
 				'conditions' => array (

@@ -24,9 +24,17 @@
           <?= $event['CalendarEvent']['descripcion'] ?>
     <br><br>
           <p>
-            <?php $delete_event = $this->Html->url(array('controller'=>'calendar_events', 'action'=>'delete', $event['CalendarEvent']['id'])) ?>
+            <?php $delete_event = $this->Html->url(array(
+              'controller'=>'calendar_events', 
+              'action'=>'delete', 
+              $event['CalendarEvent']['id']
+              )) ?>
             <a href="<?= $delete_event ?>" class="btn btn-primary">Eliminar</a>
-            <a href="<?= $event['CalendarEvent']['url'] ?>" class="btn btn-primary">Ir a Evento</a>
+            <a href="<?= $this->Html->url(array(
+              'controller'=>$event['CalendarEvent']['controller'],
+              'action'=>$event['CalendarEvent']['accion'],
+              $event['CalendarEvent']['params']
+            )) ?>" class="btn btn-primary">Ir a Evento</a>
           </p>
         </div>
       </div>

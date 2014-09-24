@@ -1,6 +1,10 @@
 <?php 
 	
 	class AdminController extends AppController{
+
+
+
+		#INDEX
 		public function index(){
 			$this->loadModel('User');
 
@@ -38,6 +42,8 @@
 // 			$notifications = $this->Notification->find('all', array(
 // 				'order'=>'Notification.id desc'
 // 				));
+
+			// pr($this->Auth->user()['id']); exit();
 
 			$notifications = $this->Notification->query('call SP_GetNotifications('.$this->Auth->user()['id'].')');
 			
