@@ -59,9 +59,9 @@
             <div class="tile-content-wrapper">
                 <i class="glyph-icon icon-user"></i>
                 <div class="tile-content">
-                    <?= $users ?> / <span style="color:red;"><?= $users_pendientes ?></span>
+                    <?= $users ?> 
                 </div>
-                <div class="float-right">Registrados / Inactivos</div>
+                <div class="float-right">Registrados</div>
             </div>
         </a>
     </div>

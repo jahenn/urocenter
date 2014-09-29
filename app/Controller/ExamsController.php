@@ -121,8 +121,11 @@ class ExamsController extends AppController {
 		$this->autoRender = false;
 		$this->Exam->virtualFields['resultado'] = 0;
 		$this->Exam->virtualFields['fecha'] = 0;
-		$examenes = $this->Exam->query('select cast(fecha as date) as Exam__fecha, cast(avg(resultado) as decimal(18,2)) as Exam__resultado from exams as Exam group by month(fecha)');
+		$examenes = $this->Exam->query('select cast(max(fecha) as date) as Exam__fecha, cast(avg(resultado) as decimal(18,2)) as Exam__resultado from exams as Exam group by month(fecha)');
 		
+		//inner join users u on u.id = Exam.user_id where u.activo = 1
+
+
 		$exams = array();
 
 		$meses = array(
@@ -140,7 +143,7 @@ class ExamsController extends AppController {
 			'Noviembre',
 			'Diciembre');
 
-		//pr($examenes);
+		// pr($examenes); exit();
 
 		foreach ($examenes as $key => $v) {
 			$exams[] = array('fecha'=>  $v['Exam']['fecha'] ,  'value'=>$v['Exam']['resultado']);
