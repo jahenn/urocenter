@@ -29,7 +29,8 @@ class ExamsController extends AppController {
 			'order'=>array('fecha'=>'DESC')
 			);
 		$this->set('exams', $this->Paginator->paginate(array(
-			'User.activo'=>true
+			'User.activo'=>true,
+			'Exam.estatus'=>array(1,2)
 			)));
 	}
 
@@ -108,8 +109,8 @@ class ExamsController extends AppController {
 		if (!$this->Exam->exists()) {
 			throw new NotFoundException(__('Invalid exam'));
 		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Exam->delete()) {
+		//$this->request->allowMethod('post', 'delete');
+		if ($this->Exam->saveField('estatus',3)) {
 			$this->Session->setFlash(__('The exam has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The exam could not be deleted. Please, try again.'));
