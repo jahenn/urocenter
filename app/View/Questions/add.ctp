@@ -12,9 +12,9 @@
 		$("#QuestionQuestionCategoryId").chosen({
 			'width':'100%'
 		});
-		$("#QuestionQuestionTypeId").chosen({
-			'width':'100%'
-		});
+		// $("#QuestionQuestionTypeId").chosen({
+		// 	'width':'100%'
+		// });
 
 		$("#QuestionQuestionDifficultyId option").each(function(){
 			var i = $('<i class="fa fa-check"></i> &nbsp;');
@@ -148,7 +148,7 @@
 	</div>
 </div>		
 
-<div class="form-row">
+<div class="form-row hidden">
 			<div class="form-input col-md-12">		 
 			<?= $this->Form->input('question_type_id', array(
 			'label'=>array(
@@ -156,12 +156,13 @@
 				'class'=>'text-transform-cap '
 				),
 			'required'=>false,
-			'empty'=>''
+			'empty'=>'',
+			'default'=>1
 			)) ?> 
 	</div>
 </div>	
 
-<div class="row">
+<div class="row hidden">
 	<div class="col-md-12">
 		<?= $this->Form->input('question_difficulty_id', array(
 			'class'=>'form-control',
@@ -169,7 +170,8 @@
 				'text'=>'Nivel de Dificultad',
 				'class'=>'text-transform-cap'
 				),
-			'empty'=>'Selecciona una Opción'
+			'empty'=>'Selecciona una Opción',
+			'default'=>1
 		)) ?>
 		<i class="fa fa-question font-size-20 dif" style="color: white;"></i>
 	</div>

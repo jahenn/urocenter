@@ -68,16 +68,17 @@
 			)) ?> 
 	</div>
 </div>
-<div class="row">
+<div class="row hidden">
 	<div class="col-md-6">
 		<?= $this->Form->input('question_difficulty_id', array(
 			'label'=>'Dificultad Del Examen',
-			'class'=>'form-control'		
+			'class'=>'form-control',
+			'default'=>1		
 			)) ?> 
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-2">
 		<?= $this->Form->input('numero_preguntas', array(
 			'label'=>'Cantidad de Preguntas',
 			'class'=>'form-control width-100	',

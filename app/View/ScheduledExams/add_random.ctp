@@ -9,7 +9,7 @@
 
 
 <div class="row">
-	<div class="col-md-11">
+	<div class="col-md-6 col-lg-4">
 		<?= $this->Form->create('random_exam') ?>
 
 		<?= $this->Form->input('question_category_id', array(
@@ -22,7 +22,9 @@
 			'class'=>'form-control',
 			'label'=>'Selecciona un Nivel de Dificultad',
 			'style'=>'width: 120px;',
-			'empty'=>'Nivel Aleatorio'
+			'empty'=>'Nivel Aleatorio',
+			'default'=>1,
+			'type'=>'hidden'
 		)) ?>
 
 		<?= $this->Form->input('cantidad', array(
