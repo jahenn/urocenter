@@ -22,12 +22,15 @@ class ExamsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Paginator->settings = array(
-			'order'=>'fecha desc'
-			);
+		
 		
 		$this->Exam->recursive = 0;
-		$this->set('exams', $this->Paginator->paginate());
+		$this->Paginator->settings = array(
+			'order'=>array('fecha'=>'DESC')
+			);
+		$this->set('exams', $this->Paginator->paginate(array(
+			'User.activo'=>true
+			)));
 	}
 
 /**

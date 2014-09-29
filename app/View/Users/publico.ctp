@@ -41,7 +41,7 @@
 							)) ?>
 
 
-							<h2 ><?= $public_user['User']['nombre_completo'] ?></h2>
+							<h2 ><?= $public_user['User']['username'] ?></h2>
 							<span class="small"> <i class="fa fa-h-square"/></i> <?= $public_user['User']['hospital'] ?></span>
 						</div>
 						<div class="content-body">
@@ -73,7 +73,7 @@
 					<br>
 					<div class="row">
 						<div class="col-md-12">
-							<span class="font-size-20">Perfi Publico</span>
+							<span class="font-size-20">Perfil Público</span>
 							<!-- <div class="divider"></div> -->
 						</div>
 					</div>

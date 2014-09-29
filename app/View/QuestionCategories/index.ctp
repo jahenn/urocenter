@@ -59,8 +59,6 @@
 						Ver
 						</a>
 					</li>
-
-					<?php if($questionCategory['QuestionCategory']['id'] != 5 && $questionCategory['QuestionCategory']['id'] != 6): ?>
 					<li role="presentation">
 						<?php $url_action = $this->Html->url(array(
 							'controller'=>'question_categories',
@@ -79,8 +77,6 @@
 						__('Seguro que deseas eliminar esta categoria?', 
 						$questionCategory['QuestionCategory']['id'])) ?>
 					</li>
-					
-					<?php endif; ?>
 				</ul>
 			</div>
 		

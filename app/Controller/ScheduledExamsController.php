@@ -150,14 +150,33 @@ class ScheduledExamsController extends AppController {
 		}
 
 
+		$this->loadModel('User');
+		$users_list = $this->User->find('list', array(
+			'fields'=>array('username'),
+			'conditions'=>array(
+				'activo'=>true
+				)
+			));
 
+		//pr($users_list); exit();
+
+		$active_users = array();
+		foreach ($users_list as $key => $value) {
+			$active_users[] = $value;
+		}
+
+		//pr($active_users); exit();
 
 		$questions = $this->ScheduledExam->Question->find ( 'list' );
-		$roles = $this->ScheduledExam->Role->find ( 'list', array (
-				'conditions' => array (
-						'user_role' => false 
-				) 
-		) );
+		$roles = $this->ScheduledExam->Role->find( 'list', array(
+			'conditions'=>array(
+				'OR'=> array(
+					'nombre'=>$active_users,
+					'user_role'=> false
+					)
+				),
+			'order'=>array('user_role'=>'asc', 'nombre')
+			));
 		
 		$questionCategories = $this->ScheduledExam->Question->QuestionCategory->find ( 'list' );
 		$questionDifficulties = $this->ScheduledExam->Question->QuestionDifficulty->find ( 'list' );

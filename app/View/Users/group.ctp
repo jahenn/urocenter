@@ -37,7 +37,7 @@
 
 		  </button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				<li role="presentation">
+				<!-- <li role="presentation">
 					<?php $url_group = $this->Html->url(array(
 							'controller'=>'users',
 							'action'=>'group', 'pendientes'
@@ -49,7 +49,7 @@
 						<span class="badge badge-red"><?= $pendientes ?></span>
 						<?php endif ?>
 					</a>
-				</li>
+				</li> -->
 				<li role="presentation">
 					<?php $url_group = $this->Html->url(array(
 							'controller'=>'users',

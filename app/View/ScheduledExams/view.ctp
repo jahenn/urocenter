@@ -30,15 +30,16 @@
 <hr>
 <div class="row">
 	<div class="col-md-12">
+		<!-- 
 		<?php $random = $this->Html->url(array(
 			'action'=>'randomize', 
 			$scheduledExam['ScheduledExam']['id'], 
 			$scheduledExam['ScheduledExam']['numero_preguntas'],
 			$scheduledExam['ScheduledExam']['question_category_id'],
 			$scheduledExam['ScheduledExam']['question_difficulty_id']
-		)); ?>
+		)); ?> -->
 		
-		<a href="<?= $random ?>" class="btn btn-primary"><i class="fa fa-refresh"></i> Generar Examen Random</a>
+		<!-- <a href="<?= $random ?>" class="btn btn-primary"><i class="fa fa-refresh"></i> Generar Examen Random</a> -->
 
 <!-- 
 		<?php $url_add_question = $this->Html->url(array(
@@ -50,7 +51,7 @@
 		<a href="<?= $url_add_question ?>" class="btn btn-default"><i class="fa fa-plus"></i> Agregar Pregunta</a>
 		<hr>
 		<br> -->
-		<br><br>
+		<br>
 
 		<?php $i=0; ?>
 		<?php if(!empty($scheduledExam['Question'])): ?>

@@ -1,3 +1,11 @@
+<style type="text/css">
+	.w50{
+		width: 50%;
+	}
+	.w350px{
+		width: 350px;
+	}
+</style>
 <div class="row">
 	<div class="col-md-12">
 		<span class="font-size-20"><?= ucwords($this->Session->read()['Auth']['User']['username']) ?> / Programar Examen</span class="font-size-20">
@@ -14,32 +22,34 @@
 		)
 )); ?>
 
-
 <div class="row">
-	
-	<div class="col-md-12">
+	<div class="col-md-6">
 		<?= $this->Form->input('titulo', array(
 			'label'=>'Titulo del Examen',
 			'class'=>'form-control width-100'
 			)) ?> 	 
 			
 	</div>
-	<div class="col-md-12">
+</div>
+<div class="row">
+	<div class="col-md-6">
 		<?= $this->Form->input('fecha_programada', array(
 				'label'=>'Fecha Programada',
 				'type'=>'text',
-				'class'=>'date form-control'
+				'class'=>'date form-control w350px'
 				)) ?>
 	</div>
-	<div class="col-md-12">
+</div>
+<div class="row">
+	<div class="col-md-6">
 		<?= $this->Form->input('comentarios', array(
 			'label'=>'Comentarios / Notas del Examen',
 			'class'=>'form-control width-100'
 			)) ?> 
 	</div>
-
-
-	<div class="col-md-12">
+</div>
+<div class="row">
+	<div class="col-md-6">
 		<?= $this->Form->input('Role', array(
 			'label'=>'Usuarios / Grupos de Usuarios',
 			'class'=>'form-control width-100',
@@ -47,8 +57,9 @@
 			'required'=>true
 			)) ?> 
 	</div>
-
-	<div class="col-md-12">
+</div>
+<div class="row">
+	<div class="col-md-6">
 		<?= $this->Form->input('question_category_id', array(
 			'label'=>'Categoria del Examen',
 			'class'=>'form-control',
@@ -56,25 +67,26 @@
 			'empty'=>'Selecciona una Opcion'
 			)) ?> 
 	</div>
-	
-	<div class="col-md-12">
+</div>
+<div class="row">
+	<div class="col-md-6">
 		<?= $this->Form->input('question_difficulty_id', array(
 			'label'=>'Dificultad Del Examen',
-			'class'=>'form-control',
-			'empty'=>'Nivel Aleatorio'
+			'class'=>'form-control'		
 			)) ?> 
 	</div>
-
-	<div class="col-md-12">
+</div>
+<div class="row">
+	<div class="col-md-6">
 		<?= $this->Form->input('numero_preguntas', array(
 			'label'=>'Cantidad de Preguntas',
-			'class'=>'form-control',
+			'class'=>'form-control width-100	',
 			'required'=>true,
 			'type'=>'number'
 			)) ?> 
 	</div>
-
 </div>
+
 
 
 
@@ -111,7 +123,9 @@
 			dateFormat: 'yy-mm-dd'
 		});
 
-		$("#RoleRole").chosen();
+		$("#RoleRole").chosen({
+			'width':'100%'
+		});
 
 
 			// $("#ScheduledExamAddForm").submit(function(e){
