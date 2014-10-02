@@ -40,12 +40,12 @@ $mail->SMTPDebug = 3;                               // Enable verbose debug outp
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'jjuarez007@gmail.com';                 // SMTP username
+$mail->Username = 'qt.jorgem@gmail.com';                 // SMTP username
 $mail->Password = $password;                           // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                                    // TCP port to connect to
 
-$mail->From = 'jjuarez007@gmail.com';
+$mail->From = 'qt.jorgem@gmail.com';
 $mail->FromName = 'Urocenter';
 $mail->addAddress('urocenternet@gmail.com', $nombre);     // Add a recipient
 // $mail->addAddress('ellen@example.com');               // Name is optional
