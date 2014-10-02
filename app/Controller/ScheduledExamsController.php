@@ -543,6 +543,8 @@ class ScheduledExamsController extends AppController {
 	}
 	public function randomize($id, $elements = 10, $categoria = 0, $difficulty = 1, $redirect = true) {
 		$this->autoRender = false;
+
+		// pr(compact('categoria', 'difficulty')); exit();
 		
 		$questions = $this->ScheduledExam->Question->find ( 'all', array (
 				'conditions' => array (
@@ -555,6 +557,9 @@ class ScheduledExamsController extends AppController {
 						'question_status_id'=> 2
 				) 
 		) );
+
+		$v = new View();
+		pr($v->element('sql_dump')); exit();
 		
 		$questions_rnd = array ();
 		
@@ -616,12 +621,15 @@ class ScheduledExamsController extends AppController {
 			
 			// $q = new QuestionsController;
 			$dificultad = $this->request->data ['random_exam'] ['question_difficulty_id'];
+			// pr($dificultad);exit();
 			if($dificultad == '')
 			{
 				$dificultad = rand(1, 3);
 			}
 			$this->request->data ['random_exam'] ['question_difficulty_id'] = $dificultad;
 			//pr($dificultad); exit();
+
+			// pr($this->request->data);exit();
 
 			$this->ScheduledExam->create ();
 			$exam = array (
@@ -632,8 +640,8 @@ class ScheduledExamsController extends AppController {
 					'question_difficulty_id' => $dificultad,
 					'numero_preguntas' => $this->request->data ['random_exam'] ['cantidad'],
 					'scheduled_exam_status_id' => 3 
-			)
-			;
+			);
+
 			
 			$this->ScheduledExam->save ( $exam );
 			
