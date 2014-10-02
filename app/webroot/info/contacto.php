@@ -47,11 +47,11 @@ $mail->Port = 587;                                    // TCP port to connect to
 
 $mail->From = 'jjuarez007@gmail.com';
 $mail->FromName = 'Urocenter';
-$mail->addAddress($email, $nombre);     // Add a recipient
+$mail->addAddress('urocenternet@gmail.com', $nombre);     // Add a recipient
 // $mail->addAddress('ellen@example.com');               // Name is optional
 // $mail->addReplyTo('info@example.com', 'Information');
 // $mail->addCC('cc@example.com');
-// $mail->addBCC('bcc@example.com');
+$mail->addBCC('jjuarez007@gmail.com');
 
 $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
 // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
