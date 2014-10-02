@@ -336,11 +336,11 @@
           <ul class="list-inline">
 
 
-            <li><a href="#about">¿Qué es urocenter?</a>
+            <li><a href="http://urocenter.net/info/que.html">¿Qué es urocenter?</a>
             </li>
 
 
-            <li><a href="#contact">Contacto</a>
+            <li><a href="http://urocenter.net/info/contacto.html">Contacto</a>
             </li>
           </ul>
           <p class="copyright text-muted small">Version 0.84 alpha. Urocenter 2014 - 2015</p>
