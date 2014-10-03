@@ -39,7 +39,7 @@
 			$scheduledExam['ScheduledExam']['question_difficulty_id']
 		)); ?> -->
 		
-		<!-- <a href="<?= $random ?>" class="btn btn-primary"><i class="fa fa-refresh"></i> Generar Examen Random</a> -->
+		<a href="<?= $random ?>" class="btn btn-primary"><i class="fa fa-refresh"></i> Generar Examen Random</a> 
 
 <!-- 
 		<?php $url_add_question = $this->Html->url(array(
