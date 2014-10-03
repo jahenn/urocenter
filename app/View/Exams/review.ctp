@@ -16,10 +16,12 @@
 		<label for="">Categoria</label>
 		<span><?= $exam['Exam']['categoria'] ?></span>
 	</div>
+	<!--
 	<div class="col-md-12">
 		<label for="">Nivel de Dificultad</label>
 		<span><?= $exam['Exam']['dificultad'] ?></span>
 	</div>
+	-->
 	<div class="col-md-12">
 		<label for="">Bibliografia</label>
 		<ul>
