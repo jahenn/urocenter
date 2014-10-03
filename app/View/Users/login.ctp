@@ -303,13 +303,13 @@
                             <!-- <button type="submit" class="btn btn-primary pull-right">Iniciar sesión</button><br /><br/>
                              <button type="submit" class="btn btn-primary pull-right">Registro</button><br /><br/> -->
                              <div class="btn-group">
-                                 <button class="btn btn-primary" type="submit"><i class="fa fa-user"></i> Iniciar Sesion</button>
+                                 <button class="btn btn-primary" type="submit"><i class="fa fa-user"></i> Iniciar Sesión</button>
                                  <?php $url_register = $this->Html->url(array(
                                      'controller'=>'users',
                                      'action'=>'register'
                                  )); ?>
 
-                                 <a href="<?= $url_register ?>" class="btn btn-primary"><i class="fa fa-user"></i> Registrate</a>
+                                 <a href="<?= $url_register ?>" class="btn btn-primary"><i class="fa fa-user"></i> Registrarse</a>
                              </div>
                           <!-- </form> -->
           <?= $this->Form->end() ?>
@@ -343,7 +343,7 @@
             <li><a href="http://urocenter.net/info/contacto.html">Contacto</a>
             </li>
           </ul>
-          <p class="copyright text-muted small">Version 0.84 alpha. Urocenter 2014 - 2015</p>
+          <p class="copyright text-muted small">Version 1.03 beta. Urocenter 2014 - 2015</p>
         </div>
       </div>
     </div>
