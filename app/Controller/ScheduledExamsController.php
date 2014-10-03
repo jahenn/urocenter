@@ -558,8 +558,8 @@ class ScheduledExamsController extends AppController {
 				) 
 		) );
 
-		$v = new View();
-		pr($v->element('sql_dump')); exit();
+		//$v = new View();
+		//pr($v->element('sql_dump')); exit();
 		
 		$questions_rnd = array ();
 		
