@@ -1,2 +1,6 @@
 <?php $this->layout = 'clean' ?>
-<h2>La Pagina no Existe</h2>
+<div class="container">
+  <h2>La Página no Existe</h2>
+  <br />
+  <a href="http://urocenter.net" class="btn btn-primary btn-lg" > Ir a la página principal </a>
+</div>
