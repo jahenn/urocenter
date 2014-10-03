@@ -74,7 +74,8 @@ class ScheduledExamsController extends AppController {
 		$questions = $this->ScheduledExam->Question->find ( 'list', array (
 				'conditions' => array (
 						'question_category_id' => $scheduledExam ['ScheduledExam'] ['question_category_id'] ,
-						'question_difficulty_id' => $scheduledExam ['ScheduledExam'] ['question_difficulty_id'] 
+						'question_difficulty_id' => $scheduledExam ['ScheduledExam'] ['question_difficulty_id'],
+						'question_status_id'=>2
 				) 
 		) );
 		
