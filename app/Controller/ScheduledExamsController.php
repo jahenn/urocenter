@@ -531,11 +531,17 @@ class ScheduledExamsController extends AppController {
 							'Question' 
 					) 
 			) );
+
+			$this->ScheduledExam->Question->unbindAll(array(
+				'exceptions'=>array('Answer')
+				));
 			$this->request->data = $this->ScheduledExam->find ( 'first', array (
 					'conditions' => array (
 							'ScheduledExam.id' => $id 
 					) 
 			) );
+
+			//pr($this->request->data);exit();
 		}
 	}
 	public function thanks() {

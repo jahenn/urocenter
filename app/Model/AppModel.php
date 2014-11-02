@@ -30,4 +30,33 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+	function unbindAll($exceptions = array('exceptions'=>array()))
+	  {
+	    $unbind = array();
+	    foreach ($this->belongsTo as $model=>$info)
+	    {
+	      if(!in_array($model, $options['exceptions'])){
+	      	$unbind['belongsTo'][] = $model;
+	      }
+	    }
+	    foreach ($this->hasOne as $model=>$info)
+	    {
+	    	if(!in_array($model, $options['exceptions'])){
+	    		$unbind['hasOne'][] = $model;
+	    	}
+	    }
+	    foreach ($this->hasMany as $model=>$info)
+	    {
+	    	if(!in_array($model, $options['exceptions'])){
+	    		$unbind['hasMany'][] = $model;
+	    	}
+	    }
+	    foreach ($this->hasAndBelongsToMany as $model=>$info)
+	    {
+	    	if(!in_array($model, $options['exceptions'])){
+	    		$unbind['hasAndBelongsToMany'][] = $model;
+	    	}
+	    }
+	    parent::unbindModel($unbind);
+	  } 
 }
