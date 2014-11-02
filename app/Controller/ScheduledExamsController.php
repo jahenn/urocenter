@@ -319,7 +319,7 @@ class ScheduledExamsController extends AppController {
 			$this->ScheduledExam->Question->unbindAll(array(
 				'exceptions'=>array('Answer')
 				));
-			
+
 			$exam = $this->ScheduledExam->find ( 'first', array (
 					'conditions' => array (
 							'ScheduledExam.id' => $id 
@@ -550,7 +550,7 @@ class ScheduledExamsController extends AppController {
 					) 
 			) );
 
-			pr($this->request->data);exit();
+			//pr($this->request->data);exit();
 		}
 	}
 	public function thanks() {
