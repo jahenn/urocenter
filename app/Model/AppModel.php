@@ -30,7 +30,7 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
-	function unbindAll($exceptions = array('exceptions'=>array()))
+	function unbindAll($options = array('exceptions'=>array()))
 	  {
 	    $unbind = array();
 	    foreach ($this->belongsTo as $model=>$info)
