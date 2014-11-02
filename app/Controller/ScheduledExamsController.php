@@ -285,23 +285,23 @@ class ScheduledExamsController extends AppController {
 
 
 
-		$exam_exists = $this->Exam->find('count', array(
-			'conditions'=>array(
-				'exam_id'=>$id,
-				'user_id'=>$this->Auth->user()['id']
-				)
-			));
+		// $exam_exists = $this->Exam->find('count', array(
+		// 	'conditions'=>array(
+		// 		'exam_id'=>$id,
+		// 		'user_id'=>$this->Auth->user()['id']
+		// 		)
+		// 	));
 
 		// pr($exam_exists); exit();
 
 
-		if($exam_exists > 0){
-			$this->Session->setFlash('El examen ya fue resuelto', 'default', array(
-				'class'=>'alert alert-danger'
-				));
+		// if($exam_exists > 0){
+		// 	$this->Session->setFlash('El examen ya fue resuelto', 'default', array(
+		// 		'class'=>'alert alert-danger'
+		// 		));
 
-			$this->redirect($this->referer());
-		}
+		// 	$this->redirect($this->referer());
+		// }
 
 		$this->ScheduledExam->Question->unbindAll(array(
 			'exceptions'=>array('Answer')
@@ -316,7 +316,10 @@ class ScheduledExamsController extends AppController {
 			
 
 
-
+			$this->ScheduledExam->Question->unbindAll(array(
+				'exceptions'=>array('Answer')
+				));
+			
 			$exam = $this->ScheduledExam->find ( 'first', array (
 					'conditions' => array (
 							'ScheduledExam.id' => $id 
@@ -538,14 +541,16 @@ class ScheduledExamsController extends AppController {
 					) 
 			) );
 
-			
+			$this->ScheduledExam->Question->unbindAll(array(
+				'exceptions'=>array('Answer')
+				));
 			$this->request->data = $this->ScheduledExam->find ( 'first', array (
 					'conditions' => array (
 							'ScheduledExam.id' => $id 
 					) 
 			) );
 
-			//pr($this->request->data);exit();
+			pr($this->request->data);exit();
 		}
 	}
 	public function thanks() {
