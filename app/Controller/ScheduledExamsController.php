@@ -283,6 +283,8 @@ class ScheduledExamsController extends AppController {
 
 		$this->loadModel('Exam');
 
+
+
 		$exam_exists = $this->Exam->find('count', array(
 			'conditions'=>array(
 				'exam_id'=>$id,
@@ -300,6 +302,10 @@ class ScheduledExamsController extends AppController {
 
 			$this->redirect($this->referer());
 		}
+
+		$this->ScheduledExam->Question->unbindAll(array(
+			'exceptions'=>array('Answer')
+			));
 
 		if ($this->request->is ( 'post' )) {
 			$this->ScheduledExam->bindModel ( array (
@@ -532,9 +538,7 @@ class ScheduledExamsController extends AppController {
 					) 
 			) );
 
-			$this->ScheduledExam->Question->unbindAll(array(
-				'exceptions'=>array('Answer')
-				));
+			
 			$this->request->data = $this->ScheduledExam->find ( 'first', array (
 					'conditions' => array (
 							'ScheduledExam.id' => $id 
